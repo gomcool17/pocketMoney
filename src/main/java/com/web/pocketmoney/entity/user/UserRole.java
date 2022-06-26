@@ -1,4 +1,4 @@
-package com.web.pocketmoney.user;
+package com.web.pocketmoney.entity.user;
 
 public enum UserRole {
     EMPLOYER, EMPLOYEE
