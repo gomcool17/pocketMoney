@@ -9,6 +9,8 @@ public interface UserService {
     //회원 정보 조회
     UserDTO getUser(Long id);
 
+    void modify(User user);
+
     default UserDTO entityToDto(User user){
         UserDTO userDTO = UserDTO.builder()
                 .id(user.getId())
