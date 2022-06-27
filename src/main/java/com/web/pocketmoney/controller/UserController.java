@@ -31,20 +31,5 @@ public class UserController {
         return "redirect:/mypage";
     }
 
-    //회원 수정
-    @PutMapping("/user")
-    public ResponseDTO<Integer> update(@RequestBody User user){
-        //RequestBody가 없을 경우, Json을 못 받는다. key=value로만 받을 수 있다.
-        userService.modify(user);
 
-        //세션 등록
-        //어썬티케이션 매니저에게 유저네임과 패스워드를 던져서
-        //매니저가 자동으로 세션등록 해준다.
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        return new ResponseDTO<Integer>(HttpStatus.OK.value(), 1);
-
-
-    }
 }
