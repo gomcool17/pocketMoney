@@ -13,6 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 @ToString
 public class User extends BaseEntity {
 
@@ -45,11 +46,12 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private Long kindScore;
 
+    private String oauth; // 카카오, 구글, 어디로 로그인 했는지
+
     //권한 부여 추가, 스프링 시큐리티
     public void addUserRole(UserRole userRole){
         roleSet.add(userRole);
     }
-
 
 
 
