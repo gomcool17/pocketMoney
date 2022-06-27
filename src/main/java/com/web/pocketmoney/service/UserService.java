@@ -11,6 +11,8 @@ public interface UserService {
 
     void modify(User user);
 
+    void delete(User user);
+
     default UserDTO entityToDto(User user){
         UserDTO userDTO = UserDTO.builder()
                 .id(user.getId())
