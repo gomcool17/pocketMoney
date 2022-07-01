@@ -19,6 +19,21 @@ public class UserService {
         return user;
     }
 
+    public User login(String email, String password) {
+        System.out.println("loginService : " + email + " password : " + password );
+        List<User> findEmails = userRepository.findByEmail(email);
+        if(findEmails.isEmpty()) {
+            System.out.println(email + " : " );
+            throw new IllegalStateException("존재하지 않는 회원 아이디 입니다");
+        }
+        User user = findEmails.get(0);
+        System.out.println(user.toString());
+        if(!user.getPassword().equals(password)) {
+            throw new IllegalStateException("비밀번호가 다릅니다.");
+        }
+        return user;
+    }
+
     private void validateDuplicateUserEmail(User user) {
         List<User> findEmails = userRepository.findByEmail(user.getEmail());
         if(!findEmails.isEmpty()) {
