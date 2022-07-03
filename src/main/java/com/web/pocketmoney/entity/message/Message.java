@@ -8,12 +8,11 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Getter @Setter
 @NoArgsConstructor
-public class message {
+public class Message {
 
     @Id @GeneratedValue
     @Column(name = "messageId")

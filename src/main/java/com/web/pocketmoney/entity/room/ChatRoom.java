@@ -1,5 +1,6 @@
 package com.web.pocketmoney.entity.room;
 
+import com.web.pocketmoney.entity.message.Message;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,5 +19,5 @@ public class ChatRoom {
     private Long id;
 
     @OneToMany(mappedBy = "chatRoom")
-    private List<message> messages = ArrayList<>();
+    private List<Message> messages = new ArrayList<>();
 }
