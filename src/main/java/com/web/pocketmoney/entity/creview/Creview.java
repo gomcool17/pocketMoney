@@ -19,9 +19,9 @@ public class Creview extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Comment cno;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Board bno;
     private String text;
 }
