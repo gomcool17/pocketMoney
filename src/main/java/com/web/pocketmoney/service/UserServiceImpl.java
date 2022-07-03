@@ -1,6 +1,6 @@
 package com.web.pocketmoney.service;
 
-import com.web.pocketmoney.dto.UserDTO;
+import com.web.pocketmoney.dto.user.UserDTO;
 import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.entity.user.UserRepository;
 import lombok.RequiredArgsConstructor;

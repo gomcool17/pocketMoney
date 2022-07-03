@@ -1,4 +1,4 @@
-package com.web.pocketmoney.dto;
+package com.web.pocketmoney.dto.user;
 
 import com.web.pocketmoney.entity.role.UserRole;
 import lombok.AllArgsConstructor;

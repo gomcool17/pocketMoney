@@ -2,10 +2,8 @@ package com.web.pocketmoney.controller.login;
 
 import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.service.UserService;
-import com.web.pocketmoney.dto.LoginDto;
-import com.web.pocketmoney.service.UserServiceImpl;
+import com.web.pocketmoney.dto.user.LoginDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

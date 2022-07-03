@@ -1,6 +1,6 @@
 package com.web.pocketmoney.controller.api;
 
-import com.web.pocketmoney.dto.ResponseDTO;
+import com.web.pocketmoney.dto.user.ResponseDTO;
 import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +9,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
