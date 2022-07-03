@@ -1,8 +1,8 @@
-package com.web.pocketmoney.entity.comment;
+package com.web.pocketmoney.entity.creview;
 
 import com.web.pocketmoney.entity.base.BaseEntity;
 import com.web.pocketmoney.entity.board.Board;
-import com.web.pocketmoney.entity.user.User;
+import com.web.pocketmoney.entity.comment.Comment;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,14 +14,14 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-public class Comment extends BaseEntity {
+public class Creview extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    private User userId;
+    private Comment cno;
     @ManyToOne
-    private Board boardId;
+    private Board bno;
     private String text;
 }
