@@ -1,50 +1,61 @@
 package com.web.pocketmoney.entity.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
+import com.web.pocketmoney.entity.base.BaseEntity;
+import com.web.pocketmoney.entity.role.UserRole;
+import lombok.*;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Builder
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class User {
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+public class User extends BaseEntity {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private UserRole userRole;
+    @ElementCollection(fetch = FetchType.LAZY)
+    @Builder.Default
+    private Set<UserRole> roleSet = new HashSet<>();
 
     @Column(nullable = false, length = 50)
-    private String userName; // 사용자 이름
+    private String username;
 
-    @Column(nullable = false, length = 100, unique=true)
-    private String email; // 회원가입 할때 아이디가 될 것
-
-    @Column(nullable = false, length = 10, unique = true)
-    private String nickName; // 닉네임
-
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 255)
     private String password;
 
-    @Column(columnDefinition = "varchar(10) default '남'")
+    @Column(nullable = false, length = 2)
     private String sex;
 
-    private Integer age;
+    @Column(nullable = false, length = 10)
+    private String nickname;
+
+    @Column(nullable = false)
+    private int age;
 
     @Column(length = 10)
     private String city;
 
+    @Column(nullable = false)
     private Long kindScore;
 
-    @CreationTimestamp
-    private Timestamp creatdAt;
+    private String oauth; // 카카오, 구글, 어디로 로그인 했는지
+
+    //권한 부여 추가, 스프링 시큐리티
+    public void addUserRole(UserRole userRole){
+        roleSet.add(userRole);
+    }
+
+
+
+
+
+
 }
