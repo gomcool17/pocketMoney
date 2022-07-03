@@ -5,7 +5,6 @@ import com.web.pocketmoney.entity.user.User;
 
 public interface UserService {
 
-
     //회원 정보 조회
     UserDTO getUser(Long id);
 
@@ -13,15 +12,19 @@ public interface UserService {
 
     void delete(User user);
 
+    User save(User user);
+
+    User login(String email, String password);
+
     default UserDTO entityToDto(User user){
         UserDTO userDTO = UserDTO.builder()
                 .id(user.getId())
                 .roleSet(user.getRoleSet())
                 .regDate(user.getRegDate())
-                .username(user.getUsername())
+                .username(user.getUserName())
                 .password(user.getPassword())
                 .sex(user.getSex())
-                .nickname(user.getNickname())
+                .nickname(user.getNickName())
                 .age(user.getAge())
                 .city(user.getCity())
                 .kindScore(user.getKindScore())
@@ -34,10 +37,10 @@ public interface UserService {
         User user =  User.builder()
                 .id(userDTO.getId())
                 .roleSet(userDTO.getRoleSet())
-                .username(userDTO.getUsername())
+                .userName(userDTO.getUsername())
                 .password(userDTO.getPassword())
                 .sex(userDTO.getSex())
-                .nickname(userDTO.getNickname())
+                .nickName(userDTO.getNickname())
                 .age(userDTO.getAge())
                 .city(userDTO.getCity())
                 .kindScore(userDTO.getKindScore())

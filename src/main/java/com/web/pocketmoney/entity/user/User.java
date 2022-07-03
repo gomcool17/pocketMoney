@@ -26,7 +26,10 @@ public class User extends BaseEntity {
     private Set<UserRole> roleSet = new HashSet<>();
 
     @Column(nullable = false, length = 50)
-    private String username;
+    private String userName;
+
+    @Column(nullable = false, length = 100)
+    private String email;
 
     @Column(nullable = false, length = 255)
     private String password;
@@ -35,7 +38,7 @@ public class User extends BaseEntity {
     private String sex;
 
     @Column(nullable = false, length = 10)
-    private String nickname;
+    private String nickName;
 
     @Column(nullable = false)
     private int age;
@@ -52,10 +55,5 @@ public class User extends BaseEntity {
     public void addUserRole(UserRole userRole){
         roleSet.add(userRole);
     }
-
-
-
-
-
 
 }

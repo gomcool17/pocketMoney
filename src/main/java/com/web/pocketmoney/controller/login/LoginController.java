@@ -2,7 +2,9 @@ package com.web.pocketmoney.controller.login;
 
 import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.service.UserService;
-import com.web.pocketmoney.controller.dto.LoginDto;
+import com.web.pocketmoney.dto.LoginDto;
+import com.web.pocketmoney.service.UserServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("login")
+@RequiredArgsConstructor
 public class LoginController {
-    @Autowired
-    UserService userService;
+
+
+    private final UserService userService;
 
     @PostMapping("/signup")
     public ResponseEntity<User> save(@RequestBody User user) {

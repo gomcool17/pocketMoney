@@ -1,4 +1,4 @@
-package com.web.pocketmoney.controller.dto;
+package com.web.pocketmoney.dto;
 
 import lombok.Data;
 
