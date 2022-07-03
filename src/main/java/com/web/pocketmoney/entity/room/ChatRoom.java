@@ -1,6 +1,7 @@
 package com.web.pocketmoney.entity.room;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class ChatRoom {
     @Id @GeneratedValue
     @Column(name = "roomId")
