@@ -1,7 +1,9 @@
 package com.web.pocketmoney.config;
 
+import com.web.pocketmoney.handler.LoginSuccesshandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -15,16 +17,22 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
-                .cors().disable().authorizeRequests()
-                .antMatchers("/login", "/signup").permitAll()
-                .and()
-                .formLogin() // form을 통한 로그인 활성화
-                .loginPage("/login")
-                .defaultSuccessUrl("/home")
-                .failureForwardUrl("/login") //login 살패 url설정
-                .and()
-                .logout()
-                .logoutUrl("/login");// 로그아웃 url설정
+                .authorizeRequests()
+                .antMatchers("/login", "/signup").permitAll();
+        http.formLogin();
+//                .and()
+//                .formLogin() // form을 통한 로그인 활성화
+//                .loginPage("/login")
+//                .defaultSuccessUrl("/home")
+//                .failureForwardUrl("/login") //login 살패 url설정
+//                .and()
+//                .logout()
+//                .logoutUrl("/login");// 로그아웃 url설정
+
+        http.csrf().disable();
+        http.logout();
+
+//        http.formLogin().successHandler(successhandler());
 
     }
 
@@ -32,5 +40,16 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public LoginSuccesshandler successhandler(){
+        return new LoginSuccesshandler(passwordEncoder());
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception{
+        return super.authenticationManagerBean();
     }
 }

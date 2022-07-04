@@ -1,12 +1,23 @@
 package com.web.pocketmoney.service;
 
+import com.web.pocketmoney.dto.user.AuthUserDTO;
 import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.entity.user.UserRepository;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+import springfox.documentation.service.OAuth;
 
+import javax.swing.text.html.Option;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+@Service
+@Log4j2
 public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     public UserRepository userRepository;
@@ -14,10 +25,22 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(username);
-        if(user!= null) {
+        if(user!=null) {
             return new CustomUserDetails(user);
         }
-        return null;
+
+        AuthUserDTO authUser = new AuthUserDTO(
+                user.getEmail(),
+                user.getPassword(),
+                user.getOauth(),
+                user.getRoleSet().stream()
+                        .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name())).collect(Collectors.toSet())
+        );
+
+        authUser.setName(user.getUserName());
+        authUser.setOAuth(user.getOauth());
+
+        return authUser;
     }
 }
 

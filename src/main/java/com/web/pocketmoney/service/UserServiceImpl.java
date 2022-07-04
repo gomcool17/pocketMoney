@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,8 +20,7 @@ public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
 
-    @Autowired
-    private BCryptPasswordEncoder encoder;
+    private final PasswordEncoder encoder;
 
     //회원 정보 조회
     public UserDTO getUser(Long id){
