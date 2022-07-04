@@ -8,8 +8,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    public List<User> findByEmail(String email);
-    public List<User> findByNickName(String nickNmae);
+    public User findByEmail(String email);
+    public User findByNickName(String nickNmae);
     //PK로 유저 정보 하나 갖고오기
     @Query("select * from User where id = :id")
     Object[] getUserById(@Param("id") Long id);
