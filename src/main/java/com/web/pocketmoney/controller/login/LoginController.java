@@ -1,34 +1,34 @@
 package com.web.pocketmoney.controller.login;
 
+import com.web.pocketmoney.config.security.JwtTokenProvider;
+import com.web.pocketmoney.dto.user.TokenUserDTO;
 import com.web.pocketmoney.entity.user.User;
+import com.web.pocketmoney.entity.user.UserRepository;
+import com.web.pocketmoney.model.SingleResult;
 import com.web.pocketmoney.service.UserService;
-import com.web.pocketmoney.dto.user.LoginDto;
+import com.web.pocketmoney.dto.user.LoginDTO;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("login")
 @RequiredArgsConstructor
 public class LoginController {
 
+    private final UserRepository userRepository; // jpa 쿼리 활용
+    private final JwtTokenProvider jwtTokenProvider; // jwt 토큰 생성
+    private final UserService userService; // API 요청 결과에 대한 code, messageㅍ
+    private final PasswordEncoder passwordEncoder; // 비밀번호 암호화
 
-    private final UserService userService;
+   // private final UserService userService;
 
-    @PostMapping("/signup")
-    public ResponseEntity<User> save(@RequestBody User user) {
-
-        return new ResponseEntity<User>(userService.save(user), HttpStatus.OK);
-    }
-
-    @PostMapping("/")
-    public ResponseEntity<User> login(@RequestBody LoginDto loginDto) {
-        System.out.println("LOgin controller : " + loginDto.getEmail() + "입니다.");
-
-        return new ResponseEntity<User>(userService.login(loginDto.getEmail(), loginDto.getPassword()), HttpStatus.OK);
+    @ApiOperation(value = "로그인", notes = "이메일 회원 로그인을 한다.")
+    @PostMapping(value = "/")
+    public SingleResult<TokenUserDTO> signin(@RequestBody LoginDTO loginDto) {
+        return userService.login(loginDto);
     }
 }

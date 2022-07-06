@@ -1,27 +1,26 @@
 package com.web.pocketmoney.service;
 
+import com.web.pocketmoney.dto.user.LoginDTO;
+import com.web.pocketmoney.dto.user.TokenUserDTO;
 import com.web.pocketmoney.dto.user.UserDTO;
 import com.web.pocketmoney.entity.user.User;
+import com.web.pocketmoney.model.SingleResult;
 
 public interface UserService {
 
     //회원 정보 조회
-    UserDTO getUser(Long id);
+  /*  UserDTO getUser(Long id);
 
     void modify(User user);
 
-    void delete(User user);
+    void delete(User user);*/
 
-    User save(User user);
-
-    User login(String email, String password);
-
-    default UserDTO entityToDto(User user){
+  /*  default UserDTO entityToDto(User user){
         UserDTO userDTO = UserDTO.builder()
                 .id(user.getId())
-                .roleSet(user.getRoleSet())
+                .roleSet(user.getRoles())
                 .regDate(user.getRegDate())
-                .username(user.getUserName())
+                .username(user.getUsername())
                 .password(user.getPassword())
                 .sex(user.getSex())
                 .nickname(user.getNickName())
@@ -46,5 +45,6 @@ public interface UserService {
                 .kindScore(userDTO.getKindScore())
                 .build();
         return user;
-    }
+    }*/
+    SingleResult<TokenUserDTO> login(LoginDTO loginDto);
 }

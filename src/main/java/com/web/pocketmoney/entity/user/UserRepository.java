@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    public User findByEmail(String email);
+    Optional<User> findByEmail(String email);
+
     public User findByNickName(String nickName);
     //PK로 유저 정보 하나 갖고오기
     @Query("select u from User u where u.id = :id")

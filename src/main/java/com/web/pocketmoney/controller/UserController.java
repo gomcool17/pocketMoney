@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
 
-    private final UserService userService;
+ /*   private final UserService userService;
 
     private final AuthenticationManager authenticationManager;
 
@@ -26,7 +26,5 @@ public class UserController {
         UserDTO userDTO = userService.getUser(id);
         model.addAttribute("dto", userDTO);
         return "redirect:/mypage";
-    }
-
-
+    }*/
 }

@@ -3,6 +3,8 @@ package com.web.pocketmoney.service;
 import com.web.pocketmoney.dto.user.AuthUserDTO;
 import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.entity.user.UserRepository;
+import com.web.pocketmoney.exception.CUserNotFoundException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,15 +18,17 @@ import javax.swing.text.html.Option;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @Service
 @Log4j2
 public class CustomUserDetailsService implements UserDetailsService {
-    @Autowired
-    public UserRepository userRepository;
+
+    private final UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(username);
+    public UserDetails loadUserByUsername(String userEmail){
+        return userRepository.findByEmail(userEmail).orElseThrow(CUserNotFoundException::new);
+      /*  User user = userRepository.findByEmail(username);
         if(user!=null) {
             return new CustomUserDetails(user);
         }
@@ -40,7 +44,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         authUser.setName(user.getUserName());
         authUser.setOAuth(user.getOauth());
 
-        return authUser;
+        return authUser;*/
     }
 }
 
