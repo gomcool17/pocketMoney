@@ -24,11 +24,11 @@ public class Message {
     private String message;
 
     @ManyToOne
-    @JoinColumn(name = "roomId")
+    @JoinColumn(name = "roomId", nullable = false)
     private ChatRoom chatRoom;
 
     @ManyToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "id", nullable = false)
     private User writer;
 
     public Message(String message, LocalDateTime dateTime, ChatRoom chatRoom, User writer){
