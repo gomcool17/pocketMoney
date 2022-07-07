@@ -14,10 +14,10 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class ChatRoom {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "roomId")
     private Long id;
 
-    @OneToMany(mappedBy = "chatRoom")
+    @OneToMany(mappedBy = "chatRoom", cascade = CascadeType.ALL)
     private List<Message> messages = new ArrayList<>();
 }
