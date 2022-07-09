@@ -1,23 +1,25 @@
 package com.web.pocketmoney.entity.room;
 
 import com.web.pocketmoney.entity.message.Message;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@Getter
 public class ChatRoom {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "roomId")
-    private Long id;
+    private String id;
 
-    @OneToMany(mappedBy = "chatRoom", cascade = CascadeType.ALL)
-    private List<Message> messages = new ArrayList<>();
+    private String chatId;
+
+    private Long senderId;
+
+    private Long recipientId;
 }

@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Getter @Setter
 @NoArgsConstructor
 public class Rooms {
-
+    /*
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "roomsId")
@@ -25,4 +25,5 @@ public class Rooms {
     @ManyToOne
     @JoinColumn(name = "roomId")
     private ChatRoom chatRoom;
+     */
 }
