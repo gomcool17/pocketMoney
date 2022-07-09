@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 @RequiredArgsConstructor
 public class MessageController {
+    /*
     private final SimpMessagingTemplate simpMessagingTemplate;
     private final MessageService messageService;
     @MessageMapping("/chat/send")
@@ -16,5 +17,5 @@ public class MessageController {
         String receiver = message.getReceiver();
         messageService.save(message);
         simpMessagingTemplate.convertAndSend("/topic/"+ receiver,message);
-    }
+     */
 }
