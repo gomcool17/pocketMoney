@@ -111,16 +111,13 @@ public class UserServiceImpl implements UserService{
         log.info(email + " " + nickName);
         User user1 = userRepository.findByEmail(email).orElse(null);
         User user2 = userRepository.findByNickName(nickName).orElse(null);
-        log.info("시발");
         if(user1 != null) {
             log.error(user1.toString());
             throw new CEmailSignupFailedException();
         }
-        log.info("어디서");
         if(user2 != null) {
             throw new CNickNameSignupFailedException();
         }
-        log.info("나는건데");
         userRepository.save(User.builder()
                 .userName(signupUserDTO.getUserName())
                 .nickName(signupUserDTO.getNickName())
