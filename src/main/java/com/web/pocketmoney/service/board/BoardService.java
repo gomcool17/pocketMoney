@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -55,4 +56,9 @@ public class BoardService {
         return boardRepository.findAll(pageable);
     }
 
+    @Transactional
+    public List<Board> search(String keyword) {
+        List<Board> searchList = boardRepository.findByTitleContaining(keyword);
+        return searchList;
+    }
 }

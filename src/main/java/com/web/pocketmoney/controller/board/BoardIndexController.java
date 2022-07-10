@@ -14,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 @Slf4j
 @RequiredArgsConstructor
 @Controller
@@ -34,12 +36,6 @@ public class BoardIndexController {
             return "boards";
     }
 
-    /* 글 작성 */
-    @GetMapping("/board/write")
-    public String write(Model model) {
-        return "board/write";
-    }
-
     /* 글 상세 보기 */
     @GetMapping("/board/read/{id}")
     public String read(@PathVariable Long id, Model model) {
@@ -47,6 +43,20 @@ public class BoardIndexController {
         boardService.updateViewCount(id);
         model.addAttribute("board", dto);
         return "board/read";
+    }
+
+    /* 검색 후 조회 */
+    @GetMapping("/board/search")
+    public String search(String keyword, Model model) {
+        List<Board> searchList = boardService.search(keyword);
+        model.addAttribute("searchList", searchList);
+        return "board-search";
+    }
+
+    /* 글 작성 */
+    @GetMapping("/board/write")
+    public String write(Model model) {
+        return "board/write";
     }
 
     /* 글 수정 */
