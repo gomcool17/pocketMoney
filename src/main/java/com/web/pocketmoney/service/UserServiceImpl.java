@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserService{
                 TokenUserDTO.builder()
                         .token(jwtTokenProvider.createToken(String.valueOf(user.getId()), user.getRoles()))
                         .userId(user.getId())
-                        .nickName(user.getNickName())
+                        .nickName(user.getNickname())
                         .build()
         );
     }
@@ -110,7 +110,7 @@ public class UserServiceImpl implements UserService{
         String nickName = signupUserDTO.getNickName();
         log.info(email + " " + nickName);
         User user1 = userRepository.findByEmail(email).orElse(null);
-        User user2 = userRepository.findByNickName(nickName).orElse(null);
+        User user2 = userRepository.findByNickname(nickName).orElse(null);
         if(user1 != null) {
             log.error(user1.toString());
             throw new CEmailSignupFailedException();
@@ -119,8 +119,8 @@ public class UserServiceImpl implements UserService{
             throw new CNickNameSignupFailedException();
         }
         userRepository.save(User.builder()
-                .userName(signupUserDTO.getUserName())
-                .nickName(signupUserDTO.getNickName())
+                .userId(signupUserDTO.getUserName())
+                .nickname(signupUserDTO.getNickName())
                 .password(encoder.encode(signupUserDTO.getPassword()))
                 .email(signupUserDTO.getEmail())
                 .age(signupUserDTO.getAge())
