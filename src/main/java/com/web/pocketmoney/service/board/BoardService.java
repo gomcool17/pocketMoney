@@ -37,8 +37,14 @@ public class BoardService {
         return new BoardResponseDto(findBoard);
     }
 
+    @Transactional
     public void delete(Long id) {
         Board findBoard = boardRepository.findById(id).orElseThrow();
         boardRepository.delete(findBoard);
+    }
+
+    @Transactional
+    public int updateViewCount(Long id) {
+        return boardRepository.updateViewCount(id);
     }
 }

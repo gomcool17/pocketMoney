@@ -31,6 +31,7 @@ public class BoardIndexController {
     @GetMapping("/board/read/{id}")
     public String read(@PathVariable Long id, Model model) {
         BoardResponseDto dto = boardService.findById(id);
+        boardService.updateViewCount(id);
         model.addAttribute("board", dto);
         return "board/read";
     }
