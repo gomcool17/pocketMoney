@@ -38,7 +38,7 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
                 // jwt token으로 생성하므로 세션은 필요 없으므로 생성 안함.
                 .and()
                 .authorizeRequests() // 다음 리퀘스트에 대한 사용권한 체크
-                .antMatchers("/login/**", "/home").permitAll()
+                .antMatchers("/**").permitAll()
                 // 가입 및 인증 주소는 누구나 접근 가능
                 // helloworld로 시작하는 get 요청 리소스는 누구나 접근 가능
                 .anyRequest().hasRole("USER")

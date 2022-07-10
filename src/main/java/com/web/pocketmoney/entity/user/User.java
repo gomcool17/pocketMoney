@@ -28,7 +28,7 @@ public class User implements UserDetails {
     @Column(nullable = false, length = 50)
     private String userName;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 100, unique = true)
     private String email;
 
     @Column(nullable = false, length = 255)
@@ -37,7 +37,7 @@ public class User implements UserDetails {
     @Column(nullable = false, length = 2)
     private String sex;
 
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 10, unique = true)
     private String nickName;
 
     @Column(nullable = false)
@@ -46,7 +46,7 @@ public class User implements UserDetails {
     @Column(length = 10)
     private String city;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "LONG default 0")
     private Long kindScore;
 
     private String oauth; // 카카오, 구글, 어디로 로그인 했는지

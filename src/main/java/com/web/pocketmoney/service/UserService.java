@@ -1,6 +1,7 @@
 package com.web.pocketmoney.service;
 
 import com.web.pocketmoney.dto.user.LoginDTO;
+import com.web.pocketmoney.dto.user.SignupUserDTO;
 import com.web.pocketmoney.dto.user.TokenUserDTO;
 import com.web.pocketmoney.dto.user.UserDTO;
 import com.web.pocketmoney.entity.user.User;
@@ -47,4 +48,5 @@ public interface UserService {
         return user;
     }*/
     SingleResult<TokenUserDTO> login(LoginDTO loginDto);
+    void signup(SignupUserDTO signupUserDTO);
 }
