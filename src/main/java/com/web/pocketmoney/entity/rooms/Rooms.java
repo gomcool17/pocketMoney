@@ -8,13 +8,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
-@Getter @Setter
-@NoArgsConstructor
 public class Rooms {
-
+    /*
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "roomsId")
     private Long id;
 
@@ -25,4 +22,5 @@ public class Rooms {
     @ManyToOne
     @JoinColumn(name = "roomId")
     private ChatRoom chatRoom;
+     */
 }

@@ -1,4 +1,4 @@
-package com.web.pocketmoney.handler;
+package com.web.pocketmoney.exception.handler;
 
 import com.web.pocketmoney.dto.user.AuthUserDTO;
 import lombok.extern.log4j.Log4j2;

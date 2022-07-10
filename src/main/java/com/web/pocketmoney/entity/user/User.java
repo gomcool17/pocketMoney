@@ -46,7 +46,7 @@ public class User implements UserDetails {
     @Column(length = 10)
     private String city;
 
-    @Column(nullable = false, columnDefinition = "LONG default 0")
+    @Column(nullable = false)
     private Long kindScore;
 
     private String oauth; // 카카오, 구글, 어디로 로그인 했는지
