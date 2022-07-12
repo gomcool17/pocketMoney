@@ -25,13 +25,13 @@ public class UserDTO {
 
     private List<String> roleSet = new ArrayList<>();
 
-    private String username;
+    private String userName;
 
     private String password;
 
     private String sex;
 
-    private String nickname;
+    private String nickName;
 
     private int age;
 
