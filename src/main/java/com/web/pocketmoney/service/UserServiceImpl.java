@@ -32,8 +32,8 @@ public class UserServiceImpl implements UserService{
     private final PasswordEncoder encoder; // 비밀번호 암호화
 
     //회원 정보 조회
-  /*  public UserDTO getUser(Long id){
-        Object result = userRepository.getUserById(id);
+    public UserDTO getUser(Long id){
+        Object result = userRepository.findById(id);
         Object[] arr = (Object[])result;
         User entity = (User)arr[0];
         return entityToDto(entity);
@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public void delete(User user) {
         userRepository.delete(user);
-    } */
+    }
 
 
     public SingleResult<TokenUserDTO> login(LoginDTO loginDTO) {
@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserService{
                 TokenUserDTO.builder()
                         .token(jwtTokenProvider.createToken(String.valueOf(user.getId()), user.getRoles()))
                         .userId(user.getId())
-                        .nickName(user.getNickname())
+                        .nickName(user.getNickName())
                         .build()
         );
     }
@@ -110,7 +110,7 @@ public class UserServiceImpl implements UserService{
         String nickName = signupUserDTO.getNickName();
         log.info(email + " " + nickName);
         User user1 = userRepository.findByEmail(email).orElse(null);
-        User user2 = userRepository.findByNickname(nickName).orElse(null);
+        User user2 = userRepository.findByNickName(nickName).orElse(null);
         if(user1 != null) {
             log.error(user1.toString());
             throw new CEmailSignupFailedException();
@@ -120,7 +120,7 @@ public class UserServiceImpl implements UserService{
         }
         userRepository.save(User.builder()
                 .userId(signupUserDTO.getUserName())
-                .nickname(signupUserDTO.getNickName())
+                .nickName(signupUserDTO.getNickName())
                 .password(encoder.encode(signupUserDTO.getPassword()))
                 .email(signupUserDTO.getEmail())
                 .age(signupUserDTO.getAge())

@@ -49,7 +49,7 @@ public class AuthServiceImpl implements AuthService {
     @Transactional
     @Override
     public boolean checkNickname(String nickname) {
-        return authRepository.existsByNickname(nickname);
+        return authRepository.existsByNickName(nickname);
     }
 
     @Transactional

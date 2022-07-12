@@ -38,7 +38,7 @@ public class User implements UserDetails {
     private String sex;
 
     @Column(nullable = false, length = 10, unique = true)
-    private String nickname;
+    private String nickName;
 
     @Column(nullable = false)
     private int age;

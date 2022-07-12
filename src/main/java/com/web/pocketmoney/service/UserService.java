@@ -10,21 +10,20 @@ import com.web.pocketmoney.model.SingleResult;
 public interface UserService {
 
     //회원 정보 조회
-  /*  UserDTO getUser(Long id);
+    UserDTO getUser(Long id);
 
     void modify(User user);
 
-    void delete(User user);*/
+    void delete(User user);
 
-  /*  default UserDTO entityToDto(User user){
+    default UserDTO entityToDto(User user){
         UserDTO userDTO = UserDTO.builder()
                 .id(user.getId())
                 .roleSet(user.getRoles())
-                .regDate(user.getRegDate())
-                .username(user.getUsername())
+                .userName(user.getUsername())
                 .password(user.getPassword())
                 .sex(user.getSex())
-                .nickname(user.getNickName())
+                .nickName(user.getNickName())
                 .age(user.getAge())
                 .city(user.getCity())
                 .kindScore(user.getKindScore())
@@ -36,17 +35,17 @@ public interface UserService {
     default User DtoToEntity(UserDTO userDTO){
         User user =  User.builder()
                 .id(userDTO.getId())
-                .roleSet(userDTO.getRoleSet())
-                .userName(userDTO.getUsername())
+                .roles(userDTO.getRoleSet())
+                .userId(userDTO.getUserName())
                 .password(userDTO.getPassword())
                 .sex(userDTO.getSex())
-                .nickName(userDTO.getNickname())
+                .nickName(userDTO.getNickName())
                 .age(userDTO.getAge())
                 .city(userDTO.getCity())
                 .kindScore(userDTO.getKindScore())
                 .build();
         return user;
-    }*/
+    }
     SingleResult<TokenUserDTO> login(LoginDTO loginDto);
     void signup(SignupUserDTO signupUserDTO);
 }

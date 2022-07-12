@@ -1,4 +1,4 @@
-package com.web.pocketmoney.controller.login;
+package com.web.pocketmoney.controller.user;
 
 import com.web.pocketmoney.dto.user.ResponseDTO;
 import com.web.pocketmoney.entity.user.User;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserApiController {
 
-  /*  private final UserService userService;
+    private final UserService userService;
 
     private final AuthenticationManager authenticationManager;
 
@@ -35,11 +35,11 @@ public class UserApiController {
         return new ResponseDTO<Integer>(HttpStatus.OK.value(), 1);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseDTO<Integer> delete(@PathVariable Long id){
         User user = userService.DtoToEntity(userService.getUser(id));
         userService.delete(user);
 
         return new ResponseDTO<Integer>(HttpStatus.OK.value(), 1);
-    }*/
+    }
 }

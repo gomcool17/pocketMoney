@@ -1,4 +1,4 @@
-package com.web.pocketmoney.controller;
+package com.web.pocketmoney.controller.user;
 
 import com.web.pocketmoney.dto.user.AuthUserDTO;
 import com.web.pocketmoney.dto.user.UserDTO;
@@ -15,16 +15,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
 
- /*   private final UserService userService;
+    private final UserService userService;
 
     private final AuthenticationManager authenticationManager;
 
     //회원 정보 조회
-    @GetMapping("/{id}")
+    @GetMapping("/userId/{id}")
     public String readOne(@AuthenticationPrincipal AuthUserDTO authUserDTO, @PathVariable("id") Long id, Model model){
 
         UserDTO userDTO = userService.getUser(id);
         model.addAttribute("dto", userDTO);
         return "redirect:/mypage";
-    }*/
+    }
 }
