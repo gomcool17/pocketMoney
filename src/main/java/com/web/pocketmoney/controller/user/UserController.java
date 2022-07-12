@@ -1,4 +1,4 @@
-package com.web.pocketmoney.controller;
+package com.web.pocketmoney.controller.user;
 
 import com.web.pocketmoney.dto.user.AuthUserDTO;
 import com.web.pocketmoney.dto.user.UserDTO;
