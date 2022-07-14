@@ -11,6 +11,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+
 public class JwtAuthenticationFilter extends GenericFilterBean {
     private JwtTokenProvider jwtTokenProvider; // JWT 토큰을 생성 및 검증 모듈 클래스
 
@@ -31,6 +32,7 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
             Authentication auth = jwtTokenProvider.getAuthentication(token);
             // getAuthentication : Jwt 토큰으로 인증 정보 조회
             SecurityContextHolder.getContext().setAuthentication(auth);
+           // log.info("토큰 유효~");
         }
         filterChain.doFilter(request, response);
     }

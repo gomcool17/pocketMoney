@@ -11,5 +11,6 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     int updateViewCount(Long id);
 
     List<Board> findByTitleContaining(String keyword);
-    Optional<Board> findById(Long boardId);
+   // Board findById(Long id);
+   // Optional<Board> findById(Long boardId);
 }

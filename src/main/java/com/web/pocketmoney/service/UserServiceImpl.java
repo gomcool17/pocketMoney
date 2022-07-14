@@ -96,7 +96,7 @@ public class UserServiceImpl implements UserService{
         log.info("아아아아아아앙아");
         return responseService.getSingleResult(
                 TokenUserDTO.builder()
-                        .token(jwtTokenProvider.createToken(String.valueOf(user.getId()), user.getRoles()))
+                        .token(jwtTokenProvider.createToken(String.valueOf(user.getEmail()), user.getRoles()))
                         .userId(user.getId())
                         .nickName(user.getNickName())
                         .build()

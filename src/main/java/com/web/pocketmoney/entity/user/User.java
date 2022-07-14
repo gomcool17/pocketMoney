@@ -2,13 +2,17 @@ package com.web.pocketmoney.entity.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.web.pocketmoney.entity.base.BaseEntity;
+import com.web.pocketmoney.entity.board.Board;
 import com.web.pocketmoney.entity.role.UserRole;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -34,7 +38,7 @@ public class User implements UserDetails {
     @Column(nullable = false, length = 255)
     private String password;
 
-    @Column(nullable = false, length = 2)
+    @Column(nullable = false, length = 10)
     private String sex;
 
     @Column(nullable = false, length = 10, unique = true)
@@ -55,6 +59,13 @@ public class User implements UserDetails {
     @Builder.Default
     private List<String> roles = new ArrayList<>(); // 회원이 가지고 있는 권한 정보들
 
+    @CreationTimestamp // INSERT 시 자동으로 값을 채워줌
+    @Column(name = "created_at")
+    private Timestamp createTime;
+
+   // @OneToMany(mappedBy = "user")
+   // @Column(name = "my_board_list")
+   // private List<Board> boards = new ArrayList<>();
     //권한 부여 추가, 스프링 시큐리티
   /*  public void addUserRole(UserRole userRole){
         roleSet.add(userRole);
