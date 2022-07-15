@@ -1,2 +1,26 @@
-package com.web.pocketmoney.dto.wish;public class WishPageRequestDTO {
+package com.web.pocketmoney.dto.wish;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
+@Builder
+@AllArgsConstructor
+@Data
+public class WishPageRequestDTO {
+
+    private int page;
+    private int size;
+
+    public WishPageRequestDTO(){
+        this.page=1;
+        this.size=10;
+    }
+
+    public Pageable getPageable(Sort sort){
+        return PageRequest.of(page-1, size, sort);
+    }
 }
