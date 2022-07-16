@@ -1,4 +1,4 @@
-package com.web.pocketmoney.dto.board;
+package com.web.pocketmoney.dto.commet;
 
 import com.web.pocketmoney.entity.board.Board;
 import com.web.pocketmoney.entity.user.User;
