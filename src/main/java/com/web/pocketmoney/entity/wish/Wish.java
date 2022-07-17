@@ -21,6 +21,8 @@ public class Wish extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    //이 글을 관심글 등록한 사용자 아이디
     @ManyToOne(fetch = FetchType.LAZY)
     private User userId;
 
