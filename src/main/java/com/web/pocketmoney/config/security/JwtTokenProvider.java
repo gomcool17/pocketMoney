@@ -35,15 +35,15 @@ public class JwtTokenProvider { // JWT 토큰을 생성 및 검증 모듈
     }
 
     // Jwt 토큰 생성
-    public String createToken(String userPk, List<String> roles) {
-        Claims claims = Jwts.claims().setSubject(userPk);
+    public String createToken(String userEmail, List<String> roles) {
+        Claims claims = Jwts.claims().setSubject(userEmail);
         claims.put("roles", roles);
         Date now = new Date();
         return Jwts.builder()
                 .setClaims(claims) // 데이터
                 .setIssuedAt(now) // 토큰 발행일자
                 .setExpiration(new Date(now.getTime() + tokenValidMillisecond)) // 토큰 유효시간 설정
-                .signWith(SignatureAlgorithm.HS256, secretKey) // 암호화 알고리즘, 암호키
+                .signWith(SignatureAlgorithm.HS256, secretKey) // 암호화 알고리즘, 암
                 .compact();
     }
 

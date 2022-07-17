@@ -1,5 +1,6 @@
 package com.web.pocketmoney.entity.comment;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.web.pocketmoney.entity.base.BaseEntity;
 import com.web.pocketmoney.entity.board.Board;
 import com.web.pocketmoney.entity.user.User;
@@ -20,8 +21,10 @@ public class Comment extends BaseEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private User userId;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Board boardId;
     private String text;
 }
