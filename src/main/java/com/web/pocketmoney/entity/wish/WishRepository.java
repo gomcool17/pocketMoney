@@ -18,7 +18,7 @@ public interface WishRepository extends JpaRepository<Wish, Long> {
             " from Wish w left join Board b on b.id = w" +
             " left join User u" +
             " where w.userId = : userId")
-    Page<Object[]> getListPage(Pageable pageable);
+    Page<Object[]> getListPage(Pageable pageable, @Param("userId") Long userId);
 
 //    @Query("select w, b.title, u.email " +
 //            " from Wish w" +

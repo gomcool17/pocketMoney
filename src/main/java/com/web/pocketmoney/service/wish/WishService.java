@@ -15,7 +15,7 @@ public interface WishService {
 
     void remove(Long id);
 
-    WishPageResultDTO<WishDTO, Object[]> findAll(WishPageRequestDTO wishPageRequestDTO);
+    WishPageResultDTO<WishDTO, Object[]> findAll(WishPageRequestDTO wishPageRequestDTO, Long id);
 
     default Wish dtoToEntity(WishDTO dto){
 

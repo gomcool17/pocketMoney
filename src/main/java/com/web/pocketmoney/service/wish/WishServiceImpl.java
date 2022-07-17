@@ -40,7 +40,7 @@ public class WishServiceImpl implements WishService{
     }
 
     @Override
-    public WishPageResultDTO<WishDTO, Object[]> findAll(WishPageRequestDTO wishPageRequestDTO) {
+    public WishPageResultDTO<WishDTO, Object[]> findAll(WishPageRequestDTO wishPageRequestDTO, Long id) {
 
         Pageable pageable = wishPageRequestDTO.getPageable(Sort.by("id").descending());
 
@@ -50,7 +50,7 @@ public class WishServiceImpl implements WishService{
                 (User) arr[2]
         ));
 
-        Page<Object[]> result = wishRepository.getListPage(pageable);
+        Page<Object[]> result = wishRepository.getListPage(pageable, id);
 
         return new WishPageResultDTO<>(result, fn);
     }
