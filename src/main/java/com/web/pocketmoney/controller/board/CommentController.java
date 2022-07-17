@@ -33,7 +33,7 @@ public class CommentController {
         log.info("putComment :" + boardId + " " + commentId);
         return ResponseEntity.ok(commentService.commentPut(boardId, commentId, dto));
     }
-    
+
     @ApiOperation(value = "댓글", notes = "댓글을 삭제 함")
     @DeleteMapping("/{boardId}/{id}")
     public void deleteComment(@PathVariable("id") Long id) {

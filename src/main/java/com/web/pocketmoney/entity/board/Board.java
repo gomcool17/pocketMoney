@@ -1,5 +1,7 @@
 package com.web.pocketmoney.entity.board;
 
+import com.web.pocketmoney.entity.user.User;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,12 +11,18 @@ import java.time.LocalDateTime;
 
 
 @Getter
-@NoArgsConstructor
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Board {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User userId;
 
     @Column(nullable = false)
     private String title;

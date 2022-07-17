@@ -32,11 +32,16 @@ public class UserServiceImpl implements UserService{
     private final PasswordEncoder encoder; // 비밀번호 암호화
 
     //회원 정보 조회
-  /*  public UserDTO getUser(Long id){
-        Object result = userRepository.getUserById(id);
-        Object[] arr = (Object[])result;
-        User entity = (User)arr[0];
-        return entityToDto(entity);
+    public UserDTO getUser(Long id){
+//        Object result = userRepository.findById(id);
+//        Object[] arr = (Object[])result;
+//        User entity = (User)arr[0];
+//        log.info("user :: "+ entityToDto(entity));
+//        return entityToDto(entity);
+        log.info("userService :: "+ id);
+        Optional<User> user = userRepository.findById(id);
+        log.info("user :: "+user);
+        return user.isPresent() ? entityToDto(user.get()) : null;
     }
 
     @Override
@@ -71,9 +76,9 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void delete(User user) {
-        userRepository.delete(user);
-    } */
+    public void delete(Long id) {
+        userRepository.deleteById(id);
+    }
 
 
     public SingleResult<TokenUserDTO> login(LoginDTO loginDTO) {

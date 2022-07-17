@@ -10,7 +10,9 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.FetchType;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -21,15 +23,15 @@ public class UserDTO {
 
     private Long id;
 
-    private Set<UserRole> roleSet = new HashSet<>();
+    private List<String> roleSet = new ArrayList<>();
 
-    private String username;
+    private String userName;
 
     private String password;
 
     private String sex;
 
-    private String nickname;
+    private String nickName;
 
     private int age;
 
@@ -37,9 +39,9 @@ public class UserDTO {
 
     private Long kindScore;
 
-    private LocalDateTime regDate;
+//    private LocalDateTime regDate;
 
-    private LocalDateTime modDate;
+//    private LocalDateTime modDate;
 
 
 }
