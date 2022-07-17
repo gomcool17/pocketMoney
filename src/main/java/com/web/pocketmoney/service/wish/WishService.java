@@ -31,7 +31,7 @@ public interface WishService {
         return wish;
     }
 
-    default WishDTO entityToDTO(User user, Wish wish, Board board){
+    default WishDTO entityToDTO(Wish wish, Board board, User user){
 
         WishDTO wishDTO = WishDTO.builder()
                 .id(wish.getId())

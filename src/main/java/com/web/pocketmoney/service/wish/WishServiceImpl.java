@@ -3,6 +3,8 @@ package com.web.pocketmoney.service.wish;
 import com.web.pocketmoney.dto.wish.WishDTO;
 import com.web.pocketmoney.dto.wish.WishPageRequestDTO;
 import com.web.pocketmoney.dto.wish.WishPageResultDTO;
+import com.web.pocketmoney.entity.board.Board;
+import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.entity.wish.Wish;
 import com.web.pocketmoney.entity.wish.WishRepository;
 import lombok.RequiredArgsConstructor;
@@ -44,8 +46,9 @@ public class WishServiceImpl implements WishService{
 
         Function<Object[], WishDTO> fn = (arr -> entityToDTO(
                 (Wish) arr[0],
-                ()
-        ))
+                (Board) arr[1],
+                (User) arr[2]
+        ));
 
         Page<Object[]> result = wishRepository.getListPage(pageable);
 
