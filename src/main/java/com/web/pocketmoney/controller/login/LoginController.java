@@ -7,12 +7,14 @@ import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.entity.user.UserRepository;
 import com.web.pocketmoney.model.CommonResult;
 import com.web.pocketmoney.model.SingleResult;
+import com.web.pocketmoney.service.KakaoApiService;
 import com.web.pocketmoney.service.ResponseService;
 import com.web.pocketmoney.service.UserService;
 import com.web.pocketmoney.dto.user.LoginDTO;
 import com.web.pocketmoney.service.UserServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("login")
 @RequiredArgsConstructor
+@Log4j2
 public class LoginController {
 
     private final UserRepository userRepository; // jpa 쿼리 활용
@@ -28,6 +31,7 @@ public class LoginController {
     private final UserService userService; // API 요청 결과에 대한 code, messageㅍ
     private final PasswordEncoder passwordEncoder; // 비밀번호 암호화
     private final ResponseService responseService; // API 요청 결과에 대한 code, message
+    private final KakaoApiService kakaoApiService;
 
    // private final UserService userService;
 
@@ -43,4 +47,27 @@ public class LoginController {
         userService.signup(signupUserDTO);
         return responseService.getSuccessResult();
     }
+
+    @ResponseBody
+    @PostMapping("/kakao")
+    public void kakaoLoginToken(@RequestParam String code) {
+        log.info("kakaoLogin code befor access Token : " + code);
+        String accesToken = kakaoApiService.getAccessToken(code);
+        log.info("controllerAcees : " + accesToken);
+        log.info("kakaoLogin Code : " + code);
+        return;
+    }
+
+    @ResponseBody
+    @GetMapping("/kakao")
+    public void kakaoLogin(@RequestParam String code) {
+        log.info("kakaoLogin code befor access Token : " + code);
+       // String accesToken = kakaoApiService.getAccessToken(code);
+       // log.info("controllerAcees : " + accesToken);
+       // log.info("kakaoLogin Code : " + code);
+        return;
+    }
 }
+//https://kauth.kakao.com/oauth/authorize?client_id=9b022ce48b033d5d885cb824be69e623&redirect_uri=http://localhost:8080/login/kakao&response_type=code
+//kauth.kakao.com/oauth/token?authorization_code&client_id=9b022ce48b033d5d885cb824be69e623&redirect_uri=http://localhost:8080/login/kakao&code=05im7Hel4xi6HJ4bXMlH4Eabyuw2iqPTujkooxqNBsRouK_DqDU6147woemmkS0ekfNuZgo9cxgAAAGCFf2pGg
+
