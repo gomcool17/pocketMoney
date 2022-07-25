@@ -20,6 +20,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+
 @RestController
 @RequestMapping("login")
 @RequiredArgsConstructor
@@ -43,18 +45,25 @@ public class LoginController {
 
     @ApiOperation(value = "가입", notes = "회원가입을 한다.")
     @PostMapping(value = "/signup")
-    public CommonResult signup(@RequestBody SignupUserDTO signupUserDTO){
-        userService.signup(signupUserDTO);
-        return responseService.getSuccessResult();
+    public ResponseEntity<SignupUserDTO> signup(@RequestBody SignupUserDTO signupUserDTO){
+        //userService.signup(signupUserDTO);
+        return ResponseEntity.ok(userService.signup(signupUserDTO));
     }
 
     @ResponseBody
     @PostMapping("/kakao")
     public void kakaoLoginToken(@RequestParam String code) {
         log.info("kakaoLogin code befor access Token : " + code);
-        String accesToken = kakaoApiService.getAccessToken(code);
-        log.info("controllerAcees : " + accesToken);
+        String accessToken = kakaoApiService.getAccessToken(code);
+        log.info("controllerAcees : " + accessToken);
         log.info("kakaoLogin Code : " + code);
+        HashMap<String, Object> userInfo = kakaoApiService.getUserInfo(accessToken);
+        log.info("email : " + userInfo.get("email"));
+        log.info("nickname : " + userInfo.get("nickname"));
+
+        String email = userInfo.get("email").toString();
+        String name = userInfo.get("nickName").toString();
+
         return;
     }
 
@@ -69,5 +78,6 @@ public class LoginController {
     }
 }
 //https://kauth.kakao.com/oauth/authorize?client_id=9b022ce48b033d5d885cb824be69e623&redirect_uri=http://localhost:8080/login/kakao&response_type=code
+
 //kauth.kakao.com/oauth/token?authorization_code&client_id=9b022ce48b033d5d885cb824be69e623&redirect_uri=http://localhost:8080/login/kakao&code=05im7Hel4xi6HJ4bXMlH4Eabyuw2iqPTujkooxqNBsRouK_DqDU6147woemmkS0ekfNuZgo9cxgAAAGCFf2pGg
 

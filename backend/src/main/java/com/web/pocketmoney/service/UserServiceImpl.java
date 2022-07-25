@@ -111,7 +111,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Transactional
-    public void signup(SignupUserDTO signupUserDTO) {
+    public SignupUserDTO signup(SignupUserDTO signupUserDTO) {
         log.info(signupUserDTO.toString());
         String email = signupUserDTO.getEmail();
         String nickName = signupUserDTO.getNickName();
@@ -137,5 +137,6 @@ public class UserServiceImpl implements UserService{
                 .kindScore(0L)
                 .build()
         );
+        return signupUserDTO;
     }
 }
