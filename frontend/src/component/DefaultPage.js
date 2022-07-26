@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const Outside = styled.div`
@@ -9,11 +11,9 @@ const Outside = styled.div`
 const Header = styled.div`
   min-width: 1050px;
   height: 50px;
-  border: 5px solid blue;
   position: sticky;
   top: 0;
   background-color: aquamarine;
-  
 `
 const HeaderInside = styled.div`
   position: absolute;
@@ -23,8 +23,6 @@ const HeaderInside = styled.div`
   top: 0;
   left: 50%;
   transform: translate(-50%, 0%);
-  border: 5px solid red;
-  
 `
 const Logo = styled.div`
   margin-right: auto;
@@ -35,38 +33,87 @@ const Logo = styled.div`
   font-size: 30px;
   cursor: pointer;
 `
-const LoginBox = styled.div`
+const RightHeader = styled.div`
   margin-left: auto;
   margin-top: 5px;
-  width: 22%;   
+  width: 50%;   
   text-align: center;
   font-size: 20px;
   height: 30px;
 `
+const Search = styled.div`
+  display: inline-block;
+  width:250px;
+  background: #f7f7f7; 
+  border-radius: 18px; 
+  `
+const Searchinput = styled.input`
+  width: 200px;
+  height: 25px;
+  border: none; 
+  background: none;
+  `
+const Serachsubmit = styled.button`
+  border: none; 
+  background: none;
+  `
 const Login = styled.div`
   display: inline-block;
-  margin-left: 10px;
+  margin-left: 5px;
   width: 100px; 
   cursor: pointer;
   border: 5px solid blue;
-`
+  `
 const SignUp = styled.div`
   display: inline-block;
+  margin-left: 20px;
   width: 100px;  
   cursor: pointer;
   border: 5px solid blue;
 `
 
-const DefaultPage = () => {
+const DefaultPage = (props) => {
+  const [sword, setSword] = useState("")
+  const search = () => {
+    if (!sword.length) {
+      alert("검색어를 입력해주세요")
+    } else {
+      alert(sword)
+      setSword("")
+    }
+  }
+  const enterKey = () => {
+    if (window.event.keyCode === 13) {
+      search();
+    }
+  }
+
     return (<> 
     <Header>
-        fdsfdsfsd
         <HeaderInside>
             <Logo>PocketMoney</Logo>
-            <LoginBox>
+            <RightHeader>
+              <Search>
+                <Searchinput type='text'
+                             value={sword}
+                             onChange={e => setSword(e.target.value.trim())}
+                             onKeyUp={enterKey}
+                />
+                <Serachsubmit><img
+                    src="/search.png"
+                    alt="my image"
+                    style={{
+                      marginTop: "5px",
+                      width: "20px",
+                      height: "20px",
+                      cursor: "pointer"
+                    }}
+                    onClick={search}
+                /></Serachsubmit>
+              </Search>
               <SignUp>회원가입</SignUp>
               <Login>로그인</Login>
-            </LoginBox>
+            </RightHeader>
         </HeaderInside>
     </Header>
     <Outside>   
