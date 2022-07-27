@@ -33,10 +33,16 @@ public interface WishService {
 
     default WishDTO entityToDTO(Wish wish, Board board, User user){
 
+        // 게시글을 작성한 유저의 엔티티 불러오기
+        User user2 = User.builder()
+                .id(board.getId())
+                .build();
+
         WishDTO wishDTO = WishDTO.builder()
                 .id(wish.getId())
                 .userId(user.getId())
                 .boardId(board.getId())
+                .nickName(user2.getNickName())
                 .title(board.getTitle())
                 .content(board.getContent())
                 .build();
