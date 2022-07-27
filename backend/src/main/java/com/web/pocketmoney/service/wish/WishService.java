@@ -35,7 +35,10 @@ public interface WishService {
 
         WishDTO wishDTO = WishDTO.builder()
                 .id(wish.getId())
+                .userId(user.getId())
                 .boardId(board.getId())
+                .title(board.getTitle())
+                .content(board.getContent())
                 .build();
 
         return wishDTO;
