@@ -29,7 +29,7 @@ public class UserController {
     private final AuthenticationManager authenticationManager;
 
     //회원 정보 조회
-    @GetMapping("/myPage/{id}")
+    @GetMapping("/{id}") //RequestMapping("/user")
     public ResponseEntity<UserDTO> readOne(@PathVariable("id") Long id, Model model){
 
         log.info("controller :: "+ id);
@@ -50,7 +50,7 @@ public class UserController {
     }
 
     //회원 수정
-    @PutMapping("")
+    @PutMapping("") //RequestMapping("/user")
     public ResponseEntity<Void> update(@RequestBody UserDTO userDTO){
         //RequestBody가 없을 경우, Json을 못 받는다. key=value로만 받을 수 있다.
         userService.modify(userDTO);
@@ -66,7 +66,7 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}") //RequestMapping("/user")
     public ResponseEntity<Void> delete(@PathVariable Long id){
 //        User user = userService.DtoToEntity(userService.getUser(id));
         userService.delete(id);

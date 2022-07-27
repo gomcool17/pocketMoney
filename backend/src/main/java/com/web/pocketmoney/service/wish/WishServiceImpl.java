@@ -1,5 +1,6 @@
 package com.web.pocketmoney.service.wish;
 
+import com.web.pocketmoney.dto.wish.InsertWishDTO;
 import com.web.pocketmoney.dto.wish.WishDTO;
 import com.web.pocketmoney.dto.wish.WishPageRequestDTO;
 import com.web.pocketmoney.dto.wish.WishPageResultDTO;
@@ -12,6 +13,7 @@ import com.web.pocketmoney.exception.CUserNotFoundException;
 import com.web.pocketmoney.exception.WishNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.hibernate.sql.Insert;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -31,10 +33,10 @@ public class WishServiceImpl implements WishService{
 
 
     @Override
-    public Long register(WishDTO wishDTO) {
+    public Long register(InsertWishDTO insertwishDTO) {
 
-        Wish wish = dtoToEntity(wishDTO);
-        log.info("wishDTO : " + wishDTO);
+        Wish wish = dtoToEntity(insertwishDTO);
+        log.info("wishDTO : " + insertwishDTO);
         log.info("wish : "+ wish);
         wishRepository.save(wish);
         return wish.getId();
@@ -69,7 +71,6 @@ public class WishServiceImpl implements WishService{
 
         log.info("result : "+wishRepository.getListPage(pageable, user));
         Page<Object[]> result = wishRepository.getListPage(pageable, user);
-
 
         return new WishPageResultDTO<>(result, fn);
     }

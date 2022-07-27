@@ -1,5 +1,6 @@
 package com.web.pocketmoney.service.wish;
 
+import com.web.pocketmoney.dto.wish.InsertWishDTO;
 import com.web.pocketmoney.dto.wish.WishDTO;
 import com.web.pocketmoney.dto.wish.WishPageRequestDTO;
 import com.web.pocketmoney.dto.wish.WishPageResultDTO;
@@ -11,13 +12,13 @@ import java.util.List;
 
 public interface WishService {
 
-    Long register(WishDTO wishDTO);
+    Long register(InsertWishDTO insertwishDTO);
 
     void remove(Long id);
 
     WishPageResultDTO<WishDTO, Object[]> findAll(WishPageRequestDTO wishPageRequestDTO, Long id);
 
-    default Wish dtoToEntity(WishDTO dto){
+    default Wish dtoToEntity(InsertWishDTO dto){
 
         User user = User.builder().id(dto.getUserId()).build();
         Board board = Board.builder().id(dto.getBoardId()).build();

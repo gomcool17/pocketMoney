@@ -2,6 +2,7 @@ package com.web.pocketmoney.controller.wish;
 
 
 import com.web.pocketmoney.dto.user.ResponseDTO;
+import com.web.pocketmoney.dto.wish.InsertWishDTO;
 import com.web.pocketmoney.dto.wish.WishDTO;
 import com.web.pocketmoney.dto.wish.WishPageRequestDTO;
 import com.web.pocketmoney.dto.wish.WishPageResultDTO;
@@ -40,16 +41,16 @@ public class WishController {
     }
 
 
-    @PostMapping("")
-    public ResponseEntity<Void> register(@RequestBody WishDTO wishDTO){
-        wishService.register(wishDTO);
+    @PostMapping("") //RequestMapping("/wish")
+    public ResponseEntity<Void> register(@RequestBody InsertWishDTO insertWishDTO){
+        wishService.register(insertWishDTO);
 
 //        return ResponseEntity.ok()
 //                .body(DefaultRes.res(StatusCode.NO_CONTENT, "관심 구인글 등록 완료!"));
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}") //RequestMapping("/wish")
     public ResponseEntity<DefaultRes> remove(@PathVariable("id") Long id ){
         wishService.remove(id);
 
