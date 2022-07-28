@@ -35,7 +35,10 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
+	//websocket
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	implementation 'org.webjars:sockjs-client:1.1.2'
+	implementation 'org.webjars:stomp-websocket:2.3.3-1'
 
 	// 이메일 인증 API를 위한
 	// https://mvnrepository.com/artifact/javax.mail/javax.mail-api
