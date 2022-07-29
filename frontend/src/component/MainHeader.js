@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useState } from 'react'
 import styled from 'styled-components';
+import { useNavigate } from 'react-router';
 
 const Header = styled.div`
   min-width: 1050px;
@@ -23,7 +24,7 @@ const Logo = styled.div`
   border: 5px solid blue;
   height: 40px;
   width: 300px;   
-   
+  text-align: center; 
   font-size: 30px;
   cursor: pointer;
 `
@@ -66,30 +67,31 @@ const SignUp = styled.div`
   border: 5px solid blue;
 `
 
-function MainHeader() {
-    const [sword, setSword] = useState("")
-    const search = () => {
-      if (!sword.length) {
-        alert("검색어를 입력해주세요")
-      } else {
-        alert(sword)
-        setSword("")
-      }
+function MainHeader(props) {
+  const navigate = useNavigate();
+  const [sword, setSword] = useState("")
+  const search = () => {
+    if (!sword.length) {
+      alert("검색어를 입력해주세요")
+    } else {
+      alert(sword)
+      setSword("")
     }
-    const enterKey = () => {
-      if (window.event.keyCode === 13) {
-        search();
-      }
+  }
+  const enterKey = () => {
+    if (window.event.keyCode === 13) {
+      search();
     }
-    return <Header>
+  }
+  return <Header>
     <HeaderInside>
-        <Logo>PocketMoney</Logo>
+        <Logo onClick={()=>{navigate("/")}}>PocketMoney</Logo>
         <RightHeader>
           <Search>
             <Searchinput type='text'
-                         value={sword}
-                         onChange={e => setSword(e.target.value.trim())}
-                         onKeyUp={enterKey}
+                          value={sword}
+                          onChange={e => setSword(e.target.value.trim())}
+                          onKeyUp={enterKey}
             />
             <Serachsubmit><img
                 src="/search.png"
@@ -107,7 +109,7 @@ function MainHeader() {
           <Login>로그인</Login>
         </RightHeader>
     </HeaderInside>
-</Header>
+  </Header>
 }
 
 export default MainHeader
