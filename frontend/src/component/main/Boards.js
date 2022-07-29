@@ -44,34 +44,34 @@ const Location = styled.div`
 `
 
 function Boards() {
-    return <>
+  return <>
     <BoardList>
-        <BoardBox>
-          <ImgBox>이미지</ImgBox>
-          <BoardTitle>제목</BoardTitle>
-          <Salary>급여</Salary>
-          <Location>위치</Location>
-        </BoardBox>
-        <BoardBox>
-          <ImgBox>이미지</ImgBox>
-          <BoardTitle>제목</BoardTitle>
-          <Salary>급여</Salary>
-          <Location>위치</Location>
-        </BoardBox>
-        <BoardBox>
-          <ImgBox>이미지</ImgBox>
-          <BoardTitle>제목</BoardTitle>
-          <Salary>급여</Salary>
-          <Location>위치</Location>
-        </BoardBox>
-        <BoardBox>
-          <ImgBox>이미dddd지</ImgBox>
-          <BoardTitle>제목</BoardTitle>
-          <Salary>급여</Salary>
-          <Location>위치</Location>
-        </BoardBox>
-      </BoardList>
-    </>
+      <BoardBox>
+        <ImgBox>이미지</ImgBox>
+        <BoardTitle>제목</BoardTitle>
+        <Salary>급여</Salary>
+        <Location>위치</Location>
+      </BoardBox>
+      <BoardBox>
+        <ImgBox>이미지</ImgBox>
+        <BoardTitle>제목</BoardTitle>
+        <Salary>급여</Salary>
+        <Location>위치</Location>
+      </BoardBox>
+      <BoardBox>
+        <ImgBox>이미지</ImgBox>
+        <BoardTitle>제목</BoardTitle>
+        <Salary>급여</Salary>
+        <Location>위치</Location>
+      </BoardBox>
+      <BoardBox>
+        <ImgBox>이미지</ImgBox>
+        <BoardTitle>제목</BoardTitle>
+        <Salary>급여</Salary>
+        <Location>위치</Location>
+      </BoardBox>
+    </BoardList>
+  </>
 }
 
 export default Boards

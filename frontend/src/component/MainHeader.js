@@ -67,7 +67,7 @@ const SignUp = styled.div`
   border: 5px solid blue;
 `
 
-function MainHeader(props) {
+function MainHeader() {
   const navigate = useNavigate();
   const [sword, setSword] = useState("")
   const search = () => {
@@ -106,7 +106,7 @@ function MainHeader(props) {
             /></Serachsubmit>
           </Search>
           <SignUp>회원가입</SignUp>
-          <Login>로그인</Login>
+          <Login onClick={()=>{navigate("/login")}}>로그인</Login>
         </RightHeader>
     </HeaderInside>
   </Header>

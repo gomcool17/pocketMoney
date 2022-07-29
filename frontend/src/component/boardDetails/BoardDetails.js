@@ -93,15 +93,12 @@ const Comment = styled.div`
   border: 5px solid green;
 `
 
-const BoardDetails = (props) => {
-
+const BoardDetails = () => {
     const match = ()=> {alert("매칭테스트 성공")}
     const params = useParams();
     const boardId = params.boardId;
-    console.log(boardId)
     return <>   
         <MainHeader 
-            props={props}
         />
         <Outside>
             <ContentHeader>
