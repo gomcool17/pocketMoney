@@ -48,5 +48,5 @@ public interface UserService {
         return user;
     }
     SingleResult<TokenUserDTO> login(LoginDTO loginDto);
-    void signup(SignupUserDTO signupUserDTO);
+    SignupUserDTO signup(SignupUserDTO signupUserDTO);
 }
