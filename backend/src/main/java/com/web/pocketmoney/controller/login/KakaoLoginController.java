@@ -1,0 +1,97 @@
+package com.web.pocketmoney.controller.login;
+
+import com.web.pocketmoney.dto.user.KakaoLoginDto;
+import com.web.pocketmoney.entity.user.User;
+import com.web.pocketmoney.entity.user.UserRepository;
+import com.web.pocketmoney.service.KakaoApiService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
+import java.util.Collections;
+import java.util.HashMap;
+
+@RestController
+@RequestMapping("login")
+@RequiredArgsConstructor
+@Log4j2
+public class KakaoLoginController {
+
+    private final KakaoApiService kakaoApiService;
+    private final UserRepository userRepository;
+    private final PasswordEncoder encoder;
+
+    @ResponseBody
+    @PostMapping("/kakao")
+    public ResponseEntity<KakaoLoginDto> kakaoLoginAccessToken(@RequestParam String code, HttpSession session) {
+        log.info("kakaoLogin code befor access Token : " + code);
+        String accessToken = kakaoApiService.getAccessToken(code);
+        log.info("controllerAcees : " + accessToken);
+        log.info("kakaoLogin Code : " + code);
+        HashMap<String, Object> userInfo = kakaoApiService.getUserInfo(accessToken);
+        log.info("email : " + userInfo.get("email"));
+        log.info("name : " + userInfo.get("name"));
+
+        String email = userInfo.get("email").toString();
+        String name = userInfo.get("name").toString();
+        String gender = userInfo.get("gender").toString();
+        log.info("최종 : " + name + " "+ email + " " + gender);
+
+        // 새로운 회원이 로그인 할시 어떻게 회원가입을 시켜야할까?
+        // ...
+        User user = userRepository.findByEmail(email).orElse(null);
+        if(user == null) {
+            userRepository.save(User.builder()
+                    .userName(name)
+                    .nickName(name)
+                    .password(encoder.encode("12345678"))
+                    .email(email)
+                    .age(0)
+                    .city("city")
+                    .sex(gender)
+                    .roles(Collections.singletonList("ROLE_USER"))
+                    .kindScore(0L)
+                    .build()
+            );
+        }
+
+        if (userInfo.get("email") != null) {
+            session.setAttribute("userId", userInfo.get("email")); // 세션에 등록
+            session.setAttribute("access_Token", accessToken);
+        }
+
+        KakaoLoginDto kakaoLoginDto = new KakaoLoginDto();
+        kakaoLoginDto.setEmail(email);
+        kakaoLoginDto.setName(name);
+        kakaoLoginDto.setAccessToken(accessToken);
+        //return;
+        //return accessToken;
+        return ResponseEntity.ok(kakaoLoginDto);
+    }
+
+    @ResponseBody
+    @GetMapping("/kakao")
+    public ResponseEntity<String> kakaoLoginCode(@RequestParam String code) {
+        log.info("kakaoLogin code befor access Token : " + code);
+        return ResponseEntity.ok(code);
+    }
+
+    @RequestMapping(value="/kakao/logout")
+    public void logout(HttpSession session) {
+        String access_Token = (String)session.getAttribute("access_Token");
+        log.info("logoutAccessToken : " + access_Token);
+        if(access_Token != null && !"".equals(access_Token)){
+            kakaoApiService.kakaoLogout(access_Token);
+            session.removeAttribute("access_Token");
+            session.removeAttribute("userId");
+        }else{
+            System.out.println("access_Token is null");
+            //return "redirect:/";
+        }
+        return;
+    }
+}
+// https://kauth.kakao.com/oauth/authorize?client_id=9b022ce48b033d5d885cb824be69e623&redirect_uri=http://localhost:8080/login/kakao&response_type=code
