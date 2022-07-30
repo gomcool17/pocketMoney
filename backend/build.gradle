@@ -35,10 +35,7 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
-	//websocket
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
-	implementation 'org.webjars:sockjs-client:1.1.2'
-	implementation 'org.webjars:stomp-websocket:2.3.3-1'
 
 	// 이메일 인증 API를 위한
 	// https://mvnrepository.com/artifact/javax.mail/javax.mail-api
@@ -62,34 +59,34 @@ sourceSets {
 	}
 }
 
-processResources { dependsOn "copyReactBuildFiles" }
-
-task installReact(type: Exec) {
-	workingDir "$frontendDir"
-	inputs.dir "$frontendDir"
-	group = BasePlugin.BUILD_GROUP
-	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
-		commandLine "npm.cmd", "audit", "fix"
-		commandLine 'npm.cmd', 'install' }
-	else {
-		commandLine "npm", "audit", "fix" commandLine 'npm', 'install'
-	}
-}
-
-task buildReact(type: Exec) {
-	dependsOn "installReact"
-	workingDir "$frontendDir"
-	inputs.dir "$frontendDir"
-	group = BasePlugin.BUILD_GROUP
-	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
-		commandLine "npm.cmd", "run-script", "build"
-	} else {
-		commandLine "npm", "run-script", "build"
-	}
-}
-
-task copyReactBuildFiles(type: Copy) {
-	dependsOn "buildReact"
-	from "$frontendDir/build"
-	into "$projectDir/src/main/resources/static"
-}
+//processResources { dependsOn "copyReactBuildFiles" }
+//
+//task installReact(type: Exec) {
+//	workingDir "$frontendDir"
+//	inputs.dir "$frontendDir"
+//	group = BasePlugin.BUILD_GROUP
+//	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+//		commandLine "npm.cmd", "audit", "fix"
+//		commandLine 'npm.cmd', 'install' }
+//	else {
+//		commandLine "npm", "audit", "fix" commandLine 'npm', 'install'
+//	}
+//}
+//
+//task buildReact(type: Exec) {
+//	dependsOn "installReact"
+//	workingDir "$frontendDir"
+//	inputs.dir "$frontendDir"
+//	group = BasePlugin.BUILD_GROUP
+//	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+//		commandLine "npm.cmd", "run-script", "build"
+//	} else {
+//		commandLine "npm", "run-script", "build"
+//	}
+//}
+//
+//task copyReactBuildFiles(type: Copy) {
+//	dependsOn "buildReact"
+//	from "$frontendDir/build"
+//	into "$projectDir/src/main/resources/static"
+//}
