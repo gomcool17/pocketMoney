@@ -21,9 +21,6 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User userId;
-
     @Column(nullable = false)
     private String title;
 
@@ -33,41 +30,42 @@ public class Board {
     @Column(nullable = false)
     private String area;
 
-    @Column(nullable = false)
+    @Column(nullable = false) // 면접 희망 시간
     private LocalDateTime wantedTime;
 
-    @Column(nullable = false)
+    @Column(nullable = false) // 희망 근무 요일
     private int dayOfWeek;
 
-    @Column(nullable = false)
+    @Column(nullable = false) // 희망 시급
     private int pay;
 
-    private int viewCount;
+    @Column(columnDefinition = "integer default 0")
+    private int view;
 
-    private int likes;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    private User user;
+
+
 
     @Builder
     public Board(String title, String content, String area, LocalDateTime wantedTime,
-                 int dayOfWeek, int pay, int viewCount, int likes) {
+                 int dayOfWeek, int pay) {
         this.title = title;
         this.content = content;
         this.area = area;
         this.wantedTime = wantedTime;
         this.dayOfWeek = dayOfWeek;
         this.pay = pay;
-        this.viewCount = viewCount;
-        this.likes = likes;
     }
 
     public void update(String title, String content, String area, LocalDateTime wantedTime,
-                       int dayOfWeek, int pay, int viewCount, int likes) {
+                       int dayOfWeek, int pay) {
         this.title = title;
         this.content = content;
         this.area = area;
         this.wantedTime = wantedTime;
         this.dayOfWeek = dayOfWeek;
         this.pay = pay;
-        this.viewCount = viewCount;
-        this.likes = likes;
     }
 }

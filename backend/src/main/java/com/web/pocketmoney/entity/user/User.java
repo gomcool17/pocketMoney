@@ -59,9 +59,13 @@ public class User implements UserDetails {
     @Builder.Default
     private List<String> roles = new ArrayList<>(); // 회원이 가지고 있는 권한 정보들
 
-    @CreationTimestamp // INSERT 시 자동으로 값을 채워줌
-    @Column(name = "created_at")
-    private Timestamp createTime;
+    //@CreationTimestamp // INSERT 시 자동으로 값을 채워줌
+    //@Column(name = "created_at")
+    //private Timestamp createTime;
+
+    @OneToMany(mappedBy = "user")
+    private List<Board> boards = new ArrayList<>();
+
 
    // @OneToMany(mappedBy = "user")
    // @Column(name = "my_board_list")
