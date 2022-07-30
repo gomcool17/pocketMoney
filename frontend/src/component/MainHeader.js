@@ -105,7 +105,7 @@ function MainHeader() {
                 onClick={search}
             /></Serachsubmit>
           </Search>
-          <SignUp>회원가입</SignUp>
+          <SignUp onClick={()=>{navigate("/signup")}}>회원가입</SignUp>
           <Login onClick={()=>{navigate("/login")}}>로그인</Login>
         </RightHeader>
     </HeaderInside>

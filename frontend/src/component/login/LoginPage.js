@@ -24,7 +24,7 @@ function LoginPage() {
                   borderColor: "gray"
                 }}
             >구글로그인</LoginButton>
-            <StyledDiv>PocketMoney 회원가입</StyledDiv>
+            <StyledDiv onClick={()=>{navigate("/signup")}}>PocketMoney 회원가입</StyledDiv>
           </LoginPageBox>
       </>);
 }

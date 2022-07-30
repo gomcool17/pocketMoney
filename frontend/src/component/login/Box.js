@@ -2,22 +2,20 @@ import styled from "styled-components";
 
 const StyledDiv = styled.div`
   color:rgb(90, 155, 213);
-`;
-
+  cursor: pointer;
+`
 const HomeButton = styled.div`
   width: 50px;
   height: 50px;
   background-image: url('/home.png');
   background-size: contain;
-`;
-
+`
 const LoginPageBox = styled.div`
-  padding-top: 50px;
-  width: 90%;
-  margin 0 auto;
+  position:absolute;
+  top: 15%;
+  width: 100%;
   text-align: center;
-`;
-
+`
 const LoginButton = styled.a`
   display: block;
   margin: 15px auto;
@@ -33,8 +31,7 @@ const LoginButton = styled.a`
     text-decoration:none; 
     cursor:pointer;  
   }
-`;
-
+`
 const StyledInput = styled.input`
   display: block;
   font-size: 17px;
@@ -50,6 +47,12 @@ const StyledInput = styled.input`
         outline: 2px solid rgb(90, 155, 213);
         border: 1px solid rgb(90, 155, 213);
     }
-`;
+`
+const SignUpPageBox = styled.div`
+  position:absolute;
+  top: 15%;
+  width: 100%;
+  text-align: center;
+`
 
-export {StyledDiv, HomeButton, LoginPageBox, LoginButton, StyledInput};
+export {StyledDiv, HomeButton, LoginPageBox, LoginButton, StyledInput, SignUpPageBox};
