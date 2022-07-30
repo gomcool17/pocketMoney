@@ -7,7 +7,6 @@ import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.entity.user.UserRepository;
 import com.web.pocketmoney.model.CommonResult;
 import com.web.pocketmoney.model.SingleResult;
-import com.web.pocketmoney.service.KakaoApiService;
 import com.web.pocketmoney.service.ResponseService;
 import com.web.pocketmoney.service.UserService;
 import com.web.pocketmoney.dto.user.LoginDTO;
@@ -33,7 +32,7 @@ public class LoginController {
     private final UserService userService; // API 요청 결과에 대한 code, messageㅍ
     private final PasswordEncoder passwordEncoder; // 비밀번호 암호화
     private final ResponseService responseService; // API 요청 결과에 대한 code, message
-    private final KakaoApiService kakaoApiService;
+    //private final KakaoApiService kakaoApiService;
 
    // private final UserService userService;
 
@@ -50,32 +49,32 @@ public class LoginController {
         return ResponseEntity.ok(userService.signup(signupUserDTO));
     }
 
-    @ResponseBody
-    @PostMapping("/kakao")
-    public void kakaoLoginToken(@RequestParam String code) {
-        log.info("kakaoLogin code befor access Token : " + code);
-        String accessToken = kakaoApiService.getAccessToken(code);
-        log.info("controllerAcees : " + accessToken);
-        log.info("kakaoLogin Code : " + code);
-        HashMap<String, Object> userInfo = kakaoApiService.getUserInfo(accessToken);
-        log.info("email : " + userInfo.get("email"));
-        log.info("nickname : " + userInfo.get("nickname"));
+//    @ResponseBody
+//    @PostMapping("/kakao")
+//    public void kakaoLoginToken(@RequestParam String code) {
+//        log.info("kakaoLogin code befor access Token : " + code);
+//        String accessToken = kakaoApiService.getAccessToken(code);
+//        log.info("controllerAcees : " + accessToken);
+//        log.info("kakaoLogin Code : " + code);
+//        HashMap<String, Object> userInfo = kakaoApiService.getUserInfo(accessToken);
+//        log.info("email : " + userInfo.get("email"));
+//        log.info("nickname : " + userInfo.get("nickname"));
+//
+//        String email = userInfo.get("email").toString();
+//        String name = userInfo.get("nickName").toString();
+//
+//        return;
+//    }
 
-        String email = userInfo.get("email").toString();
-        String name = userInfo.get("nickName").toString();
-
-        return;
-    }
-
-    @ResponseBody
-    @GetMapping("/kakao")
-    public void kakaoLogin(@RequestParam String code) {
-        log.info("kakaoLogin code befor access Token : " + code);
-       // String accesToken = kakaoApiService.getAccessToken(code);
-       // log.info("controllerAcees : " + accesToken);
-       // log.info("kakaoLogin Code : " + code);
-        return;
-    }
+//    @ResponseBody
+//    @GetMapping("/kakao")
+//    public void kakaoLogin(@RequestParam String code) {
+//        log.info("kakaoLogin code befor access Token : " + code);
+//       // String accesToken = kakaoApiService.getAccessToken(code);
+//       // log.info("controllerAcees : " + accesToken);
+//       // log.info("kakaoLogin Code : " + code);
+//        return;
+//    }
 }
 //https://kauth.kakao.com/oauth/authorize?client_id=9b022ce48b033d5d885cb824be69e623&redirect_uri=http://localhost:8080/login/kakao&response_type=code
 
