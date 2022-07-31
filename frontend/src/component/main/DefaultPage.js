@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import MainHeader from "../MainHeader";
 import Boards from "./Boards";
-import { ACCESS_TOKEN } from "./../../constant/SessionStorage";
 
 const Outside = styled.div`
   width: 1050px;
@@ -33,7 +32,6 @@ const FindWork = styled.div`
 `;
 
 function DefaultPage() {
-  console.log(sessionStorage.getItem(ACCESS_TOKEN));
   return (
     <>
       <MainHeader />
