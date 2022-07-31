@@ -1,6 +1,6 @@
 package com.web.pocketmoney.service;
 
-import com.web.pocketmoney.config.security.JwtTokenProvider;
+import com.web.pocketmoney.controller.room.config.security.JwtTokenProvider;
 import com.web.pocketmoney.dto.user.LoginDTO;
 import com.web.pocketmoney.dto.user.SignupUserDTO;
 import com.web.pocketmoney.dto.user.TokenUserDTO;
@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 @Service

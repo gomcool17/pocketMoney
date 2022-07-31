@@ -1,25 +1,19 @@
 package com.web.pocketmoney.controller.login;
 
-import com.web.pocketmoney.config.security.JwtTokenProvider;
+import com.web.pocketmoney.controller.room.config.security.JwtTokenProvider;
 import com.web.pocketmoney.dto.user.SignupUserDTO;
 import com.web.pocketmoney.dto.user.TokenUserDTO;
-import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.entity.user.UserRepository;
-import com.web.pocketmoney.model.CommonResult;
 import com.web.pocketmoney.model.SingleResult;
 import com.web.pocketmoney.service.ResponseService;
 import com.web.pocketmoney.service.UserService;
 import com.web.pocketmoney.dto.user.LoginDTO;
-import com.web.pocketmoney.service.UserServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
 
 @RestController
 @RequestMapping("login")

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { HomeButton, LoginButton, StyledInput, SignUpPageBox } from "./Box";
 import { useNavigate } from "react-router-dom";
+import signUpApi from "../../api/SignUpApi";
 
 const SignUpPage = (props) => {
   const navigate = useNavigate();
@@ -77,7 +78,16 @@ const SignUpPage = (props) => {
               userName.length
             ) {
               if (password === checkPassword) {
-                //회원가입 진행
+                signUpApi(
+                  email,
+                  password,
+                  nickName,
+                  age,
+                  sex,
+                  city,
+                  userName,
+                  navigate
+                );
               } else alert("비밀번호가 일치하지 않습니다");
             } else {
               alert("빈칸을 다 채워주세요");

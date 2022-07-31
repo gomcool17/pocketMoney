@@ -1,4 +1,4 @@
-package com.web.pocketmoney.config;
+package com.web.pocketmoney.controller.room.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

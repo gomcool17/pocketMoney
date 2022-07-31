@@ -1,4 +1,4 @@
-package com.web.pocketmoney.config.security;
+package com.web.pocketmoney.controller.room.config.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;

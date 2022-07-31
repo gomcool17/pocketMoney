@@ -1,4 +1,4 @@
-package com.web.pocketmoney.config.security;
+package com.web.pocketmoney.controller.room.config.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
