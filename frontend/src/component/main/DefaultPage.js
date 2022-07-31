@@ -1,11 +1,12 @@
-import styled from 'styled-components';
-import MainHeader from '../MainHeader';
-import Boards from './Boards';
+import styled from "styled-components";
+import MainHeader from "../MainHeader";
+import Boards from "./Boards";
+import { ACCESS_TOKEN } from "./../../constant/SessionStorage";
 
 const Outside = styled.div`
   width: 1050px;
   margin: 10px auto;
-`
+`;
 const TitleLogo = styled.div`
   width: 1050px;
   height: 250px;
@@ -13,7 +14,7 @@ const TitleLogo = styled.div`
   font-size: 50px;
   line-height: 250px;
   text-align: center;
-`
+`;
 const LocalWork = styled.div`
   width: 1050px;
   height: 250px;
@@ -21,7 +22,7 @@ const LocalWork = styled.div`
   font-size: 50px;
   line-height: 250px;
   text-align: center;
-`
+`;
 const FindWork = styled.div`
   width: 1050px;
   height: 250px;
@@ -29,17 +30,21 @@ const FindWork = styled.div`
   font-size: 50px;
   line-height: 250px;
   text-align: center;
-`
+`;
 
 function DefaultPage() {
-    return (<> 
-    <MainHeader />
-    <Outside>
-      <TitleLogo>PocketMoney</TitleLogo>   
-      <LocalWork>근처 일자리</LocalWork>
-      <FindWork>일자리 구인</FindWork>
-      <Boards />
-</Outside></>)
-};
+  console.log(sessionStorage.getItem(ACCESS_TOKEN));
+  return (
+    <>
+      <MainHeader />
+      <Outside>
+        <TitleLogo>PocketMoney</TitleLogo>
+        <LocalWork>근처 일자리</LocalWork>
+        <FindWork>일자리 구인</FindWork>
+        <Boards />
+      </Outside>
+    </>
+  );
+}
 
-export default DefaultPage
+export default DefaultPage;

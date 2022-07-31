@@ -1,7 +1,7 @@
 import { BACKEND_ADDRESS } from "../constant/ADDRESS";
 import axios from "axios";
 
-const signUpApi = (
+function signUpApi(
   email,
   password,
   nickName,
@@ -10,7 +10,7 @@ const signUpApi = (
   city,
   userName,
   navigate
-) => {
+) {
   const body = {
     age: age,
     city: city,
@@ -37,6 +37,6 @@ const signUpApi = (
       alert("뭔지 모르지만 회원가입실패?! 홈으로..");
       navigate("/");
     });
-};
+}
 
 export default signUpApi;

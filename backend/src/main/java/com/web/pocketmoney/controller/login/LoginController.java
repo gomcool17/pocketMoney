@@ -1,6 +1,6 @@
 package com.web.pocketmoney.controller.login;
 
-import com.web.pocketmoney.controller.room.config.security.JwtTokenProvider;
+import com.web.pocketmoney.config.security.JwtTokenProvider;
 import com.web.pocketmoney.dto.user.SignupUserDTO;
 import com.web.pocketmoney.dto.user.TokenUserDTO;
 import com.web.pocketmoney.entity.user.UserRepository;
@@ -31,7 +31,7 @@ public class LoginController {
    // private final UserService userService;
 
     @ApiOperation(value = "로그인", notes = "이메일 회원 로그인을 한다.")
-    @PostMapping(value = "/")
+    @PostMapping    (value = "/")
     public SingleResult<TokenUserDTO> signin(@RequestBody LoginDTO loginDto) {
         return userService.login(loginDto);
     }

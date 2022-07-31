@@ -1,6 +1,6 @@
 package com.web.pocketmoney.service;
 
-import com.web.pocketmoney.controller.room.config.security.JwtTokenProvider;
+import com.web.pocketmoney.config.security.JwtTokenProvider;
 import com.web.pocketmoney.dto.user.LoginDTO;
 import com.web.pocketmoney.dto.user.SignupUserDTO;
 import com.web.pocketmoney.dto.user.TokenUserDTO;

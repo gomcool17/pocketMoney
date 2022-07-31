@@ -1,4 +1,4 @@
-package com.web.pocketmoney.controller.room.config;
+package com.web.pocketmoney.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

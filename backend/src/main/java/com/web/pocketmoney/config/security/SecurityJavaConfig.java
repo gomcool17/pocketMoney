@@ -1,4 +1,4 @@
-package com.web.pocketmoney.controller.room.config.security;
+package com.web.pocketmoney.config.security;
 
 
 import lombok.RequiredArgsConstructor;

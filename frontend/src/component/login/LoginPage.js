@@ -13,7 +13,7 @@ function LoginPage() {
         }}
       />
       <LoginPageBox>
-        <EmailLogin />
+        <EmailLogin navigate={navigate} />
         <LoginButton
           style={{
             color: "yellow",
