@@ -69,8 +69,14 @@ const SignUp = styled.div`
 `;
 const Mypage = styled.div`
   display: inline-block;
-  margin-right: -100px;
   margin-left: 20px;
+  width: 100px;
+  cursor: pointer;
+  border: 5px solid blue;
+`;
+const Logout = styled.div`
+  display: inline-block;
+  margin-left: 5px;
   width: 100px;
   cursor: pointer;
   border: 5px solid blue;
@@ -143,7 +149,18 @@ function MainHeader() {
               </Login>
             </>
           ) : (
-            <Mypage>마이페이지</Mypage>
+            <>
+              <Mypage>마이페이지</Mypage>
+              <Logout
+                onClick={() => {
+                  localStorage.removeItem(ACCESS_TOKEN);
+                  alert("로그아웃 되었습니다.");
+                  navigate("/");
+                }}
+              >
+                로그아웃
+              </Logout>
+            </>
           )}
         </RightHeader>
       </HeaderInside>

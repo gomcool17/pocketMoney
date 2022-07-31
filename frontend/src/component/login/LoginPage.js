@@ -2,9 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import EmailLogin from "./EmailLogin";
 import { HomeButton, LoginButton, LoginPageBox, StyledDiv } from "./Box";
+import { ACCESS_TOKEN } from "./../../constant/LocalStorage";
 
 function LoginPage() {
   const navigate = useNavigate();
+  if (localStorage.getItem(ACCESS_TOKEN)) {
+    alert("이미 로그인 되어있습니다!!!!");
+    window.location.href = "/";
+  }
   return (
     <>
       <HomeButton
