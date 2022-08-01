@@ -12,9 +12,7 @@ const SignUpPage = (props) => {
   const [nickName, setNickName] = useState("");
   const [age, setAge] = useState("");
   const [sex, setSex] = useState("");
-  const [city, setCity] = useState("");
   const [userName, setUserName] = useState("");
-
   return (
     <>
       <HomeButton
@@ -61,9 +59,18 @@ const SignUpPage = (props) => {
           placeholder={"성별"}
         />
         <StyledInput
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
+          type="text"
+          id="pInput"
+          readOnly={true}
           placeholder={"도시"}
+          onClick={() => {
+            window.name = "parentForm";
+            window.open(
+              "/signup/city",
+              "childForm",
+              "top=10, left=10, width=650, height=600, status=no, menubar=no, toolbar=no, resizable=no"
+            );
+          }}
         />
         <LoginButton
           onClick={() => {
@@ -74,7 +81,7 @@ const SignUpPage = (props) => {
               nickName.length &&
               age.length &&
               sex.length &&
-              city.length &&
+              document.getElementById("pInput").value &&
               userName.length
             ) {
               if (password === checkPassword) {
@@ -84,7 +91,7 @@ const SignUpPage = (props) => {
                   nickName,
                   age,
                   sex,
-                  city,
+                  document.getElementById("pInput").value,
                   userName,
                   navigate
                 );

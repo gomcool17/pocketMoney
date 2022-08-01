@@ -6,6 +6,7 @@ import LoginPage from "./component/login/LoginPage";
 import SignUpPage from "./component/login/SignUpPage";
 import Mypage from "./component/mypage/MyPage";
 import ChatPage from "./component/chat/ChatPage";
+import PopupPostCode from "./component/login/city/PopupPostCode";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" exact element={<DefaultPage />} />
         <Route path="/login" exact element={<LoginPage />} />
         <Route path="/signup" exact element={<SignUpPage />} />
+        <Route path="/signup/city" exact element={<PopupPostCode />} />
         <Route path="/mypage" exact element={<Mypage />} />
         <Route path="/board/:boardId" exact element={<BoardDetails />} />
         <Route path="/chat" exact element={<ChatPage />} />
