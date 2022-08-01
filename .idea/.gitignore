@@ -1,8 +1,11 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+<<<<<<< .merge_file_a5i0sY
+=======
 # Editor-based HTTP Client requests
 /httpRequests/
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+>>>>>>> .merge_file_QX9vtd
