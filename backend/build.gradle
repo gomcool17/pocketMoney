@@ -55,7 +55,6 @@ sourceSets {
 		resources { srcDirs = ["$projectDir/src/main/resources"]
 		}
 	}
-
 }
 
 //processResources { dependsOn "copyReactBuildFiles" }
@@ -83,6 +82,7 @@ sourceSets {
 //		commandLine "npm", "run-script", "build"
 //	}
 //}
+<<<<<<< HEAD
 //
 //task copyReactBuildFiles(type: Copy) {
 //	dependsOn "buildReact"
@@ -92,3 +92,5 @@ sourceSets {
 
 
 
+=======
+>>>>>>> origin/hyeon
