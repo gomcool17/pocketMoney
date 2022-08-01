@@ -28,4 +28,5 @@ public class Wish extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Board boardId;
+//    manyToOne에서 Cascade 걸어주는지 확인할 것,
 }
