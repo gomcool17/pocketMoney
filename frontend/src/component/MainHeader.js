@@ -104,7 +104,7 @@ function MainHeader() {
       <HeaderInside>
         <Logo
           onClick={() => {
-            navigate("/");
+            window.location.href = "/";
           }}
         >
           PocketMoney

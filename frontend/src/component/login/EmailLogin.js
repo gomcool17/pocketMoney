@@ -21,7 +21,6 @@ const EmailLogin = (props) => {
       <LoginButton
         onClick={() => {
           if (email.length && password.length) {
-            setPassword("");
             loginApi(email, password, props.navigate);
           } else {
             alert("빈칸을 다 채워주세요!");
