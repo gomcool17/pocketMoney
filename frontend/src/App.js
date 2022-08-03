@@ -7,6 +7,7 @@ import SignUpPage from "./component/login/SignUpPage";
 import Mypage from "./component/mypage/MyPage";
 import ChatPage from "./component/chat/ChatPage";
 import PopupPostCode from "./component/login/city/PopupPostCode";
+import KakaoLoginHandler from "./component/login/KakaoLoginHandler";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/mypage" exact element={<Mypage />} />
         <Route path="/board/:boardId" exact element={<BoardDetails />} />
         <Route path="/chat" exact element={<ChatPage />} />
+        <Route path="/login/kakao" exact element={<KakaoLoginHandler />} />
       </Routes>
     </Router>
   );
