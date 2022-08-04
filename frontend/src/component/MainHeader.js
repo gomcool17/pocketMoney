@@ -150,7 +150,13 @@ function MainHeader() {
             </>
           ) : (
             <>
-              <Mypage>마이페이지</Mypage>
+              <Mypage
+                onClick={() => {
+                  navigate("/mypage");
+                }}
+              >
+                마이페이지
+              </Mypage>
               <Logout
                 onClick={() => {
                   localStorage.removeItem(ACCESS_TOKEN);

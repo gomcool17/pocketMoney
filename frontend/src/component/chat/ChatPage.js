@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import CancelButton from "../CancelButton";
 import ChattingRoom from "./ChattingRoom";
+import { useNavigate } from "react-router";
 
 const Outside = styled.div`
   width: 1050px;
@@ -16,9 +18,11 @@ const Block = styled.div`
 `;
 
 function ChatPage() {
+  const navigate = useNavigate();
   return (
     <Outside>
-      <Block></Block>
+      <CancelButton navigate={navigate} />
+      <Block style={{ height: "50px" }}></Block>
       <Block></Block>
       <ChattingRoom />
       <Block></Block>
