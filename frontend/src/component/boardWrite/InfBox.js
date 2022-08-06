@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 const OutLine = styled.div`
   width: 800px;
@@ -40,8 +40,17 @@ const UploadButton = styled.div`
   background-color: lightGreen;
 `;
 function InfBox() {
+  const ImgInput = useRef();
   const [price, setPrice] = useState("");
   const [time, setTime] = useState("");
+  const formData = new FormData();
+  const onImgChange = (e) => {
+    console.log(e.target.files[0]);
+    formData.append("file", e.target.files[0]);
+  };
+  const onImgButtonClick = (e) => {
+    ImgInput.current.click();
+  };
   return (
     <OutLine>
       <InfBlock>
@@ -55,7 +64,15 @@ function InfBox() {
         <StyledDiv>시간</StyledDiv>
       </InfBlock>
       <InfBlock>
-        <UploadButton>사진 업로드</UploadButton>
+        <input
+          ref={ImgInput}
+          type="file"
+          accept="image/*"
+          name="file"
+          onChange={onImgChange}
+          style={{ display: "none" }}
+        />
+        <UploadButton onClick={onImgButtonClick}>사진 업로드</UploadButton>
       </InfBlock>
     </OutLine>
   );
