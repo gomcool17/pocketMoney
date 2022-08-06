@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import MainHeader from "../MainHeader";
 import Boards from "./Boards";
+import { useNavigate } from "react-router";
 
 const Outside = styled.div`
   width: 1050px;
@@ -32,13 +33,20 @@ const FindWork = styled.div`
 `;
 
 function DefaultPage() {
+  const navigate = useNavigate();
   return (
     <>
       <MainHeader />
       <Outside>
         <TitleLogo>PocketMoney</TitleLogo>
         <LocalWork>근처 일자리</LocalWork>
-        <FindWork>일자리 구인</FindWork>
+        <FindWork
+          onClick={() => {
+            navigate("/board/write");
+          }}
+        >
+          일자리 구인
+        </FindWork>
         <Boards />
       </Outside>
     </>

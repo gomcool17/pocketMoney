@@ -15,7 +15,14 @@ const StyledCancelButton = styled.div`
 
 const CancelButton = (props) => {
   return (
-    <div style={{ position: "relative", width: "100%", height: "50px" }}>
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "50px",
+        zIndex: "-1",
+      }}
+    >
       <StyledCancelButton
         onClick={() => {
           props.navigate("/");
