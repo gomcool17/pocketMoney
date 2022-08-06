@@ -10,6 +10,7 @@ const Header = styled.div`
   position: sticky;
   top: 0;
   background-color: aquamarine;
+  z-index: 2;
 `;
 const HeaderInside = styled.div`
   position: absolute;

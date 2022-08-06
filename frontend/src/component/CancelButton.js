@@ -20,7 +20,7 @@ const CancelButton = (props) => {
         position: "relative",
         width: "100%",
         height: "50px",
-        zIndex: "-1",
+        zIndex: "1",
       }}
     >
       <StyledCancelButton

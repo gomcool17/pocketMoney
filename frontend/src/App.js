@@ -8,7 +8,7 @@ import Mypage from "./component/mypage/MyPage";
 import ChatPage from "./component/chat/ChatPage";
 import PopupPostCode from "./component/login/city/PopupPostCode";
 import KakaoLoginHandler from "./component/login/KakaoLoginHandler";
-import BoardWrite from "./component/boardDetails/BoardWrite";
+import BoardWrite from "./component/boardWrite/BoardWrite";
 
 function App() {
   return (
