@@ -10,6 +10,7 @@ import com.web.pocketmoney.entity.user.UserRepository;
 import com.web.pocketmoney.exception.CEmailSignupFailedException;
 import com.web.pocketmoney.exception.CNickNameSignupFailedException;
 import com.web.pocketmoney.exception.CSigninFailedException;
+import com.web.pocketmoney.exception.CUserNotFoundException;
 import com.web.pocketmoney.model.SingleResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -18,7 +19,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,31 +39,35 @@ public class UserServiceImpl implements UserService{
 //        log.info("user :: "+ entityToDto(entity));
 //        return entityToDto(entity);
         log.info("userService :: "+ id);
-        Optional<User> user = userRepository.findById(id);
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new CUserNotFoundException(
+                        "존재하지 않는 회원입니다."
+                ));
         log.info("user :: "+user);
-        return user.isPresent() ? entityToDto(user.get()) : null;
+        return entityToDto(user);
+//        return user.isPresent() ? entityToDto(user.get()) : null;
     }
 
     @Override
     @Transactional
-    public void modify(User user) {
+    public void modify(UserDTO userDTO) {
         // 수정시에는 영속성 컨텍스트 User 오브젝트를 영속화시키고, 영속화된 User 오브젝트를 수정
         // select를 해서 User오브젝트를 db로 부터 가져오는 이유는 영속화를 하기 위해서
         // 영속화된 오브젝트를 변경하면 DB에 Update문을 날려주기 때문
-        log.info(user.toString());
-        User persistance = userRepository.findById(user.getId()).orElseThrow(()->{
-            return new IllegalArgumentException("회원 찾기 실패");
+        log.info(userDTO.toString());
+        User persistance = userRepository.findById(userDTO.getId()).orElseThrow(()->{
+            return new CUserNotFoundException("회원 찾기 실패");
         });
         log.info(persistance.toString());
         //oauth에 값이 없으면 수정 가능
         //Validate 체크,OAuth로그인한 사람들은 비밀번호 변경 불가
         if(persistance.getOauth()==null || persistance.getOauth().equals("")){
-            String rawPassword =  user.getPassword();
+            String rawPassword =  userDTO.getPassword();
             String encPassword = encoder.encode(rawPassword);
-            String nickName = user.getNickName();
-            String sex = user.getSex();
-            int age = user.getAge();
-            String city = user.getCity();
+            String nickName = userDTO.getNickName();
+            String sex = userDTO.getSex();
+            int age = userDTO.getAge();
+            String city = userDTO.getCity();
 
             persistance.setPassword(encPassword);
             persistance.setNickName(nickName);
@@ -79,7 +83,14 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void delete(Long id) {
-        userRepository.deleteById(id);
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new CUserNotFoundException(
+                        "존재하지 않는 회원입니다."
+                ));
+        log.info("not user ?" + user);
+        userRepository.deleteById(user.getId());
+//        userRepository.deleteById(user.getId());
+        log.info("success delete !");
     }
 
 

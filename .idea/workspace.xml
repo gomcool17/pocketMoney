@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="52ad9275-5fe2-4b21-ba67-c87fdec59f34" name="변경" comment="">
       <change afterPath="$PROJECT_DIR$/frontend/public/home.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/public/search.png" afterDir="false" />
@@ -58,11 +59,15 @@
       <change beforePath="$PROJECT_DIR$/src/main/front/node_modules/postcss-initial/.vscode/settings.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/front/node_modules/rollup-plugin-terser/node_modules/serialize-javascript/.vscode/settings.json" beforeDir="false" />
     </list>
+=======
+    <list default="true" id="4a63d36c-590c-46b6-b61c-8069c1f16903" name="Changes" comment="" />
+>>>>>>> origin/main
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -90,20 +95,27 @@
   <component name="Git.Merge.Settings">
     <option name="BRANCH" value="origin/main" />
   </component>
+=======
+>>>>>>> origin/main
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+<<<<<<< HEAD
   <component name="ProjectId" id="2CbjuyDKi4ep1VWkunS9WsZtcfP" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
+=======
+  <component name="ProjectId" id="2CeYJm7TaFfIFQj8eHAm6S3f9yE" />
+>>>>>>> origin/main
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
@@ -149,12 +161,35 @@
       <workItem from="1659078434020" duration="5881000" />
       <workItem from="1659084904083" duration="2806000" />
       <workItem from="1659159109970" duration="1633000" />
+=======
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4a63d36c-590c-46b6-b61c-8069c1f16903" name="Changes" comment="" />
+      <created>1659164454346</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1659164454346</updated>
+      <workItem from="1659164457645" duration="198000" />
+>>>>>>> origin/main
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+<<<<<<< HEAD
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -177,4 +212,6 @@
       </breakpoints>
     </breakpoint-manager>
   </component>
+=======
+>>>>>>> origin/main
 </project>
