@@ -53,14 +53,14 @@ public class UserController {
 
     //회원 수정
     @PutMapping("") //RequestMapping("/user")
-    public ResponseEntity<Void> update(@RequestBody UserDTO userDTO){
+    public ResponseEntity<Void> update(@RequestBody UserDTO userDTO, @AuthenticationPrincipal User user){
         //RequestBody가 없을 경우, Json을 못 받는다. key=value로만 받을 수 있다.
-        userService.modify(userDTO);
+        userService.modify(userDTO, user);
 
         //세션 등록
         //어썬티케이션 매니저에게 유저네임과 패스워드를 던져서
         //매니저가 자동으로 세션등록 해준다.
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDTO.getUserName(),userDTO.getPassword()));
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
 //        return ResponseEntity.ok()
@@ -68,10 +68,10 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/{id}") //RequestMapping("/user")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
+    @DeleteMapping("") //RequestMapping("/user")
+    public ResponseEntity<Void> delete(@AuthenticationPrincipal User user){
 //        User user = userService.DtoToEntity(userService.getUser(id));
-        userService.delete(id);
+        userService.delete(user.getId());
 
 //        return ResponseEntity.ok()
 //                .body(DefaultRes.res(StatusCode.NO_CONTENT, "회원정보 삭제 완료!"));

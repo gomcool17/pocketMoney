@@ -36,8 +36,9 @@ public class ChatRoomController {
     }
 
     //채팅방 삭제
-    @DeleteMapping("{chatRoomId}")
-    public ResponseEntity delete (@PathVariable Long id){
+    @DeleteMapping("/{chatRoomId}")
+    public ResponseEntity delete(@PathVariable("chatRoomId") Long id){
+        log.info("ChatRoom : "+ id);
         chatRoomService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

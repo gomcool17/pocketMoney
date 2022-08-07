@@ -8,6 +8,7 @@ import com.web.pocketmoney.entity.message.MessageRepository;
 import com.web.pocketmoney.entity.room.ChatRoom;
 import com.web.pocketmoney.entity.room.ChatRoomRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class ChatRoomServiceImpl implements ChatRoomService {
 
     private final ChatRoomRepository crr;
@@ -50,6 +52,7 @@ public class ChatRoomServiceImpl implements ChatRoomService {
 
     @Override
     public void deleteById(Long chatRoomId) {
+        log.info("chatROomId : " +chatRoomId);
         crr.deleteById(chatRoomId);
     }
 
