@@ -43,6 +43,7 @@ public class KakaoLoginController {
         // 새로운 회원이 로그인 할시 어떻게 회원가입을 시켜야할까?
         // ...
         User user = userRepository.findByEmail(email).orElse(null);
+        Boolean check = false;
         if(user == null) {
             userRepository.save(User.builder()
                     .userName(name)
@@ -56,6 +57,7 @@ public class KakaoLoginController {
                     .kindScore(0L)
                     .build()
             );
+            check = true;
         }
 
         if (userInfo.get("email") != null) {
@@ -67,8 +69,15 @@ public class KakaoLoginController {
         kakaoLoginDto.setEmail(email);
         kakaoLoginDto.setName(name);
         kakaoLoginDto.setAccessToken(accessToken);
+        if(check) {
+            kakaoLoginDto.setIsNew(true);
+        }
+        else kakaoLoginDto.setIsNew(false);
         //return;
         //return accessToken;
+        //aaaaaaa
+        //왜 머지가 안되징?
+        
         return ResponseEntity.ok(kakaoLoginDto);
     }
 
