@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,12 +30,13 @@ public class UserController {
     private final AuthenticationManager authenticationManager;
 
     //회원 정보 조회
-    @GetMapping("/{id}") //RequestMapping("/user")
-    public ResponseEntity<UserDTO> readOne(@PathVariable("id") Long id, Model model){
+    @GetMapping("") //RequestMapping("/user")
+    public ResponseEntity<UserDTO> readOne(Model model, @AuthenticationPrincipal User user){
 
-        log.info("controller :: "+ id);
 
-        UserDTO userDTO = userService.getUser(id);
+//        log.info("controller :: "+ id);
+
+        UserDTO userDTO = userService.getUser(user.getId());
         log.info("userDTO :: "+userDTO);
 //        model.addAttribute("dto", userDTO);
 //        if(userDTO == null){

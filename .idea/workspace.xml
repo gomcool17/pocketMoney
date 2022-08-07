@@ -4,48 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4cd46c35-31e0-4309-bdde-9e0756e123a6" name="변경" comment="[UPDATE]STOMP, 메시지 브로커 설정">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/testlogo.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/api/KakaoLoginApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/api/LoginApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/api/SignUpApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/component/CancelButton.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/component/boardWrite/BoardWrite.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/component/boardWrite/ContentBox.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/component/boardWrite/InfBox.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/component/boardWrite/TitleBlock.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/component/chat/AllMessage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/component/chat/ChatPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/component/chat/ChattingRoom.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/component/chat/DefaultRoom.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/component/login/KakaoLoginHandler.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/component/login/city/PopupPostCode.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/component/mypage/InfBox.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/component/mypage/MyPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/constant/KakaoAuthSecret.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/constant/LocalStorage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/backend/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/web/pocketmoney/config/security/SecurityJavaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/web/pocketmoney/config/security/SecurityJavaConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/web/pocketmoney/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/web/pocketmoney/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/web/pocketmoney/controller/login/KakaoLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/web/pocketmoney/controller/login/KakaoLoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/web/pocketmoney/controller/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/web/pocketmoney/controller/login/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/web/pocketmoney/dto/user/KakaoLoginDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/web/pocketmoney/dto/user/KakaoLoginDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/web/pocketmoney/service/KakaoApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/web/pocketmoney/service/KakaoApiService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/web/pocketmoney/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/web/pocketmoney/service/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/TestApi.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/MainHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/MainHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/boardDetails/BoardDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/boardDetails/BoardDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/login/Box.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/login/Box.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/login/EmailLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/login/EmailLogin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/login/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/login/LoginPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/login/SignUpPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/login/SignUpPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/main/DefaultPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/main/DefaultPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/constant/ADDRESS.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/constant/ADDRESS.js" afterDir="false" />
+    <list default="true" id="4cd46c35-31e0-4309-bdde-9e0756e123a6" name="변경" comment="[UPDATE]STOMP, 메시지 브로커, 채팅방 불러오기">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/web/pocketmoney/controller/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/web/pocketmoney/controller/user/UserController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +21,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -69,27 +46,49 @@
     <option name="showLibraryContents" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="PocketmoneyApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.web.pocketmoney.PocketmoneyApplication" />
+      <module name="backend.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.web.pocketmoney.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.PocketmoneyApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4a63d36c-590c-46b6-b61c-8069c1f16903" name="Changes" comment="" />
       <created>1659164454346</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1659164454346</updated>
       <workItem from="1659164457645" duration="198000" />
     </task>
+    <task id="LOCAL-00001" summary="[UPDATE]STOMP, 메시지 브로커, 채팅방 불러오기">
+      <created>1659849300538</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1659849300538</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -105,5 +104,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="[UPDATE]STOMP, 메시지 브로커, 채팅방 불러오기" />
+    <option name="LAST_COMMIT_MESSAGE" value="[UPDATE]STOMP, 메시지 브로커, 채팅방 불러오기" />
   </component>
 </project>
