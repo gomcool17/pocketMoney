@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
-    @Query("update Board b set b.viewCount = b.viewCount + 1 where b.id = :id")
-    int updateViewCount(Long id);
+    @Query("update Board b set b.view = b.view + 1 where b.id = :id")
+    int updateView(Long id);
 
     List<Board> findByTitleContaining(String keyword);
    // Board findById(Long id);

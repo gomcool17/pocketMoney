@@ -1,6 +1,8 @@
 package com.web.pocketmoney.controller.board;
 
+import com.web.pocketmoney.config.security.auth.LoginUser;
 import com.web.pocketmoney.dto.board.BoardResponseDto;
+import com.web.pocketmoney.dto.user.UserDTO;
 import com.web.pocketmoney.entity.board.Board;
 import com.web.pocketmoney.service.board.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -38,8 +40,18 @@ public class BoardIndexController {
 
     /* 글 상세 보기 */
     @GetMapping("/board/read/{id}")
-    public String read(@PathVariable Long id, Model model) {
+    public String read(@PathVariable Long id, @LoginUser UserDTO.Response user, Model model) {
         BoardResponseDto dto = boardService.findById(id);
+
+        if (user != null) {
+            model.addAttribute("user", user.getNickName());
+
+            /* 게시글 작성자 본인인지 확인 */
+            if (dto.getId().equals(user.getId())) {
+                model.addAttribute("writer", true);
+            }
+        }
+
         boardService.updateViewCount(id);
         model.addAttribute("board", dto);
         return "board/read";
@@ -55,14 +67,20 @@ public class BoardIndexController {
 
     /* 글 작성 */
     @GetMapping("/board/write")
-    public String write(Model model) {
+    public String write(@LoginUser UserDTO.Response user, Model model) {
+        if (user != null) {
+            model.addAttribute("user", user);
+        }
         return "board/write";
     }
 
     /* 글 수정 */
     @GetMapping("/board/update/{id}")
-    public String update(@PathVariable Long id, Model model) {
+    public String update(@PathVariable Long id, @LoginUser UserDTO.Response user, Model model) {
         BoardResponseDto dto = boardService.findById(id);
+        if (user != null) {
+            model.addAttribute("user", user);
+        }
         model.addAttribute("board", dto);
         return "board/update";
     }
