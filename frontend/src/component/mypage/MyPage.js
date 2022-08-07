@@ -56,7 +56,6 @@ function Mypage() {
               marginLeft: "20px",
               width: "300px",
               height: "300px",
-              cursor: "pointer",
               borderRadius: "1000px",
             }}
           />

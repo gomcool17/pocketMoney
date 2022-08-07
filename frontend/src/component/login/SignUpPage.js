@@ -5,7 +5,6 @@ import signUpApi from "../../api/SignUpApi";
 
 const SignUpPage = (props) => {
   const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
@@ -74,7 +73,9 @@ const SignUpPage = (props) => {
         />
         <LoginButton
           onClick={() => {
-            if (
+            const isValidEmail = email.includes("@") && email.includes(".");
+            if (!isValidEmail) alert("이메일 형식을 맞춰주세요!!");
+            else if (
               email.length &&
               password.length &&
               checkPassword.length &&

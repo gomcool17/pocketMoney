@@ -52,49 +52,8 @@ tasks.named('test') {
 
 sourceSets {
 	main {
-		resources { srcDirs = ["$projectDir/src/main/resources"]
+		resources {
+			srcDirs = ["$projectDir/src/main/resources"]
 		}
 	}
-<<<<<<< HEAD
 }
-=======
-}
-
-//processResources { dependsOn "copyReactBuildFiles" }
-//
-//task installReact(type: Exec) {
-//	workingDir "$frontendDir"
-//	inputs.dir "$frontendDir"
-//	group = BasePlugin.BUILD_GROUP
-//	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
-//		commandLine "npm.cmd", "audit", "fix"
-//		commandLine 'npm.cmd', 'install' }
-//	else {
-//		commandLine "npm", "audit", "fix" commandLine 'npm', 'install'
-//	}
-//}
-//
-//task buildReact(type: Exec) {
-//	dependsOn "installReact"
-//	workingDir "$frontendDir"
-//	inputs.dir "$frontendDir"
-//	group = BasePlugin.BUILD_GROUP
-//	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
-//		commandLine "npm.cmd", "run-script", "build"
-//	} else {
-//		commandLine "npm", "run-script", "build"
-//	}
-//}
-<<<<<<< HEAD
-//
-//task copyReactBuildFiles(type: Copy) {
-//	dependsOn "buildReact"
-//	from "$frontendDir/build"
-//	into "$projectDir/src/main/resources/static"
-//}
-
-
-
-=======
->>>>>>> origin/hyeon
->>>>>>> c1ad8d76c8281c922b497d8d4b1cb3b0e9024add

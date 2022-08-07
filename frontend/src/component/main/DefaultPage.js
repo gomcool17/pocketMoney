@@ -6,6 +6,11 @@ import { useNavigate } from "react-router";
 const Outside = styled.div`
   width: 1050px;
   margin: 10px auto;
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 `;
 const TitleLogo = styled.div`
   width: 1050px;

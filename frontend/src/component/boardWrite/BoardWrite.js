@@ -6,6 +6,7 @@ import TitleBlock from "./TitleBlock";
 import InfBox from "./InfBox";
 import ContentBox from "./ContentBox";
 import { useNavigate } from "react-router";
+import { ACCESS_TOKEN } from "./../../constant/LocalStorage";
 const Outside = styled.div`
   width: 800px;
   margin: 0 auto;
@@ -13,6 +14,10 @@ const Outside = styled.div`
 `;
 
 function BoardWrite() {
+  if (!localStorage.getItem(ACCESS_TOKEN)) {
+    alert("로그인이 필요한 서비스입니다!!!");
+    window.location.href = "/login";
+  }
   const navigate = useNavigate();
   return (
     <>

@@ -11,6 +11,7 @@ const ImgBox = styled.div`
   width: 400px;
   height: 400px;
   margin: 0 auto;
+  //드래그 방지
   -ms-user-select: none;
   -moz-user-select: -moz-none;
   -khtml-user-select: none;

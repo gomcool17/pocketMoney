@@ -43,9 +43,10 @@ function InfBox() {
   const ImgInput = useRef();
   const [price, setPrice] = useState("");
   const [time, setTime] = useState("");
+  const [uploading, setUploading] = useState(null);
   const formData = new FormData();
   const onImgChange = (e) => {
-    console.log(e.target.files[0]);
+    setUploading(true);
     formData.append("file", e.target.files[0]);
   };
   const onImgButtonClick = (e) => {
@@ -72,7 +73,13 @@ function InfBox() {
           onChange={onImgChange}
           style={{ display: "none" }}
         />
-        <UploadButton onClick={onImgButtonClick}>사진 업로드</UploadButton>
+        {uploading ? (
+          <UploadButton onClick={onImgButtonClick} style={{ fontSize: "40px" }}>
+            ✔
+          </UploadButton>
+        ) : (
+          <UploadButton onClick={onImgButtonClick}>사진 업로드</UploadButton>
+        )}
       </InfBlock>
     </OutLine>
   );
