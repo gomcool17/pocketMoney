@@ -1,6 +1,8 @@
 package com.web.pocketmoney.controller.login;
 
+import com.web.pocketmoney.config.security.JwtTokenProvider;
 import com.web.pocketmoney.dto.user.KakaoLoginDto;
+import com.web.pocketmoney.dto.user.TokenUserDTO;
 import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.entity.user.UserRepository;
 import com.web.pocketmoney.service.KakaoApiService;
@@ -23,6 +25,7 @@ public class KakaoLoginController {
     private final KakaoApiService kakaoApiService;
     private final UserRepository userRepository;
     private final PasswordEncoder encoder;
+    private final JwtTokenProvider jwtTokenProvider; // jwt 토큰 생성
 
     @ResponseBody
     @PostMapping("/kakao")
@@ -45,6 +48,7 @@ public class KakaoLoginController {
         User user = userRepository.findByEmail(email).orElse(null);
         Boolean check = false;
         if(user == null) {
+            log.info("신규 유저임");
             userRepository.save(User.builder()
                     .userName(name)
                     .nickName(name)
@@ -60,15 +64,21 @@ public class KakaoLoginController {
             check = true;
         }
 
-        if (userInfo.get("email") != null) {
+      /*  if (userInfo.get("email") != null) {
             session.setAttribute("userId", userInfo.get("email")); // 세션에 등록
             session.setAttribute("access_Token", accessToken);
-        }
+        }*/
+
+        user = userRepository.findByEmail(email).orElse(null);
+        log.info(user.toString());
+        String token = jwtTokenProvider.createToken(String.valueOf(user.getEmail()), user.getRoles());
+        log.info("jwt토큰이 생성? : " + token);
 
         KakaoLoginDto kakaoLoginDto = new KakaoLoginDto();
         kakaoLoginDto.setEmail(email);
         kakaoLoginDto.setName(name);
         kakaoLoginDto.setAccessToken(accessToken);
+        kakaoLoginDto.setJwtToken(token);
         if(check) {
             kakaoLoginDto.setIsNew(true);
         }
@@ -77,18 +87,18 @@ public class KakaoLoginController {
         //return accessToken;
         //aaaaaaa
         //왜 머지가 안되징?
-        
+
         return ResponseEntity.ok(kakaoLoginDto);
     }
 
     @ResponseBody
     @GetMapping("/kakao")
     public ResponseEntity<String> kakaoLoginCode(@RequestParam String code) {
-        log.info("kakaoLogin code befor access Token : " + code);
+        log.info("kakaoLogin get code: " + code);
         return ResponseEntity.ok(code);
     }
 
-    @RequestMapping(value="/kakao/logout")
+  /*  @RequestMapping(value="/kakao/logout")
     public void logout(HttpSession session) {
         String access_Token = (String)session.getAttribute("access_Token");
         log.info("logoutAccessToken : " + access_Token);
@@ -101,6 +111,8 @@ public class KakaoLoginController {
             //return "redirect:/";
         }
         return;
-    }
+    }*/
 }
 // https://kauth.kakao.com/oauth/authorize?client_id=9b022ce48b033d5d885cb824be69e623&redirect_uri=http://localhost:8080/login/kakao&response_type=code
+
+// https://kauth.kakao.com/oauth/authorize?client_id=9b022ce48b033d5d885cb824be69e623&redirect_uri=http://localhost:3000/login/kakao&response_type=code

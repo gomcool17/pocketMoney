@@ -4,96 +4,192 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4cd46c35-31e0-4309-bdde-9e0756e123a6" name="변경" comment="[UPDATE]STOMP, 메시지 브로커, 채팅방 불러오기">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/web/pocketmoney/controller/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/web/pocketmoney/controller/user/UserController.java" afterDir="false" />
+<<<<<<< HEAD
+    <list default="true" id="52ad9275-5fe2-4b21-ba67-c87fdec59f34" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/public/home.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/search.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/component/MainHeader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/component/boardDetails/BoardDetails.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/component/login/Box.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/component/login/EmailLogin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/component/login/LoginPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/component/login/SignUpPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/component/main/Boards.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/component/main/DefaultPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/dependencies-accessors/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/web/pocketmoney/controller/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/web/pocketmoney/controller/login/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/DefaultPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/front/node_modules/detect-port-alt/.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/front/node_modules/iconv-lite/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/front/node_modules/iconv-lite/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/front/node_modules/iconv-lite/.idea/iconv-lite.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/front/node_modules/iconv-lite/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/front/node_modules/iconv-lite/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/front/node_modules/iconv-lite/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/front/node_modules/postcss-initial/.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/front/node_modules/rollup-plugin-terser/node_modules/serialize-javascript/.vscode/settings.json" beforeDir="false" />
     </list>
+=======
+    <list default="true" id="4a63d36c-590c-46b6-b61c-8069c1f16903" name="Changes" comment="" />
+>>>>>>> origin/main
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="ExternalProjectsData">
-    <projectState path="$PROJECT_DIR$/backend">
+    <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/main" />
+  </component>
+=======
+>>>>>>> origin/main
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="JpbToolWindowState">
-    <option name="myId2FirstActivated">
-      <map>
-        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
-        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
-        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
-      </map>
-    </option>
-    <option name="myId2Visible">
-      <map>
-        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
-        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
-        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
-      </map>
-    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+<<<<<<< HEAD
+  <component name="ProjectId" id="2CbjuyDKi4ep1VWkunS9WsZtcfP" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+=======
   <component name="ProjectId" id="2CeYJm7TaFfIFQj8eHAm6S3f9yE" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+>>>>>>> origin/main
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+<<<<<<< HEAD
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jeon-yejin/Desktop/pocket/PocketMoney&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;1cb894e20e0968034b21018eee15a298&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
-    <configuration name="PocketmoneyApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.web.pocketmoney.PocketmoneyApplication" />
-      <module name="backend.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.web.pocketmoney.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration name="PocketmoneyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="pocketmoney.backend.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.web.pocketmoney.PocketmoneyApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.PocketmoneyApplication" />
-      </list>
-    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="52ad9275-5fe2-4b21-ba67-c87fdec59f34" name="변경" comment="" />
+      <created>1659078409788</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1659078409788</updated>
+      <workItem from="1659078434020" duration="5881000" />
+      <workItem from="1659084904083" duration="2806000" />
+      <workItem from="1659159109970" duration="1633000" />
+=======
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+      <changelist id="4a63d36c-590c-46b6-b61c-8069c1f16903" name="Changes" comment="" />
       <created>1659164454346</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1659164454346</updated>
       <workItem from="1659164457645" duration="198000" />
+>>>>>>> origin/main
     </task>
-    <task id="LOCAL-00001" summary="[UPDATE]STOMP, 메시지 브로커, 채팅방 불러오기">
-      <created>1659849300538</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1659849300538</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+<<<<<<< HEAD
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -105,8 +201,17 @@
       </map>
     </option>
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="[UPDATE]STOMP, 메시지 브로커, 채팅방 불러오기" />
-    <option name="LAST_COMMIT_MESSAGE" value="[UPDATE]STOMP, 메시지 브로커, 채팅방 불러오기" />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/backend/src/main/java/com/web/pocketmoney/service/board/BoardService.java</url>
+          <line>78</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
+=======
+>>>>>>> origin/main
 </project>

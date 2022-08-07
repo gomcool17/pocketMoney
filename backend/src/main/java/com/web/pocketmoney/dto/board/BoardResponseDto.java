@@ -20,7 +20,6 @@ public class BoardResponseDto {
     private int dayOfWeek;
     private int pay;
     private int viewCount;
-    private int likes;
 
     public BoardResponseDto(Board board) {
         this.id = board.getId();
@@ -30,8 +29,6 @@ public class BoardResponseDto {
         this.wantedTime = board.getWantedTime();
         this.dayOfWeek = board.getDayOfWeek();
         this.pay = board.getPay();
-        this.viewCount = board.getViewCount();
-        this.likes =  board.getLikes();
+        this.viewCount = board.getView();
     }
-
 }

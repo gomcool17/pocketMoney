@@ -128,7 +128,7 @@ public class UserServiceImpl implements UserService{
         String nickName = signupUserDTO.getNickName();
         log.info(email + " " + nickName);
         User user1 = userRepository.findByEmail(email).orElse(null);
-        User user2 = userRepository.findByNickName(nickName).orElse(null);
+        User user2 = userRepository.findByNickName(nickName);
         if(user1 != null) {
             log.error(user1.toString());
             throw new CEmailSignupFailedException();
