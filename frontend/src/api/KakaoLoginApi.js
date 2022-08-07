@@ -5,7 +5,7 @@ import { ACCESS_TOKEN } from "./../constant/LocalStorage";
 function kakaoLoginApi(code, navigate) {
   axios.post(BACKEND_ADDRESS + "/login/kakao?code=" + code).then((response) => {
     if (response.status === 200) {
-      localStorage.setItem(ACCESS_TOKEN, response.data.accessToken);
+      localStorage.setItem(ACCESS_TOKEN, response.data.jwtToken);
       navigate("/");
     }
   });
