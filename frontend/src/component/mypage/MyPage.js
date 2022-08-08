@@ -20,7 +20,7 @@ const BaseImg = styled.div`
   width: 300px;
   height: 300px;
 `;
-const ChatButtonBox = styled.div`
+const SubFuncBox = styled.div`
   position: relative;
   display: inline-block;
   width: 300px;
@@ -28,16 +28,28 @@ const ChatButtonBox = styled.div`
 `;
 const ChatButton = styled.div`
   position: absolute;
-  top: 120px;
-  left: 110px;
-  width: 130px;
+  top: 80px;
+  left: 90px;
+  width: 120px;
   height: 50px;
-  font-size: 40px;
+  font-size: 35px;
   background-color: pink;
   border-radius: 100px;
   cursor: pointer;
+  border: 5px solid red;
 `;
-
+const EditMyInfoButton = styled.div`
+  position: absolute;
+  top: 160px;
+  left: 50px;
+  width: 200px;
+  height: 50px;
+  font-size: 35px;
+  background-color: pink;
+  border-radius: 100px;
+  cursor: pointer;
+  border: 5px solid red;
+`;
 function Mypage() {
   if (!localStorage.getItem(ACCESS_TOKEN)) {
     alert("로그인이 필요한 서비스입니다!!!");
@@ -61,7 +73,7 @@ function Mypage() {
           />
         </BaseImg>
         <InfBox />
-        <ChatButtonBox>
+        <SubFuncBox>
           <ChatButton
             onClick={() => {
               navigate("/chat");
@@ -69,7 +81,14 @@ function Mypage() {
           >
             채팅방
           </ChatButton>
-        </ChatButtonBox>
+          <EditMyInfoButton
+            onClick={() => {
+              navigate("/mypage/edit");
+            }}
+          >
+            내 정보 수정
+          </EditMyInfoButton>
+        </SubFuncBox>
       </MyInf>
     </Outside>
   );
