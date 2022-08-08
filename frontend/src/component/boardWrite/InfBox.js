@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import styled from "styled-components";
 const OutLine = styled.div`
   width: 800px;
-  height: 210px;
+  height: 280px;
   padding-top: 20px;
 `;
 const InfBlock = styled.div`
@@ -63,6 +63,23 @@ function InfBox() {
         <StyledDiv>시간:</StyledDiv>
         <StyledInput value={time} onChange={(e) => setTime(e.target.value)} />
         <StyledDiv>시간</StyledDiv>
+      </InfBlock>
+      <InfBlock>
+        <StyledDiv>지역:</StyledDiv>
+        <StyledInput
+          type="text"
+          id="pInput"
+          readOnly={true}
+          placeholder={"도시"}
+          onClick={() => {
+            window.name = "parentForm";
+            window.open(
+              "/signup/city",
+              "childForm",
+              "top=10, left=10, width=650, height=600, status=no, menubar=no, toolbar=no, resizable=no"
+            );
+          }}
+        />
       </InfBlock>
       <InfBlock>
         <input
