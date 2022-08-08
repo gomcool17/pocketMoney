@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import MainHeader from "../MainHeader";
 import { useParams } from "react-router";
+import Comments from "./Comments";
+import BoardBody from "./BoardBody";
 
 const Outside = styled.div`
   width: 1050px;
@@ -54,47 +56,6 @@ const KindScore = styled.div`
   font-size: 30px;
   text-align: right;
 `;
-const ContentBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 1050px;
-  font-size: 30px;
-  border: 5px solid green;
-`;
-const Salary = styled.div`
-  width: 200px;
-  height: 50px;
-  border: 5px solid green;
-`;
-const Time = styled.div`
-  width: 200px;
-  height: 50px;
-  border: 5px solid green;
-`;
-const Content = styled.div`
-  width: 1050px;
-  height: 400px;
-  overflow: auto;
-  border: 5px solid green;
-`;
-const MapBox = styled.div`
-  width: 1050px;
-  height: 400px;
-  border: 5px solid green;
-`;
-const CommentBox = styled.div`
-  width: 1050px;
-  height: 400px;
-  overflow: auto;
-  border: 5px solid green;
-`;
-const Comment = styled.div`
-  margin: 20px auto;
-  width: 900px;
-  min-height: 100px;
-  overflow: auto;
-  border: 5px solid green;
-`;
 
 const BoardDetails = () => {
   const match = () => {
@@ -113,22 +74,8 @@ const BoardDetails = () => {
         <ContentImg>이미지</ContentImg>
         <Writer>히히</Writer>
         <KindScore>100도 이미지</KindScore>
-        <ContentBox>
-          <Salary>10000원</Salary>
-          <Time>시간</Time>
-          <Content>내용</Content>
-          <MapBox>지도</MapBox>
-          <CommentBox>
-            <Comment>
-              안녕안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요하세요안녕하세요안녕하세요
-            </Comment>
-            <Comment>안녕하세요</Comment>
-            <Comment>안녕하세요</Comment>
-            <Comment>안녕하세요</Comment>
-            <Comment>ㅈㅂㄷㅇㄴㅊㅌㅋ안녕하세요</Comment>
-            <Comment>안녕하세요</Comment>
-          </CommentBox>
-        </ContentBox>
+        <BoardBody />
+        <Comments />
       </Outside>
     </>
   );
