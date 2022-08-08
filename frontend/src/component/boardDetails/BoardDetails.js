@@ -11,17 +11,25 @@ const Outside = styled.div`
 const ContentHeader = styled.div`
   margin-top: 10px;
   width: 1050px;
-  height: 70px;
+  height: 60px;
+`;
+const Title = styled.div`
+  display: inline-block;
+  width: 800px;
+  height: 50px;
+  padding-left: 30px;
+  font-size: 30px;
+  font-weight: 700;
 `;
 const ConnectButton = styled.div`
+  display: inline-block;
   width: 150px;
   height: 50px;
+  margin-left: 30px;
   line-height: 50px;
   font-size: 20px;
-  border: 5px solid green;
+  background-color: lightGreen;
   text-align: center;
-  margin-right: 20px;
-  margin-left: auto;
   cursor: pointer;
 `;
 const ContentImg = styled.div`
@@ -51,11 +59,6 @@ const ContentBox = styled.div`
   flex-direction: column;
   width: 1050px;
   font-size: 30px;
-  border: 5px solid green;
-`;
-const Title = styled.div`
-  width: 1050px;
-  height: 50px;
   border: 5px solid green;
 `;
 const Salary = styled.div`
@@ -104,13 +107,13 @@ const BoardDetails = () => {
       <MainHeader />
       <Outside>
         <ContentHeader>
+          <Title>강아지 산책하실분</Title>
           <ConnectButton onClick={match}>연락하기</ConnectButton>
         </ContentHeader>
         <ContentImg>이미지</ContentImg>
         <Writer>히히</Writer>
         <KindScore>100도 이미지</KindScore>
         <ContentBox>
-          <Title>강아지 산책하실분</Title>
           <Salary>10000원</Salary>
           <Time>시간</Time>
           <Content>내용</Content>
