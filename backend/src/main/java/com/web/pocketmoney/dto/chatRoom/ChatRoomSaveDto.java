@@ -23,13 +23,5 @@ public class ChatRoomSaveDto {
 //    private Long id;
     private String name;
 
-    private Set<WebSocketSession> sessions = new HashSet<>();
 
-    public static ChatRoomSaveDto create(String name){
-        ChatRoomSaveDto room = new ChatRoomSaveDto();
-
-//        room.roomId = UUID.randomUUID().toString();
-        room.name = name;
-        return room;
-    }
 }

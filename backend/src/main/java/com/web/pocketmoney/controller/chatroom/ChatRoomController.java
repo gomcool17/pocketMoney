@@ -48,7 +48,7 @@ public class ChatRoomController {
 
     //채팅방 개설
     @PostMapping("") //RequestMapping("room")
-    public ResponseEntity create(@RequestBody ChatRoomSaveDto chatRoomSaveDto, HttpSession session, @AuthenticationPrincipal User user){
+    public ResponseEntity create(@RequestBody ChatRoomSaveDto chatRoomSaveDto,@AuthenticationPrincipal User user){
 //        Long userId = (Long) session.getAttribute(LOGIN_ID);
         //채팅을 거는 것은 구직자이므로 현재 로그인한 유저
         chatRoomSaveDto.setEmployeeId(user.getId());
@@ -63,7 +63,7 @@ public class ChatRoomController {
     }
 
     //채팅방 조회
-    @GetMapping("{roomId}")
+    @GetMapping("/{roomId}")
     public ResponseEntity<ChatRoomDetailDto> getRoom(@PathVariable Long roomId, HttpSession session){
         Long userId = (Long) session.getAttribute(LOGIN_ID);
 //        String userNickName = userService.getUser(userId).getNickName();
