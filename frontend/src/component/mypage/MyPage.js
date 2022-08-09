@@ -5,11 +5,12 @@ import styled from "styled-components";
 import { useNavigate } from "react-router";
 import CancelButton from "./../CancelButton";
 import InfBox from "./InfBox";
+import SubFuncBox from "./SubFuncBox";
 
 const Outside = styled.div`
   width: 1050px;
   margin: 10px auto;
-  border: 5px solid red;
+  border: 5px solid blue;
 `;
 const MyInf = styled.div`
   width: 1050px;
@@ -20,36 +21,7 @@ const BaseImg = styled.div`
   width: 300px;
   height: 300px;
 `;
-const SubFuncBox = styled.div`
-  position: relative;
-  display: inline-block;
-  width: 300px;
-  height: 300px;
-`;
-const ChatButton = styled.div`
-  position: absolute;
-  top: 80px;
-  left: 90px;
-  width: 120px;
-  height: 50px;
-  font-size: 35px;
-  background-color: pink;
-  border-radius: 100px;
-  cursor: pointer;
-  border: 5px solid red;
-`;
-const EditMyInfoButton = styled.div`
-  position: absolute;
-  top: 160px;
-  left: 50px;
-  width: 200px;
-  height: 50px;
-  font-size: 35px;
-  background-color: pink;
-  border-radius: 100px;
-  cursor: pointer;
-  border: 5px solid red;
-`;
+
 function Mypage() {
   if (!localStorage.getItem(ACCESS_TOKEN)) {
     alert("로그인이 필요한 서비스입니다!!!");
@@ -73,22 +45,7 @@ function Mypage() {
           />
         </BaseImg>
         <InfBox />
-        <SubFuncBox>
-          <ChatButton
-            onClick={() => {
-              navigate("/chat");
-            }}
-          >
-            채팅방
-          </ChatButton>
-          <EditMyInfoButton
-            onClick={() => {
-              navigate("/mypage/edit");
-            }}
-          >
-            내 정보 수정
-          </EditMyInfoButton>
-        </SubFuncBox>
+        <SubFuncBox navigate={navigate} />
       </MyInf>
     </Outside>
   );

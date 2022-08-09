@@ -39,7 +39,7 @@ const EditBox = styled.div`
   margin: 10px auto;
   width: 800px;
   text-align: center;
-  border: 5px solid red;
+  border: 5px solid blue;
 `;
 
 function EditMyInfo() {
