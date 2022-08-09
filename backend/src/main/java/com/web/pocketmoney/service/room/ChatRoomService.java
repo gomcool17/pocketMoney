@@ -1,47 +1,24 @@
 package com.web.pocketmoney.service.room;
 
-import com.web.pocketmoney.entity.room.ChatRoom;
-import com.web.pocketmoney.entity.room.ChatRoomRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
-import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import com.web.pocketmoney.dto.chatRoom.ChatRoomDetailDto;
+import com.web.pocketmoney.dto.message.MessageDetailDto;
 
-@Service
-@RequiredArgsConstructor
-@Log4j2
-public class ChatRoomService {
+import java.util.List;
 
-    private ChatRoomRepository chatRoomRepository;
+public interface ChatRoomService {
 
-    public Optional<String> getChatId(Long senderId, Long recipientId, boolean createIfNotExist) {
-        return chatRoomRepository
-                .findBySenderIdAndRecipientId(senderId,recipientId)
-                .map(ChatRoom::getChatId)
-                .or(() -> {
-                    if(!createIfNotExist){
-                        return Optional.empty();
-                    }
-                    String chatId = String.format("%s_%s", senderId, recipientId);
+   List<ChatRoomDetailDto> findAllRooms();
 
-                    ChatRoom senderRecipient = ChatRoom
-                            .builder()
-                            .chatId(chatId)
-                            .senderId(senderId)
-                            .recipientId(recipientId)
-                            .build();
+   ChatRoomDetailDto findRoomById(String roomId);
 
-                    ChatRoom recipienSender = ChatRoom
-                            .builder()
-                            .chatId(chatId)
-                            .senderId(recipientId)
-                            .recipientId(senderId)
-                            .build();
-                    chatRoomRepository.save(senderRecipient);
-                    chatRoomRepository.save(recipienSender);
+   //채팅방 생성
+   void createChatRoomDto(String name, int password, String chatMentor);
 
-                    return Optional.of(chatId);
-                });
-    }
+   void deleteById(Long chatRoomId);
+
+   List<MessageDetailDto> findAllChatByRoomId(String roomId);
+
+
+
 }
