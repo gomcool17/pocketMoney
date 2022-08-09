@@ -1,6 +1,7 @@
 package com.web.pocketmoney.entity.room;
 
 import com.web.pocketmoney.entity.message.Message;
+import com.web.pocketmoney.entity.user.User;
 import lombok.*;
 import lombok.extern.log4j.Log4j2;
 
@@ -50,18 +51,15 @@ public class ChatRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "chatRoom_id")
     private Long id;
-    
-    @Column(nullable = false)
-    private String roomId;
 
-    @Column
+    @Column(nullable = false)
     private String roomName;
 
-    @Column
-    private int roomPassword;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User employerId;
 
-    @Column
-    private String chatMentor;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User employeeId;
 
     //객체의 두 관계중 하나를 연관관계의 주인으로 지정한다.
     //연관관계의 주인만이 외래 키를 관리(등록, 수정)한다. DB에 접근한다.
@@ -71,13 +69,12 @@ public class ChatRoom {
     @OneToMany(mappedBy = "chatRoom", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Message> chatMessageList = new ArrayList<>();
 
-    public static ChatRoom toChatRoomEntity(String roomName, int roomPassword, String roomId, String chatMentor){
-        ChatRoom chatRoom = new ChatRoom();
-        chatRoom.setRoomName(roomName);
-        chatRoom.setRoomPassword(roomPassword);
-        chatRoom.setRoomId(roomId);
-        chatRoom.setChatMentor(chatMentor);
-        return chatRoom;
-    }
+//    public static ChatRoom toChatRoomEntity(String roomName, String employer, String employee){
+//        ChatRoom chatRoom = new ChatRoom();
+//        chatRoom.setRoomName(roomName);
+//        chatRoom.setEmployee(employee);
+//        chatRoom.setEmployer(employer);
+//        return chatRoom;
+//    }
     
 }

@@ -29,8 +29,8 @@ public class Message {
     @JoinColumn(name = "chatRoom_id")
     private ChatRoom chatRoom;
 
-    //보내는 사람
-    private String writer;
+    //보내는 사람 닉네임
+    private String writerNickName;
 
     @Column
     private String message;
@@ -46,14 +46,14 @@ public class Message {
     //메시지를 보낸 상태
 //    private MessageStatus status;
 
-    public static Message toChatEntity(MessageSaveDto messageSaveDto, ChatRoom chatRoom){
-        Message message = new Message();
-
-        message.setChatRoom(chatRoom);
-
-        message.setWriter(messageSaveDto.getWriter());
-        message.setMessage(messageSaveDto.getMessage());
-
-        return message;
-    }
+//    public static Message toChatEntity(MessageSaveDto messageSaveDto, ChatRoom chatRoom){
+//        Message message = new Message();
+//
+//        message.setChatRoom(chatRoom);
+//
+//        message.setWriter(messageSaveDto.getWriter());
+//        message.setMessage(messageSaveDto.getMessage());
+//
+//        return message;
+//    }
 }

@@ -55,7 +55,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         //해당 경로로 SimpleBroker를 등록.
         //SimpleBroker는 해당하는 경로를 SUBSCRIBE하는 Client에게 메시지를 전달하는 간단한 작업을 수행
         registry.enableSimpleBroker("/sub");
-        registry.setApplicationDestinationPrefixes("/pub");
+        registry.setApplicationDestinationPrefixes("/pub"); //@Controller객체의 @MessageMapping메서드로 라우팅됨
 
     }
 //    @Override
@@ -76,5 +76,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     // 참고 소스코드 : https://github.com/wjgin/Spring-boot-drill/tree/master/itsme
 
     //참고 : https://ws-pace.tistory.com/105?category=968973
+    //참고 : https://velog.io/@hellocdpa/220310-WebSocket-STOMP%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-%EC%B1%84%ED%8C%85%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B01-DB%EC%84%A4%EA%B3%84
     //참고 : https://github.com/HelloCdpa/cocolo220129/tree/master/src/main/java/com/phl/cocolo/repository
 }
