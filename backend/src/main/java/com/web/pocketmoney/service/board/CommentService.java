@@ -8,7 +8,7 @@ import com.web.pocketmoney.entity.comment.Comment;
 import com.web.pocketmoney.entity.comment.CommentRepository;
 import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.entity.user.UserRepository;
-import com.web.pocketmoney.exception.CBoardIndFailedException;
+import com.web.pocketmoney.exception.CBoardIdFailedException;
 import com.web.pocketmoney.exception.CCommentIdFindFailedException;
 import com.web.pocketmoney.exception.CNotSameUserException;
 import com.web.pocketmoney.exception.CUserNotFoundException;
@@ -32,7 +32,7 @@ public class CommentService {
     @Transactional
     public Comment commentSave(CommentSaveDto saveDto, Long id) {
         log.info(saveDto.toString() + " " + id);
-        Board board = boardRepository.findById(id).orElseThrow(CBoardIndFailedException::new);
+        Board board = boardRepository.findById(id).orElseThrow(CBoardIdFailedException::new);
        // List<Board> bb = boardRepository.findAll();
        // System.out.println("bb = " + bb);
 //        for (Board board : bb) {

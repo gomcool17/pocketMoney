@@ -1,10 +1,12 @@
 package com.web.pocketmoney.service.board;
 
-import com.web.pocketmoney.dto.board.BoardSaveRequestDto;
-import com.web.pocketmoney.dto.board.BoardSaveResponseDto;
+import com.web.pocketmoney.dto.board.BoardRequestDto;
+import com.web.pocketmoney.dto.board.BoardResponseDto;
 import com.web.pocketmoney.entity.board.Board;
 import com.web.pocketmoney.entity.board.BoardRepository;
 import com.web.pocketmoney.entity.user.User;
+import com.web.pocketmoney.exception.CBoardIdFailedException;
+import com.web.pocketmoney.exception.CNoBoardAndUserException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,7 @@ import java.time.LocalDateTime;
 public class BoardService {
     private final BoardRepository boardRepository;
 
-    public BoardSaveResponseDto save(User user, BoardSaveRequestDto dto)
+    public BoardResponseDto save(User user, BoardRequestDto dto)
     {
         log.info(1);
         int[] date = dto.getDate();
@@ -35,14 +37,52 @@ public class BoardService {
                 .build()
         );
 
-        return BoardSaveResponseDto.builder()
+        return BoardResponseDto.builder()
                 .nickName(user.getNickName())
                 .area(dto.getArea())
                 .pay(dto.getPay())
                 .dayOfWeek(dto.getDayOfWeek())
                 .title(dto.getTitle())
                 .content(dto.getContent())
-                .date(dto.getDate())
+                .date(dateTime)
+                 .build();
+    }
+
+    public BoardResponseDto update(User user, BoardRequestDto dto, Long id)
+    {
+        Board board = boardRepository.findById(id).orElseThrow(CBoardIdFailedException::new);
+        if(user.getId() != board.getUser().getId()) {
+            throw new CNoBoardAndUserException();
+        }
+        int[] arr = dto.getDate();
+        LocalDateTime dateTime = LocalDateTime.of(arr[0], arr[1], arr[2], arr[3], arr[4]);
+        board.setArea(dto.getArea());
+        board.setContent(dto.getContent());
+        board.setDayOfWeek(dto.getDayOfWeek());
+        board.setPay(dto.getPay());
+        board.setTitle(dto.getTitle());
+        board.setWantedTime(dateTime);
+        String nickName = user.getNickName();
+        boardRepository.save(board);
+
+        return BoardResponseDto.builder()
+                .nickName(nickName)
+                .area(dto.getArea())
+                .date(dateTime)
+                .title(dto.getTitle())
+                .content(dto.getContent())
+                .dayOfWeek(dto.getDayOfWeek())
+                .pay(dto.getPay())
                 .build();
+    }
+
+    public Long delete(User user, Long id)
+    {
+        Board board = boardRepository.findById(id).orElseThrow(CBoardIdFailedException::new);
+        if(user.getId() != board.getUser().getId()) {
+            throw new CNoBoardAndUserException();
+        }
+        boardRepository.delete(board);
+        return id;
     }
 }
