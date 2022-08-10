@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,6 +18,8 @@ public class MessageDetailDto {
     private Long messageId;
     //참조하는 채팅방의 PK
     private Long chatRoomId;
+
+    private LocalDateTime sendDate;
 
     private String roomName;
     private String writer;

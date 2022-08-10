@@ -7,6 +7,7 @@ import com.web.pocketmoney.entity.message.MessageRepository;
 import com.web.pocketmoney.entity.room.ChatRoom;
 import com.web.pocketmoney.entity.room.ChatRoomRepository;
 import com.web.pocketmoney.exception.ChatRoomNotFoundException;
+import com.web.pocketmoney.exception.handler.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class MessageServiceImpl implements MessageService{
 
         ChatRoom chatRoom =  chatRoomRepository.findById(id)
                 .orElseThrow(() -> new ChatRoomNotFoundException(
-                        "찾는 방이 없습니다."
+                        "찾는 방이 없습니다.", ErrorCode.FORBIDDEN
                 ));
 
         List<Message> result = messageRepository.findAllByChatRoom_RoomId(chatRoom.getId());

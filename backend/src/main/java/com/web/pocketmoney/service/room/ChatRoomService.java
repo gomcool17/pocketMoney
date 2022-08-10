@@ -15,7 +15,7 @@ public interface ChatRoomService {
 
    List<ChatRoomDetailDto> findAllRooms(Long userId);
 
-   ChatRoomDetailDto findRoomById(Long id);
+   ChatRoomDetailDto findRoomById(Long id, Long userId);
 
    //채팅방 생성
    void createRoom(ChatRoomSaveDto chatRoomSaveDto);
@@ -64,6 +64,7 @@ public interface ChatRoomService {
       List<MessageDetailDto> messageDetailDtoList = messages.stream().map(message -> {
          return MessageDetailDto.builder()
                  .messageId(message.getId())
+                 .sendDate(message.getSendDate())
                  .chatRoomId(message.getChatRoom().getId())
                  .roomName(message.getChatRoom().getRoomName())
                  .writer(message.getWriterNickName())

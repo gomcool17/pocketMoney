@@ -11,6 +11,7 @@ import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.entity.user.UserRepository;
 import com.web.pocketmoney.exception.CUserNotFoundException;
 import com.web.pocketmoney.exception.ChatRoomNotFoundException;
+import com.web.pocketmoney.exception.handler.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Sort;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,25 +53,32 @@ public class ChatRoomServiceImpl implements ChatRoomService {
 
     //채팅방 id로 채팅방 찾기
     @Override
-    public ChatRoomDetailDto findRoomById(Long id) {
+    public ChatRoomDetailDto findRoomById(Long id, Long userId) {
+
         ChatRoom chatRoom = crr.findById(id)
                 .orElseThrow(() -> new ChatRoomNotFoundException(
-                        "채팅방을 찾을 수 없습니다."
+                        "채팅방을 찾을 수 없습니다.", ErrorCode.FORBIDDEN
                 ));
-        List<Object[]> result = crr.findByUserIdWithMessages(chatRoom);
-        log.info("result : "+ result);
-        ChatRoom chatRoom1 = (ChatRoom) result.get(0)[0];
-        log.info("get(0)[0] : "+ chatRoom1);
+
+
+        log.info("chatRoom : asd" + chatRoom);
+        Optional<ChatRoom> result = crr.findById(id);
+        log.info("result : " + result);
+        ChatRoom chatRoom1 = (ChatRoom) result.get();
+        log.info("result.get : " + chatRoom1);
 
         List<Message> messages = new ArrayList<>();
+        messages = result.get().getChatMessageList();
 
-        result.forEach(arr -> {
-            Message message = (Message) arr[1];
-            messages.add(message);
-        });
-        return entitiesToDetailDto(chatRoom1, messages);
+        User employee = User.builder().id(chatRoom1.getEmployeeId().getId()).build();
+        User employer = User.builder().id(chatRoom1.getEmployerId().getId()).build();
+        if (userId.equals(employee.getId()) || userId.equals(employer.getId())) {
+            return entitiesToDetailDto(chatRoom1, messages);
+
+        } else {
+            throw new ChatRoomNotFoundException("권한이 없습니다.", ErrorCode.FORBIDDEN);
+        }
     }
-
     @Override
     public void createRoom(ChatRoomSaveDto chatRoomSaveDto) {
         ChatRoom chatRoom = chatRoomSaveDtoToEntity(chatRoomSaveDto);
