@@ -50,12 +50,12 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
-    public void modify(UserDTO userDTO) {
+    public void modify(UserDTO userDTO, User user) {
         // 수정시에는 영속성 컨텍스트 User 오브젝트를 영속화시키고, 영속화된 User 오브젝트를 수정
         // select를 해서 User오브젝트를 db로 부터 가져오는 이유는 영속화를 하기 위해서
         // 영속화된 오브젝트를 변경하면 DB에 Update문을 날려주기 때문
         log.info(userDTO.toString());
-        User persistance = userRepository.findById(userDTO.getId()).orElseThrow(()->{
+        User persistance = userRepository.findById(user.getId()).orElseThrow(()->{
             return new CUserNotFoundException("회원 찾기 실패");
         });
         log.info(persistance.toString());

@@ -1,34 +1,20 @@
 package com.web.pocketmoney.dto.board;
 
-import com.web.pocketmoney.entity.board.Board;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.time.LocalDateTime;
+import java.util.List;
 
-@Getter
+@Data
+@Builder
 public class BoardResponseDto {
-
-    private Long id;
     private String title;
     private String content;
     private String area;
-    private LocalDateTime wantedTime;
-    private int dayOfWeek;
+    private List<Integer> dayOfWeek;
+    private LocalDateTime date;
     private int pay;
-    private int viewCount;
-
-    public BoardResponseDto(Board board) {
-        this.id = board.getId();
-        this.title = board.getTitle();
-        this.content = board.getContent();
-        this.area = board.getArea();
-        this.wantedTime = board.getWantedTime();
-        this.dayOfWeek = board.getDayOfWeek();
-        this.pay = board.getPay();
-        this.viewCount = board.getView();
-    }
+    private int view;
+    private String nickName;
 }

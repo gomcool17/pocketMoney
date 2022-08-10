@@ -63,8 +63,8 @@ public class User implements UserDetails {
     //@Column(name = "created_at")
     //private Timestamp createTime;
 
-    @OneToMany(mappedBy = "user")
-    private List<Board> boards = new ArrayList<>();
+   /* @OneToMany(mappedBy = "user")
+    private List<Board> boards = new ArrayList<>();*/
 
 
    // @OneToMany(mappedBy = "user")

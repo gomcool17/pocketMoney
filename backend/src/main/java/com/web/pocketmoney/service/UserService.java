@@ -12,7 +12,7 @@ public interface UserService {
     //회원 정보 조회
     UserDTO getUser(Long id);
 
-    void modify(UserDTO userDTO);
+    void modify(UserDTO userDTO, User user);
 
     void delete(Long id);
 

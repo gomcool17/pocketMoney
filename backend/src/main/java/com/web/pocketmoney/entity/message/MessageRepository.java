@@ -8,11 +8,12 @@ import java.util.List;
 
 public interface MessageRepository extends JpaRepository<Message, Long> {
 
-    long countBySenderIdAndRecipientIdAndStatus(Long senderId, Long recipientId, MessageStatus status);
-
-    List<Message> findByChatId(String chatId);
-
-    @Modifying
-    @Query("UPDATE Message mg set mg.status = :status WHERE mg.senderId = :senderId and mg.recipientId = :recipientId ")
-    Message updateStatus(Long senderId, Long recipientId, MessageStatus status);
+//    long countBySenderIdAndRecipientIdAndStatus(Long senderId, Long recipientId, MessageStatus status);
+//
+//    List<Message> findByChatId(String chatId);
+//
+//    @Modifying
+//    @Query("UPDATE Message mg set mg.status = :status WHERE mg.senderId = :senderId and mg.recipientId = :recipientId ")
+//    Message updateStatus(Long senderId, Long recipientId, MessageStatus status);
+    List<Message> findAllByChatRoom_RoomId(String roomId);
 }

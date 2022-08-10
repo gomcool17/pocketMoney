@@ -1,20 +1,22 @@
 package com.web.pocketmoney.entity.board;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.web.pocketmoney.entity.user.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
-@Getter
 @Entity
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Board {
 
     @Id
@@ -33,8 +35,10 @@ public class Board {
     @Column(nullable = false) // 면접 희망 시간
     private LocalDateTime wantedTime;
 
-    @Column(nullable = false) // 희망 근무 요일
-    private int dayOfWeek;
+    //@ElementCollection
+    //@CollectionTable(name = "dayOfWeek")
+    @Convert(converter = IntegerArrayConverter.class)
+    private List<Integer> dayOfWeek;
 
     @Column(nullable = false) // 희망 시급
     private int pay;
@@ -45,27 +49,4 @@ public class Board {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
     private User user;
-
-
-
-    @Builder
-    public Board(String title, String content, String area, LocalDateTime wantedTime,
-                 int dayOfWeek, int pay) {
-        this.title = title;
-        this.content = content;
-        this.area = area;
-        this.wantedTime = wantedTime;
-        this.dayOfWeek = dayOfWeek;
-        this.pay = pay;
-    }
-
-    public void update(String title, String content, String area, LocalDateTime wantedTime,
-                       int dayOfWeek, int pay) {
-        this.title = title;
-        this.content = content;
-        this.area = area;
-        this.wantedTime = wantedTime;
-        this.dayOfWeek = dayOfWeek;
-        this.pay = pay;
-    }
 }

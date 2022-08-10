@@ -5,87 +5,84 @@ import com.web.pocketmoney.dto.board.BoardResponseDto;
 import com.web.pocketmoney.entity.board.Board;
 import com.web.pocketmoney.entity.board.BoardRepository;
 import com.web.pocketmoney.entity.user.User;
-import com.web.pocketmoney.entity.user.UserRepository;
-import com.web.pocketmoney.exception.CUserNotFoundException;
+import com.web.pocketmoney.exception.CBoardIdFailedException;
+import com.web.pocketmoney.exception.CNoBoardAndUserException;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDateTime;
 
-@Slf4j
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
+@Log4j2
 public class BoardService {
-
     private final BoardRepository boardRepository;
-    private final UserRepository userRepository;
 
-    @Transactional
-    public Long save(BoardRequestDto dto, String nickname) {
+    public BoardResponseDto save(User user, BoardRequestDto dto)
+    {
+        log.info(1);
+        int[] date = dto.getDate();
+        log.info(2);
+        LocalDateTime dateTime = LocalDateTime.of(date[0], date[1], date[2], date[3], date[4], 0,0);
+        log.info(3);
+        boardRepository.save(Board.builder()
+                        .area(dto.getArea())
+                        .content(dto.getContent())
+                        .dayOfWeek(dto.getDayOfWeek())
+                        .user(user)
+                        .title(dto.getTitle())
+                        .pay(dto.getPay())
+                        .wantedTime(dateTime)
+                .build()
+        );
 
-        log.info("board save");
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        log.info("현재 유저2 : " + authentication.getName());
-        String email = authentication.getName();
-        User user = userRepository.findByEmail(email).orElseThrow(CUserNotFoundException::new);
-        log.info(user.toString());
+        return BoardResponseDto.builder()
+                .nickName(user.getNickName())
+                .area(dto.getArea())
+                .pay(dto.getPay())
+                .dayOfWeek(dto.getDayOfWeek())
+                .title(dto.getTitle())
+                .content(dto.getContent())
+                .date(dateTime)
+                 .build();
+    }
 
-
-        /* User 정보를 가져와 dto에 담아주기 */
-       // User user = userRepository.findByNickName(nickname);
-        dto.setUser(user);
-
-        log.info("Post Service - save() 실행");
-
-        Board board = dto.toEntity();
+    public BoardResponseDto update(User user, BoardRequestDto dto, Long id)
+    {
+        Board board = boardRepository.findById(id).orElseThrow(CBoardIdFailedException::new);
+        if(user.getId() != board.getUser().getId()) {
+            throw new CNoBoardAndUserException();
+        }
+        int[] arr = dto.getDate();
+        LocalDateTime dateTime = LocalDateTime.of(arr[0], arr[1], arr[2], arr[3], arr[4]);
+        board.setArea(dto.getArea());
+        board.setContent(dto.getContent());
+        board.setDayOfWeek(dto.getDayOfWeek());
+        board.setPay(dto.getPay());
+        board.setTitle(dto.getTitle());
+        board.setWantedTime(dateTime);
+        String nickName = user.getNickName();
         boardRepository.save(board);
 
-        return board.getId();
+        return BoardResponseDto.builder()
+                .nickName(nickName)
+                .area(dto.getArea())
+                .date(dateTime)
+                .title(dto.getTitle())
+                .content(dto.getContent())
+                .dayOfWeek(dto.getDayOfWeek())
+                .pay(dto.getPay())
+                .build();
     }
 
-    @Transactional
-    public BoardResponseDto findById(Long id) {
-        Board board = boardRepository.findById(id).orElseThrow(()
-                -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id: " + id));
-        return new BoardResponseDto(board);
-    }
-
-    @Transactional
-    public void update(Long id, BoardRequestDto dto) {
-        Board board = boardRepository.findById(id).orElseThrow(()
-                -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id=" + id));
-
-        board.update(dto.getTitle(), dto.getContent(), dto.getArea(), dto.getWantedTime(), dto.getDayOfWeek(), dto.getPay());
-    }
-
-    @Transactional
-    public void delete(Long id) {
-        Board board = boardRepository.findById(id).orElseThrow(()
-        -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id=" + id));
-
+    public Long delete(User user, Long id)
+    {
+        Board board = boardRepository.findById(id).orElseThrow(CBoardIdFailedException::new);
+        if(user.getId() != board.getUser().getId()) {
+            throw new CNoBoardAndUserException();
+        }
         boardRepository.delete(board);
-    }
-
-    @Transactional
-    public int updateViewCount(Long id) {
-        return boardRepository.updateView(id);
-    }
-
-    @Transactional
-    public Page<Board> pageList(Pageable pageable) {
-        return boardRepository.findAll(pageable);
-    }
-
-    @Transactional
-    public List<Board> search(String keyword) {
-        List<Board> searchList = boardRepository.findByTitleContaining(keyword);
-        return searchList;
+        return id;
     }
 }
