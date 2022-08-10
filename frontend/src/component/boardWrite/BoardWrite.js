@@ -6,10 +6,10 @@ import TitleBlock from "./TitleBlock";
 import ContentBox from "./ContentBox";
 import { useNavigate } from "react-router";
 import { ACCESS_TOKEN } from "./../../constant/LocalStorage";
-import writeBoardApi from "./../../api/WriteBoardApi";
 import DayOfWeek from "./infbox/DayOfWeek";
 import Date from "./infbox/Date";
 import ImgUpload from "./infbox/ImgUpload";
+import writeBoardApi from "./../../api/board/WriteBoardApi";
 
 const Outside = styled.div`
   width: 800px;

@@ -1,6 +1,6 @@
 import axios from "axios";
-import { BACKEND_ADDRESS } from "../constant/ADDRESS";
-import { ACCESS_TOKEN } from "./../constant/LocalStorage";
+import { BACKEND_ADDRESS } from "./../../constant/ADDRESS";
+import { ACCESS_TOKEN } from "./../../constant/LocalStorage";
 
 function kakaoLoginApi(code, navigate) {
   axios.post(BACKEND_ADDRESS + "/login/kakao?code=" + code).then((response) => {

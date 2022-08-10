@@ -1,4 +1,4 @@
-import { BACKEND_ADDRESS } from "../constant/ADDRESS";
+import { BACKEND_ADDRESS } from "../../constant/ADDRESS";
 import axios from "axios";
 
 function writeBoardApi(

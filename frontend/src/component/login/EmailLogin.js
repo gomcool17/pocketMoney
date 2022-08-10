@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { LoginButton, StyledInput } from "./Box";
-import loginApi from "./../../api/LoginApi";
+import loginApi from "./../../api/login/LoginApi";
 
 const EmailLogin = (props) => {
   const [email, setEmail] = useState("");

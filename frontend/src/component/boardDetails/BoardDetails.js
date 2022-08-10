@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import MainHeader from "../MainHeader";
 import { useParams } from "react-router";
 import Comments from "./Comments";
 import BoardBody from "./BoardBody";
+import findArticleApi from "./../../api/board/FindArticleApi";
+import { ACCESS_TOKEN } from "./../../constant/LocalStorage";
 
 const Outside = styled.div`
   width: 1050px;
@@ -26,6 +28,28 @@ const Title = styled.div`
 const ConnectButton = styled.div`
   display: inline-block;
   width: 150px;
+  height: 50px;
+  margin-left: 30px;
+  line-height: 50px;
+  font-size: 20px;
+  background-color: lightGreen;
+  text-align: center;
+  cursor: pointer;
+`;
+const DeleteButton = styled.div`
+  display: inline-block;
+  width: 75px;
+  height: 50px;
+  margin-left: 10px;
+  line-height: 50px;
+  font-size: 20px;
+  background-color: lightGreen;
+  text-align: center;
+  cursor: pointer;
+`;
+const EditButton = styled.div`
+  display: inline-block;
+  width: 75px;
   height: 50px;
   margin-left: 30px;
   line-height: 50px;
@@ -58,18 +82,28 @@ const KindScore = styled.div`
 `;
 
 const BoardDetails = () => {
+  const accessToken = localStorage.getItem(ACCESS_TOKEN);
   const match = () => {
     alert("매칭테스트 성공");
   };
   const params = useParams();
   const boardId = params.boardId;
+  const [data, setDate] = useState();
+
+  // useEffect(() => {
+  //   findArticleApi(accessToken).then((dataPromise) => {
+  //     setDate(dataPromise);
+  //   });
+  // }, []);
   return (
     <>
       <MainHeader />
       <Outside>
         <ContentHeader>
           <Title>강아지 산책하실분</Title>
-          <ConnectButton onClick={match}>연락하기</ConnectButton>
+          {/* <ConnectButton onClick={match}>연락하기</ConnectButton> */}
+          <EditButton>수정</EditButton>
+          <DeleteButton>삭제</DeleteButton>
         </ContentHeader>
         <ContentImg>이미지</ContentImg>
         <Writer>히히</Writer>

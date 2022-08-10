@@ -1,6 +1,6 @@
-import { BACKEND_ADDRESS } from "../constant/ADDRESS";
 import axios from "axios";
-import { ACCESS_TOKEN } from "../constant/LocalStorage";
+import { BACKEND_ADDRESS } from "./../../constant/ADDRESS";
+import { ACCESS_TOKEN } from "./../../constant/LocalStorage";
 
 function loginApi(email, password, navigate) {
   const body = {
