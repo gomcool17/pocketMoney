@@ -5,7 +5,6 @@
 ## 팀원
 - 김하연: https://github.com/gomcool17
 - 심대성: https://github.com/ShimDaeSung1
-- 전예진: https://github.com/yaezzin
 - 김해담솔: https://github.com/khdscor
 
 
