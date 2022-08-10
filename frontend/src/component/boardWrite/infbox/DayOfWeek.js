@@ -19,9 +19,7 @@ const DayInput = styled.input`
     border: 1px solid rgb(90, 155, 213);
 `;
 
-function DayOfWeek() {
-  const [dayOfWeek, setDayOfWeek] = useState([]);
-
+function DayOfWeek({ dayOfWeek, setDayOfWeek }) {
   const checkedItemHandler = (checked, item) => {
     if (checked) {
       setDayOfWeek([...dayOfWeek, item]);

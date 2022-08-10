@@ -18,13 +18,18 @@ const DayInput = styled.input`
     outline: 2px solid rgb(90, 155, 213);
     border: 1px solid rgb(90, 155, 213);
 `;
-function Date() {
-  const [year, setYear] = useState();
-  const [month, setMonth] = useState();
-  const [day, setDay] = useState();
-  const [hour, setHour] = useState();
-  const [minute, setMinute] = useState();
-
+function Date({
+  year,
+  setYear,
+  month,
+  setMonth,
+  day,
+  setDay,
+  hour,
+  setHour,
+  minute,
+  setMinute,
+}) {
   const STARTDATE_LIST = [
     { name: "년,", value: year, setMethod: setYear, maxLength: 4 },
     { name: "월,", value: month, setMethod: setMonth, maxLength: 2 },
