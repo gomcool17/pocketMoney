@@ -1,8 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import Date from "./Date";
+import DayOfWeek from "./DayOfWeek";
+import ImgUpload from "./ImgUpload";
+
 const OutLine = styled.div`
   width: 800px;
-  height: 280px;
+  height: 420px;
   padding-top: 20px;
 `;
 const InfBlock = styled.div`
@@ -28,30 +32,11 @@ const StyledInput = styled.input`
     outline: 2px solid rgb(90, 155, 213);
     border: 1px solid rgb(90, 155, 213);
 `;
-const UploadButton = styled.div`
-  width: 150px;
-  height: 50px;
-  line-height: 50px;
-  font-size: 20px;
-  text-align: center;
-  margin-right: 40px;
-  margin-left: auto;
-  cursor: pointer;
-  background-color: lightGreen;
-`;
+
 function InfBox() {
-  const ImgInput = useRef();
   const [price, setPrice] = useState("");
   const [time, setTime] = useState("");
-  const [uploading, setUploading] = useState(null);
-  const formData = new FormData();
-  const onImgChange = (e) => {
-    setUploading(true);
-    formData.append("file", e.target.files[0]);
-  };
-  const onImgButtonClick = (e) => {
-    ImgInput.current.click();
-  };
+
   return (
     <OutLine>
       <InfBlock>
@@ -82,21 +67,14 @@ function InfBox() {
         />
       </InfBlock>
       <InfBlock>
-        <input
-          ref={ImgInput}
-          type="file"
-          accept="image/*"
-          name="file"
-          onChange={onImgChange}
-          style={{ display: "none" }}
-        />
-        {uploading ? (
-          <UploadButton onClick={onImgButtonClick} style={{ fontSize: "40px" }}>
-            ✔
-          </UploadButton>
-        ) : (
-          <UploadButton onClick={onImgButtonClick}>사진 업로드</UploadButton>
-        )}
+        <StyledDiv>요일:</StyledDiv>
+        <DayOfWeek />
+      </InfBlock>
+      <InfBlock>
+        <Date />
+      </InfBlock>
+      <InfBlock>
+        <ImgUpload />
       </InfBlock>
     </OutLine>
   );

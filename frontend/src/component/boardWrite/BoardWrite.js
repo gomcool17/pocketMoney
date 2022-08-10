@@ -3,10 +3,10 @@ import styled from "styled-components";
 import MainHeader from "../MainHeader";
 import CancelButton from "../CancelButton";
 import TitleBlock from "./TitleBlock";
-import InfBox from "./InfBox";
 import ContentBox from "./ContentBox";
 import { useNavigate } from "react-router";
 import { ACCESS_TOKEN } from "./../../constant/LocalStorage";
+import InfBox from "./infbox/InfBox";
 const Outside = styled.div`
   width: 800px;
   margin: 0 auto;

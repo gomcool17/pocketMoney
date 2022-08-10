@@ -46,19 +46,19 @@ const KindScore = styled.div`
   border-radius: 100px;
   border: 5px solid yellow;
 `;
-function SubFuncBox(navigate) {
+function SubFuncBox(props) {
   return (
     <Outside>
       <ChatButton
         onClick={() => {
-          navigate("/chat");
+          props.navigate("/chat");
         }}
       >
         채팅방
       </ChatButton>
       <EditMyInfoButton
         onClick={() => {
-          navigate("/mypage/edit");
+          props.navigate("/mypage/edit");
         }}
       >
         내 정보 수정
