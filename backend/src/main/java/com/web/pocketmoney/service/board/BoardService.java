@@ -1,5 +1,6 @@
 package com.web.pocketmoney.service.board;
 
+import com.web.pocketmoney.dto.board.BoardDto;
 import com.web.pocketmoney.dto.board.BoardRequestDto;
 import com.web.pocketmoney.dto.board.BoardResponseDto;
 import com.web.pocketmoney.entity.board.Board;
@@ -10,6 +11,7 @@ import com.web.pocketmoney.exception.CNoBoardAndUserException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -19,6 +21,7 @@ import java.time.LocalDateTime;
 public class BoardService {
     private final BoardRepository boardRepository;
 
+    @Transactional
     public BoardResponseDto save(User user, BoardRequestDto dto)
     {
         log.info(1);
@@ -48,6 +51,7 @@ public class BoardService {
                  .build();
     }
 
+    @Transactional
     public BoardResponseDto update(User user, BoardRequestDto dto, Long id)
     {
         Board board = boardRepository.findById(id).orElseThrow(CBoardIdFailedException::new);
@@ -76,6 +80,7 @@ public class BoardService {
                 .build();
     }
 
+    @Transactional
     public Long delete(User user, Long id)
     {
         Board board = boardRepository.findById(id).orElseThrow(CBoardIdFailedException::new);
@@ -84,5 +89,34 @@ public class BoardService {
         }
         boardRepository.delete(board);
         return id;
+    }
+
+    @Transactional
+    public BoardDto postOne(User user, Long id)
+    {
+        Board board = boardRepository.findById(id).orElseThrow(CBoardIdFailedException::new);
+        boardRepository.updateView(id);
+        int isUser;
+        if(user == null) {
+            isUser=0;
+        }
+        else if(user.getId() != board.getUser().getId()) {
+            isUser = 1;
+        }
+        else {
+            isUser=2;
+        }
+        return BoardDto.builder()
+                .dayOfWeek(board.getDayOfWeek())
+                .content(board.getContent())
+                .title(board.getContent())
+                .date(board.getWantedTime())
+                .area(board.getArea())
+                .nickName(board.getUser().getNickName())
+                .pay(board.getPay())
+                .view(board.getView())
+                .area(board.getArea())
+                .isUser(isUser)
+        .build();
     }
 }

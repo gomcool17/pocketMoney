@@ -2,12 +2,14 @@ package com.web.pocketmoney.entity.board;
 
 import com.web.pocketmoney.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
+    @Modifying // 뭔지 공부하자
     @Query("update Board b set b.view = b.view + 1 where b.id = :id")
     int updateView(Long id);
 

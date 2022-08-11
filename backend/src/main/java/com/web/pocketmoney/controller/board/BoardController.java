@@ -1,5 +1,6 @@
 package com.web.pocketmoney.controller.board;
 
+import com.web.pocketmoney.dto.board.BoardDto;
 import com.web.pocketmoney.dto.board.BoardRequestDto;
 import com.web.pocketmoney.dto.board.BoardResponseDto;
 import com.web.pocketmoney.entity.user.User;
@@ -42,5 +43,11 @@ public class BoardController {
     {
        // boardService.delete();
         return ResponseEntity.ok(boardService.delete(user, id));
+    }
+
+    @GetMapping("/{id}") //하나의 게시글 조회
+    public ResponseEntity<BoardDto> viewOne(@AuthenticationPrincipal User user, @PathVariable("id") Long id)
+    {
+        return ResponseEntity.ok(boardService.postOne(user, id));
     }
 }
