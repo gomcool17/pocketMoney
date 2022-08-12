@@ -27,7 +27,7 @@ function DayOfWeek({ dayOfWeek, setDayOfWeek }) {
       setDayOfWeek(dayOfWeek.filter((e) => e !== item));
     }
   };
-  const DaYOFWEEK_LIST = [
+  const DAYOFWEEK_LIST = [
     { id: "0", date: "월" },
     { id: "1", date: "화" },
     { id: "2", date: "수" },
@@ -38,7 +38,7 @@ function DayOfWeek({ dayOfWeek, setDayOfWeek }) {
   ];
   return (
     <>
-      {DaYOFWEEK_LIST.map((item) => {
+      {DAYOFWEEK_LIST.map((item) => {
         return (
           <>
             <DayDiv>{item.date}</DayDiv>

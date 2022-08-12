@@ -11,7 +11,7 @@ function writeBoardApi(
   day,
   hour,
   minute,
-  fay,
+  pay,
   accessToken,
   navigate
 ) {
@@ -26,7 +26,7 @@ function writeBoardApi(
     area: area,
     dayOfWeek: dayOfWeek,
     date: [year, month, day, hour, minute],
-    fay: fay,
+    pay: pay,
   };
   return axios
     .post(BACKEND_ADDRESS + "/boards/", body, config)
@@ -42,7 +42,7 @@ function writeBoardApi(
         navigate("/login");
         return Promise.reject();
       } else {
-        alert("이유가 뭔지 모르겠지만 댓글작성 실패했음.");
+        alert("이유가 뭔지 모르겠지만 작성 실패했음.");
         navigate("/");
       }
     });

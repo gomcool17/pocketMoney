@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 const CommentBox = styled.div`
-  width: 1050px;
+  margin: 10px auto;
+  width: 1000px;
   height: 400px;
   overflow: auto;
-  border: 5px solid green;
+  border: 5px solid blue;
 `;
 
 const Comment = styled.div`
@@ -14,7 +15,7 @@ const Comment = styled.div`
   width: 900px;
   min-height: 100px;
   overflow: auto;
-  border: 5px solid green;
+  border: 5px solid blue;
 `;
 const Writer = styled.div`
   font-size: 20px;
