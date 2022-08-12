@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import styled from "styled-components";
 import MainHeader from "../MainHeader";
-import { useParams } from "react-router";
 import Comments from "./Comments";
 import BoardBody from "./BoardBody";
 import findBoardApi from "../../api/board/FindBoardApi";
@@ -102,7 +101,15 @@ const BoardDetails = () => {
           {data ? (
             data.isUser === 2 ? (
               <>
-                <EditButton>수정</EditButton>
+                <EditButton
+                  onClick={() => {
+                    navigate("/board/write/modify/" + boardId, {
+                      state: data,
+                    });
+                  }}
+                >
+                  수정
+                </EditButton>
                 <DeleteButton onClick={onDeleteButtonClicked}>
                   삭제
                 </DeleteButton>

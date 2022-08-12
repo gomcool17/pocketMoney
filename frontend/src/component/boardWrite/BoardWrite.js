@@ -4,12 +4,13 @@ import MainHeader from "../MainHeader";
 import CancelButton from "../CancelButton";
 import TitleBlock from "./TitleBlock";
 import ContentBox from "./ContentBox";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation, useParams } from "react-router";
 import { ACCESS_TOKEN } from "./../../constant/LocalStorage";
 import DayOfWeek from "./infbox/DayOfWeek";
 import Date from "./infbox/Date";
 import ImgUpload from "./infbox/ImgUpload";
 import writeBoardApi from "./../../api/board/WriteBoardApi";
+import editBoardApi from "../../api/board/EditBoardApi";
 
 const Outside = styled.div`
   width: 800px;
@@ -57,6 +58,9 @@ const StyledInput = styled.input`
 `;
 
 function BoardWrite() {
+  const { state } = useLocation();
+  const params = useParams();
+  const boardId = params.boardId;
   const accessToken = localStorage.getItem(ACCESS_TOKEN);
   if (!accessToken) {
     alert("로그인이 필요한 서비스입니다!!!");
@@ -64,15 +68,16 @@ function BoardWrite() {
   }
   const navigate = useNavigate();
 
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [dayOfWeek, setDayOfWeek] = useState([]);
+  const [title, setTitle] = useState(state ? state.title : "");
+  const [content, setContent] = useState(state ? state.content : "");
+  const [dayOfWeek, setDayOfWeek] = useState(state ? state.dayOfWeek : []);
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
   const [hour, setHour] = useState("");
   const [minute, setMinute] = useState("");
-  const [pay, setPay] = useState("");
+  const [pay, setPay] = useState(state ? state.pay : "");
+
   return (
     <>
       <MainHeader />
@@ -125,41 +130,80 @@ function BoardWrite() {
           </InfBlock>
         </InfBox>
         <ContentBox content={content} setContent={setContent} />
-        <WriteButton
-          onClick={() => {
-            if (
-              title.length &&
-              content.length &&
-              document.getElementById("pInput").value &&
-              dayOfWeek.length &&
-              year.length &&
-              month.length &&
-              day.length &&
-              hour.length &&
-              minute.length &&
-              pay.length
-            ) {
-              writeBoardApi(
-                title,
-                content,
-                document.getElementById("pInput").value,
-                dayOfWeek,
-                year,
-                month,
-                day,
-                hour,
-                minute,
-                pay,
-                accessToken,
-                navigate
-              );
-            } else {
-              alert("빈칸을 다 채워주세요");
-            }
-          }}
-        >
-          작성하기
-        </WriteButton>
+        {state ? (
+          <WriteButton
+            onClick={() => {
+              if (
+                title.length !== 0 &&
+                content.length !== 0 &&
+                document.getElementById("pInput").value &&
+                dayOfWeek.length &&
+                year.length &&
+                month.length &&
+                day.length &&
+                hour.length &&
+                minute.length &&
+                pay.length !== 0
+              ) {
+                editBoardApi(
+                  title,
+                  content,
+                  document.getElementById("pInput").value,
+                  dayOfWeek,
+                  year,
+                  month,
+                  day,
+                  hour,
+                  minute,
+                  pay,
+                  boardId,
+                  accessToken,
+                  navigate
+                );
+              } else {
+                alert("빈칸을 다 채워주세요");
+              }
+            }}
+          >
+            수정하기
+          </WriteButton>
+        ) : (
+          <WriteButton
+            onClick={() => {
+              if (
+                title.length &&
+                content.length &&
+                document.getElementById("pInput").value &&
+                dayOfWeek.length &&
+                year.length &&
+                month.length &&
+                day.length &&
+                hour.length &&
+                minute.length &&
+                pay.length
+              ) {
+                writeBoardApi(
+                  title,
+                  content,
+                  document.getElementById("pInput").value,
+                  dayOfWeek,
+                  year,
+                  month,
+                  day,
+                  hour,
+                  minute,
+                  pay,
+                  accessToken,
+                  navigate
+                );
+              } else {
+                alert("빈칸을 다 채워주세요");
+              }
+            }}
+          >
+            작성하기
+          </WriteButton>
+        )}
       </Outside>
     </>
   );

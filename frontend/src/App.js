@@ -23,6 +23,11 @@ function App() {
         <Route path="/mypage/edit" exact element={<EditMyInfo />} />
         <Route path="/board/:boardId" exact element={<BoardDetails />} />
         <Route path="/board/write" exact element={<BoardWrite />} />
+        <Route
+          path="/board/write/modify/:boardId"
+          exact
+          element={<BoardWrite />}
+        />
         <Route path="/chat" exact element={<ChatPage />} />
         <Route path="/login/kakao" exact element={<KakaoLoginHandler />} />
       </Routes>
