@@ -20,8 +20,7 @@ const TitleInput = styled.input`
     border: none;
   }
 `;
-function TitleBlock() {
-  const [title, setTitle] = useState("");
+function TitleBlock({ title, setTitle }) {
   return (
     <Outside>
       <TitleInput

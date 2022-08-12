@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { HomeButton, LoginButton, StyledInput, SignUpPageBox } from "./Box";
 import { useNavigate } from "react-router-dom";
-import signUpApi from "../../api/SignUpApi";
+import signUpApi from "./../../api/login/SignUpApi";
 
 const SignUpPage = (props) => {
   const navigate = useNavigate();

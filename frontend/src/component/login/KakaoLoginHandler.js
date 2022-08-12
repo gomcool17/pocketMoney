@@ -1,6 +1,6 @@
 import React from "react";
-import kakaoLoginApi from "./../../api/KakaoLoginApi";
 import { useNavigate } from "react-router";
+import kakaoLoginApi from "./../../api/login/KakaoLoginApi";
 
 function KakaoLoginHandler() {
   const navigate = useNavigate();

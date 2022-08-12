@@ -5,11 +5,12 @@ import styled from "styled-components";
 import { useNavigate } from "react-router";
 import CancelButton from "./../CancelButton";
 import InfBox from "./InfBox";
+import SubFuncBox from "./SubFuncBox";
 
 const Outside = styled.div`
   width: 1050px;
   margin: 10px auto;
-  border: 5px solid red;
+  border: 5px solid blue;
 `;
 const MyInf = styled.div`
   width: 1050px;
@@ -20,26 +21,9 @@ const BaseImg = styled.div`
   width: 300px;
   height: 300px;
 `;
-const ChatButtonBox = styled.div`
-  position: relative;
-  display: inline-block;
-  width: 300px;
-  height: 300px;
-`;
-const ChatButton = styled.div`
-  position: absolute;
-  top: 120px;
-  left: 110px;
-  width: 130px;
-  height: 50px;
-  font-size: 40px;
-  background-color: pink;
-  border-radius: 100px;
-  cursor: pointer;
-`;
 
 function Mypage() {
-  if (!localStorage.getItem(ACCESS_TOKEN)) {
+  if (!sessionStorage.getItem(ACCESS_TOKEN)) {
     alert("로그인이 필요한 서비스입니다!!!");
     window.location.href = "/login";
   }
@@ -61,15 +45,7 @@ function Mypage() {
           />
         </BaseImg>
         <InfBox />
-        <ChatButtonBox>
-          <ChatButton
-            onClick={() => {
-              navigate("/chat");
-            }}
-          >
-            채팅방
-          </ChatButton>
-        </ChatButtonBox>
+        <SubFuncBox navigate={navigate} />
       </MyInf>
     </Outside>
   );

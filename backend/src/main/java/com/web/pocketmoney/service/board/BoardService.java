@@ -109,7 +109,7 @@ public class BoardService {
         return BoardDto.builder()
                 .dayOfWeek(board.getDayOfWeek())
                 .content(board.getContent())
-                .title(board.getContent())
+                .title(board.getTitle())
                 .date(board.getWantedTime())
                 .area(board.getArea())
                 .nickName(board.getUser().getNickName())

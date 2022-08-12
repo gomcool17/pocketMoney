@@ -1,5 +1,5 @@
-import { BACKEND_ADDRESS } from "../constant/ADDRESS";
 import axios from "axios";
+import { BACKEND_ADDRESS } from "./../../constant/ADDRESS";
 
 function signUpApi(
   email,
