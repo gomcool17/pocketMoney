@@ -78,7 +78,11 @@ const BoardDetails = () => {
   const [data, setDate] = useState();
 
   useEffect(() => {
-    findBoardApi(accessToken, boardId).then((dataPromise) => {
+    findBoardApi(accessToken, boardId, navigate).then((dataPromise) => {
+      if (dataPromise === null) {
+        alert("존재하지 않는 구인 글 입니다!!!!");
+        navigate("/");
+      }
       setDate(dataPromise);
     });
   }, []);
