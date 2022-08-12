@@ -68,7 +68,7 @@ const ContentImg = styled.div`
 
 const BoardDetails = () => {
   const navigate = useNavigate();
-  const accessToken = localStorage.getItem(ACCESS_TOKEN);
+  const accessToken = sessionStorage.getItem(ACCESS_TOKEN);
   const match = () => {
     alert("매칭테스트 성공");
   };

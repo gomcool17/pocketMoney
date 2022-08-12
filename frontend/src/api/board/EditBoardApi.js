@@ -1,7 +1,7 @@
 import { BACKEND_ADDRESS } from "../../constant/ADDRESS";
 import axios from "axios";
 
-function EditBoardApi(
+function editBoardApi(
   title,
   content,
   area,
@@ -49,4 +49,4 @@ function EditBoardApi(
     });
 }
 
-export default EditBoardApi;
+export default editBoardApi;

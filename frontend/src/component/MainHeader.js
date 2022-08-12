@@ -85,7 +85,7 @@ const Logout = styled.div`
 
 function MainHeader() {
   const navigate = useNavigate();
-  const token = localStorage.getItem(ACCESS_TOKEN);
+  const token = sessionStorage.getItem(ACCESS_TOKEN);
   const [sword, setSword] = useState("");
   const search = () => {
     if (!sword.length) {
@@ -160,7 +160,7 @@ function MainHeader() {
               </Mypage>
               <Logout
                 onClick={() => {
-                  localStorage.removeItem(ACCESS_TOKEN);
+                  sessionStorage.removeItem(ACCESS_TOKEN);
                   alert("로그아웃 되었습니다.");
                   navigate("/");
                 }}

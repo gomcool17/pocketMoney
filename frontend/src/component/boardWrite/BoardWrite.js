@@ -61,7 +61,7 @@ function BoardWrite() {
   const { state } = useLocation();
   const params = useParams();
   const boardId = params.boardId;
-  const accessToken = localStorage.getItem(ACCESS_TOKEN);
+  const accessToken = sessionStorage.getItem(ACCESS_TOKEN);
   if (!accessToken) {
     alert("로그인이 필요한 서비스입니다!!!");
     window.location.href = "/login";
