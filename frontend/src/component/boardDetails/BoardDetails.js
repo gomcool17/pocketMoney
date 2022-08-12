@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import styled from "styled-components";
 import MainHeader from "../MainHeader";
 import { useParams } from "react-router";
@@ -6,6 +7,7 @@ import Comments from "./Comments";
 import BoardBody from "./BoardBody";
 import findBoardApi from "../../api/board/FindBoardApi";
 import { ACCESS_TOKEN } from "./../../constant/LocalStorage";
+import deleteBoardApi from "../../api/board/DeleteBoardApi";
 
 const Outside = styled.div`
   width: 1050px;
@@ -66,6 +68,7 @@ const ContentImg = styled.div`
 `;
 
 const BoardDetails = () => {
+  const navigate = useNavigate();
   const accessToken = localStorage.getItem(ACCESS_TOKEN);
   const match = () => {
     alert("매칭테스트 성공");
@@ -73,12 +76,19 @@ const BoardDetails = () => {
   const params = useParams();
   const boardId = params.boardId;
   const [data, setDate] = useState();
+
   useEffect(() => {
     findBoardApi(accessToken, boardId).then((dataPromise) => {
       setDate(dataPromise);
     });
   }, []);
-  console.log(data);
+
+  const onDeleteButtonClicked = () => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      deleteBoardApi(boardId, accessToken, navigate);
+    }
+  };
+
   return (
     <>
       <MainHeader />
@@ -89,7 +99,9 @@ const BoardDetails = () => {
             data.isUser === 2 ? (
               <>
                 <EditButton>수정</EditButton>
-                <DeleteButton>삭제</DeleteButton>
+                <DeleteButton onClick={onDeleteButtonClicked}>
+                  삭제
+                </DeleteButton>
               </>
             ) : data.isUser === 1 ? (
               <ConnectButton onClick={match}>연락하기</ConnectButton>
