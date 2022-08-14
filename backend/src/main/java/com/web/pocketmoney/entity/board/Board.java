@@ -3,8 +3,10 @@ package com.web.pocketmoney.entity.board;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.web.pocketmoney.entity.user.User;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,4 +51,7 @@ public class Board {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
     private User user;
+
+    @CreationTimestamp
+    private Timestamp createTime;
 }

@@ -3,6 +3,7 @@ package com.web.pocketmoney.controller.board;
 import com.web.pocketmoney.dto.board.BoardDto;
 import com.web.pocketmoney.dto.board.BoardRequestDto;
 import com.web.pocketmoney.dto.board.BoardResponseDto;
+import com.web.pocketmoney.dto.board.BoardResponseListDto;
 import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.model.CommonResult;
 import com.web.pocketmoney.service.board.BoardService;
@@ -49,5 +50,11 @@ public class BoardController {
     public ResponseEntity<BoardDto> viewOne(@AuthenticationPrincipal User user, @PathVariable("id") Long id)
     {
         return ResponseEntity.ok(boardService.postOne(user, id));
+    }
+
+    @GetMapping("/list/{num}")
+    public ResponseEntity<BoardResponseListDto> boardList(@PathVariable("num") int num)
+    {
+        return ResponseEntity.ok(boardService.boardList(num));
     }
 }

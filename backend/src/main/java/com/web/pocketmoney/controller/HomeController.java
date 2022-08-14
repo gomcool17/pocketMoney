@@ -1,5 +1,7 @@
 package com.web.pocketmoney.controller;
 
+import com.web.pocketmoney.dto.board.BoardListDto;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -7,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
 
-   // @GetMapping("/")
-   // public String home() {
-      //  return "index";
-   // }
+  /* @GetMapping("/")
+    public ResponseEntity<BoardListDto> homeBoardList() {
+       return
+   }*/
 }

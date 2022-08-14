@@ -1,19 +1,24 @@
 package com.web.pocketmoney.service.board;
 
-import com.web.pocketmoney.dto.board.BoardDto;
-import com.web.pocketmoney.dto.board.BoardRequestDto;
-import com.web.pocketmoney.dto.board.BoardResponseDto;
+import com.web.pocketmoney.dto.board.*;
 import com.web.pocketmoney.entity.board.Board;
 import com.web.pocketmoney.entity.board.BoardRepository;
 import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.exception.CBoardIdFailedException;
 import com.web.pocketmoney.exception.CNoBoardAndUserException;
+import com.web.pocketmoney.vo.BoardListVo;
+import com.web.pocketmoney.vo.CriteriaVo;
+import com.web.pocketmoney.vo.PageVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -118,5 +123,37 @@ public class BoardService {
                 .area(board.getArea())
                 .isUser(isUser)
         .build();
+    }
+
+    @Transactional
+    public BoardResponseListDto boardList(int num)
+    {
+        List<Board> boards = boardRepository.findAll();
+        if(boards == null) {
+            return new BoardResponseListDto(null, 1,1, false, false);
+        }
+        List<BoardListVo> boardVo = new ArrayList<>();
+
+       for(Board b : boards) {
+           boardVo.add(new BoardListVo(b.getId(), b.getTitle(),b.getView(), b.getCreateTime(), b.getUser().getNickName()));
+       }
+
+       Collections.sort(boardVo);
+       int total = boardVo.size();
+       log.info("total : " + total);
+       PageVo page = new PageVo(new CriteriaVo(num,10, total), total);
+       for(BoardListVo b : boardVo) {
+           log.info(b.toString());
+       }
+       log.info(page.getStartPage() + " " + page.getEndPage());
+       log.info(page.getCri().getStart() + " " + page.getCri().getEnd());
+       int start = page.getStartPage();
+       int end = page.getEndPage();
+       List<BoardListDto> bd = new ArrayList<>();
+       for(int i=page.getCri().getStart(); i<=page.getCri().getEnd(); i++) {
+           bd.add(new BoardListDto(boardVo.get(i).getTitle(), boardVo.get(i).getView(), boardVo.get(i).getCreateTime(), boardVo.get(i).getNickName()));
+       }
+        BoardResponseListDto boardResponseListDto = new BoardResponseListDto(bd, start, end, page.isPrev(), page.isNext());
+       return boardResponseListDto;
     }
 }
