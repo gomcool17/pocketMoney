@@ -135,7 +135,7 @@ public class BoardService {
         List<BoardListVo> boardVo = new ArrayList<>();
 
        for(Board b : boards) {
-           boardVo.add(new BoardListVo(b.getId(), b.getTitle(),b.getView(), b.getCreateTime(), b.getUser().getNickName()));
+           boardVo.add(new BoardListVo(b.getId(), b.getTitle(),b.getView(), b.getCreateTime(), b.getUser().getNickName(), b.getPay(), b.getUser().getCity()));
        }
 
        Collections.sort(boardVo);
@@ -147,6 +147,8 @@ public class BoardService {
        }
        log.info(page.getStartPage() + " " + page.getEndPage());
        log.info(page.getCri().getStart() + " " + page.getCri().getEnd());
+
+
        int start = page.getStartPage();
        int end = page.getEndPage();
        List<BoardListDto> bd = new ArrayList<>();

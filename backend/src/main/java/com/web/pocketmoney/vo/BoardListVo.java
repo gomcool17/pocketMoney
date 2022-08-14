@@ -14,13 +14,17 @@ public class BoardListVo implements Comparable<BoardListVo>{
     private int view;
     private Timestamp createTime;
     private String nickName;
+    private int pay;
+    private String city;
 
-    public BoardListVo(Long id, String title, int view, Timestamp timestamp, String nickName) {
+    public BoardListVo(Long id, String title, int view, Timestamp timestamp, String nickName, int pay, String city) {
         this.id = id;
         this.title = title;
         this.view = view;
         this.createTime = timestamp;
         this.nickName = nickName;
+        this.pay = pay;
+        this.city = city;
     }
 
     @Override

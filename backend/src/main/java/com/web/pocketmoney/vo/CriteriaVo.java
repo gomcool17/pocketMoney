@@ -12,8 +12,9 @@ public class CriteriaVo {
     private int amount;
     private int start, end; // list에 표시할 게시글들
     private int total;
-    public CriteriaVo() {
-
+    public CriteriaVo(int amount, int total) {
+        this.amount = amount;
+        this.total = total;
     }
 
     // 기본 생성자 설정

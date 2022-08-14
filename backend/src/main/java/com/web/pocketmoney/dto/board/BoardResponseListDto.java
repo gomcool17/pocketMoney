@@ -20,4 +20,8 @@ public class BoardResponseListDto {
         this.prev = prev;
         this.next = next;
     }
+
+    public BoardResponseListDto(List<BoardListDto> board) {
+        this.boards = board;
+    }
 }
