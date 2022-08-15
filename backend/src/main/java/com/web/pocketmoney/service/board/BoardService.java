@@ -6,18 +6,16 @@ import com.web.pocketmoney.entity.board.BoardRepository;
 import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.exception.CBoardIdFailedException;
 import com.web.pocketmoney.exception.CNoBoardAndUserException;
-import com.web.pocketmoney.vo.BoardListVo;
 import com.web.pocketmoney.vo.CriteriaVo;
 import com.web.pocketmoney.vo.PageVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -128,34 +126,43 @@ public class BoardService {
     @Transactional
     public BoardResponseListDto boardList(int num)
     {
-        List<Board> boards = boardRepository.findAll();
+        List<Board> boards = boardRepository.findAll(Sort.by(Sort.Direction.DESC, "createTime"));
         if(boards == null) {
             return new BoardResponseListDto(null, 1,1, false, false);
         }
-        List<BoardListVo> boardVo = new ArrayList<>();
 
-       for(Board b : boards) {
-           boardVo.add(new BoardListVo(b.getId(), b.getTitle(),b.getView(), b.getCreateTime(), b.getUser().getNickName(), b.getPay(), b.getUser().getCity()));
-       }
-
-       Collections.sort(boardVo);
-       int total = boardVo.size();
+       int total = boards.size();
        log.info("total : " + total);
        PageVo page = new PageVo(new CriteriaVo(num,10, total), total);
-       for(BoardListVo b : boardVo) {
-           log.info(b.toString());
-       }
-       log.info(page.getStartPage() + " " + page.getEndPage());
-       log.info(page.getCri().getStart() + " " + page.getCri().getEnd());
 
-
-       int start = page.getStartPage();
-       int end = page.getEndPage();
        List<BoardListDto> bd = new ArrayList<>();
        for(int i=page.getCri().getStart(); i<=page.getCri().getEnd(); i++) {
-           bd.add(new BoardListDto(boardVo.get(i).getTitle(), boardVo.get(i).getView(), boardVo.get(i).getCreateTime(), boardVo.get(i).getNickName()));
+           bd.add(new BoardListDto(boards.get(i).getTitle(), boards.get(i).getView(), boards.get(i).getCreateTime(), boards.get(i).getUser().getNickName()));
        }
+       return new BoardResponseListDto(bd,page.getStartPage(), page.getEndPage(), page.isPrev(), page.isNext());
+    }
+
+    @Transactional
+    public BoardResponseListDto boardSearchList(String str, int num)
+    {
+        log.info("search list");
+        List<Board> boards = (List<Board>) boardRepository.searchBoards(str);
+        if(boards == null) {
+            return new BoardResponseListDto(null, 1,1, false, false);
+        }
+
+        int total = boards.size();
+        log.info("total : " + total);
+        PageVo page = new PageVo(new CriteriaVo(num,10, total), total);
+
+        int start = page.getStartPage();
+        int end = page.getEndPage();
+
+        List<BoardListDto> bd = new ArrayList<>();
+        for(int i=page.getCri().getStart(); i<=page.getCri().getEnd(); i++) {
+            bd.add(new BoardListDto(boards.get(i).getTitle(), boards.get(i).getView(), boards.get(i).getCreateTime(), boards.get(i).getUser().getNickName()));
+        }
         BoardResponseListDto boardResponseListDto = new BoardResponseListDto(bd, start, end, page.isPrev(), page.isNext());
-       return boardResponseListDto;
+        return boardResponseListDto;
     }
 }

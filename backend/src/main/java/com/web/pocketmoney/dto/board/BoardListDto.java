@@ -1,7 +1,5 @@
 package com.web.pocketmoney.dto.board;
 
-import ch.qos.logback.core.joran.action.TimestampAction;
-import com.web.pocketmoney.vo.BoardListVo;
 import lombok.Getter;
 import lombok.Setter;
 
