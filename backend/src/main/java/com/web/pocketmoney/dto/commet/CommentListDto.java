@@ -1,7 +1,12 @@
 package com.web.pocketmoney.dto.commet;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.sql.Timestamp;
 
+@Getter
+@Setter
 public class CommentListDto {
     private Long id;
     private String content;

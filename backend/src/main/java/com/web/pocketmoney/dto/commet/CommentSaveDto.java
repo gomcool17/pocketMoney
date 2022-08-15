@@ -11,10 +11,7 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-@Getter
-@Setter
-@Builder
+@Data
 public class CommentSaveDto {
-   // private Long boardId;
     private String text;
 }

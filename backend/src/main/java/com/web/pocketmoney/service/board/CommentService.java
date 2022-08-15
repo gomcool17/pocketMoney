@@ -1,9 +1,6 @@
 package com.web.pocketmoney.service.board;
 
-import com.web.pocketmoney.dto.commet.CommentListDto;
-import com.web.pocketmoney.dto.commet.CommentResponseSaveDto;
-import com.web.pocketmoney.dto.commet.CommentSaveDto;
-import com.web.pocketmoney.dto.commet.CommentUpdateDto;
+import com.web.pocketmoney.dto.commet.*;
 import com.web.pocketmoney.entity.board.Board;
 import com.web.pocketmoney.entity.board.BoardRepository;
 import com.web.pocketmoney.entity.comment.Comment;
@@ -41,9 +38,9 @@ public class CommentService {
         log.info(saveDto.toString() + " " + id);
         Board board = boardRepository.findById(id).orElseThrow(CBoardIdFailedException::new);
         log.info(board.toString());
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        log.info("현재 유저2 : " + authentication.getName());
-        String email = authentication.getName();
+        //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        //log.info("현재 유저2 : " + authentication.getName());
+       // String email = authentication.getName();
         //User user = userRepository.findByEmail(email).orElseThrow(CUserNotFoundException::new);
         log.info(user.toString());
        commentRepository.save(Comment.builder()
@@ -78,8 +75,9 @@ public class CommentService {
     }
 
     @Transactional
-    public void commentDelete(Long commentId, User user) {
+    public void commentDelete(Long commentId, User user, Long boardId) {
         Comment comment = commentRepository.findById(commentId).orElseThrow(CCommentIdFindFailedException::new);
+        Board board = boardRepository.findById(boardId).orElseThrow(CBoardIdFailedException::new);
         if(comment.getUserId().getId() != user.getId()) {
             throw new CNotSameUserException();
         }
@@ -88,18 +86,22 @@ public class CommentService {
     }
 
     @Transactional
-    public List<CommentListDto> commentList(Long id, int num)
+    public CommentResponseListDto commentList(Long id, int num)
     {
-        List<CommentListDto> list = new ArrayList<>();
         Board boards = boardRepository.findById(id).orElseThrow(CBoardIdFailedException::new);
-        List<Comment> comments = commentRepository.findAll(Sort.by(Sort.Direction.DESC, "creatTime"));
+        List<Comment> comments = commentRepository.findAll(Sort.by(Sort.Direction.DESC, "createTime"));
         int total = comments.size();
         PageVo page = new PageVo(new CriteriaVo(num, 10, total), total);
 
-
+        List<CommentListDto> list = new ArrayList<>();
         for(int i=page.getCri().getStart(); i<=page.getCri().getEnd();i++) {
+            log.info(comments.get(i).toString());
             list.add(new CommentListDto(comments.get(i).getId(), comments.get(i).getText(), comments.get(i).getUserId().getNickName(),comments.get(i).getCreateTime()));
         }
-        return list;
+
+        for(CommentListDto commentListDto : list) {
+            log.info("list : " + commentListDto.toString());
+        }
+        return new CommentResponseListDto(list, page.getStartPage(), page.getEndPage(), page.isPrev(), page.isNext());
     }
 }

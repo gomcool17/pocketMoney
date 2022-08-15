@@ -1,9 +1,6 @@
 package com.web.pocketmoney.controller.board;
 
-import com.web.pocketmoney.dto.commet.CommentListDto;
-import com.web.pocketmoney.dto.commet.CommentResponseSaveDto;
-import com.web.pocketmoney.dto.commet.CommentSaveDto;
-import com.web.pocketmoney.dto.commet.CommentUpdateDto;
+import com.web.pocketmoney.dto.commet.*;
 import com.web.pocketmoney.entity.comment.Comment;
 import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.service.ResponseService;
@@ -43,13 +40,13 @@ public class CommentController {
 
     @ApiOperation(value = "댓글", notes = "댓글을 삭제 함")
     @DeleteMapping("/{boardId}/{id}")
-    public void deleteComment(@AuthenticationPrincipal User user, @PathVariable("id") Long id) {
-        commentService.commentDelete(id, user);
+    public void deleteComment(@AuthenticationPrincipal User user, @PathVariable("id") Long id, @PathVariable("boardId") Long boardId) {
+        commentService.commentDelete(id, user, boardId);
         return;
     }
 
     @GetMapping("/{boardId}/{num}")
-    public ResponseEntity<List<CommentListDto>> commentList(@PathVariable("boardId") Long id, @PathVariable("num") int num)
+    public ResponseEntity<CommentResponseListDto> commentList(@PathVariable("boardId") Long id, @PathVariable("num") int num)
     {
         return ResponseEntity.ok(commentService.commentList(id, num));
     }
