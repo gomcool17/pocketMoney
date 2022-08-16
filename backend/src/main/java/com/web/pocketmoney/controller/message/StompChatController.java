@@ -29,10 +29,10 @@ public class StompChatController {
     //WebSocketConfig에서 설정한 applicationDestinationPrefixes와 @MessageMapping 경로가 병합됨
     //"/pub/chat/enter" --> enter이므로 처음 접속할때는 이 경로로 메시지를 뿌려준다. 즉 입장 메세지
     @MessageMapping(value = "/chat/enter") //발행하는 경로, /chat/enter라는 경로로 메세지를 보내면 구독자들에게 메세지를 뿌린다.
-    public void enter(MessageDetailDto message){
+    public void enter(MessageSaveDto message){
         message.setMessage(message.getWriter() + "님이 채팅방에 입장하였습니다.");
 
-        List<MessageDetailDto> chatList = messageService.findAllChatByRoomId(message.getChatRoomId());
+        List<MessageDetailDto> chatList = messageService.findAllChatByRoomId(message.getRoomId());
         if(chatList != null){
             for(MessageDetailDto m : chatList){
                 message.setWriter(m.getWriter());
@@ -40,24 +40,28 @@ public class StompChatController {
             }
         }
         //convertAndSend()는 Object타입 객체를 인자로 받아 내부적으로 Message타입으로 변환한다.
-        template.convertAndSend("/sub/chat/room/" + message.getChatRoomId(), message);
+        template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
 
 //        ChatRoom chatRoom =  chatRoomService.findRoomById(message.getChatRoomId());
         MessageSaveDto messageSaveDto = MessageSaveDto.builder()
-                        .roomid(message.getChatRoomId())
+                        .roomId(message.getRoomId())
                                 .writer(message.getWriter())
                                         .message(message.getMessage())
                                                 .build();
         messageService.save(messageSaveDto);
     }
 
+    //pub으로 메시지 받음
     @MessageMapping(value = "/chat/message")
-    public void message(MessageDetailDto message){
-        template.convertAndSend("/sub/chat/room" + message.getChatRoomId(), message);
+    public void message(MessageSaveDto message){
+        //뷰에서 subscribe(path, callback)으로 메세지를 받을 수 있음
+        //room.html에서 stomp.subscribe("/sub/chat/room/" + roomId, function(chat) { 부분에 message가 chat으로 넘어감
+        //pub으로 MessageMapping을 통해 메시지를 받은 후, sub으로 뿌려주고 DB에 저장하는 로직
+        template.convertAndSend("/sub/chat/room" + message.getRoomId(), message);
 
         //DB에 채팅내용 저장
         MessageSaveDto messageSaveDto = MessageSaveDto.builder()
-                .roomid(message.getChatRoomId())
+                .roomId(message.getRoomId())
                 .writer(message.getWriter())
                 .message(message.getMessage())
                 .build();

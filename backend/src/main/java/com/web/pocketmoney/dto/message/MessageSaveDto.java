@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class MessageSaveDto {
-    private Long roomid;
+    private Long roomId;
     private String writer;
     private String message;
 }
