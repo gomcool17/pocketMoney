@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 const OutLine = styled.div`
   border-top: 1px solid blue;
@@ -16,8 +16,7 @@ const NewContentTextarea = styled.textarea`
     outline: 2px solid rgb(90, 155, 213);
     border: 1px solid rgb(90, 155, 213);
 `;
-function ContentBox() {
-  const [content, setContent] = useState("");
+function ContentBox({ content, setContent }) {
   return (
     <OutLine>
       <NewContentTextarea

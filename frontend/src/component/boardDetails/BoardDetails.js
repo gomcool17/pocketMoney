@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router";
 import styled from "styled-components";
 import MainHeader from "../MainHeader";
-import { useParams } from "react-router";
+import Comments from "./Comments";
+import BoardBody from "./BoardBody";
+import findBoardApi from "../../api/board/FindBoardApi";
+import { ACCESS_TOKEN } from "./../../constant/LocalStorage";
+import deleteBoardApi from "../../api/board/DeleteBoardApi";
 
 const Outside = styled.div`
   width: 1050px;
@@ -11,121 +16,116 @@ const Outside = styled.div`
 const ContentHeader = styled.div`
   margin-top: 10px;
   width: 1050px;
-  height: 70px;
+  height: 60px;
+`;
+const Title = styled.div`
+  display: inline-block;
+  width: 800px;
+  height: 50px;
+  padding-left: 30px;
+  font-size: 30px;
+  font-weight: 1000;
 `;
 const ConnectButton = styled.div`
+  display: inline-block;
   width: 150px;
   height: 50px;
+  margin-left: 30px;
   line-height: 50px;
   font-size: 20px;
-  border: 5px solid green;
+  background-color: lightGreen;
   text-align: center;
-  margin-right: 20px;
-  margin-left: auto;
+  cursor: pointer;
+`;
+const DeleteButton = styled.div`
+  display: inline-block;
+  width: 75px;
+  height: 50px;
+  margin-left: 10px;
+  line-height: 50px;
+  font-size: 20px;
+  background-color: lightGreen;
+  text-align: center;
+  cursor: pointer;
+`;
+const EditButton = styled.div`
+  display: inline-block;
+  width: 75px;
+  height: 50px;
+  margin-left: 30px;
+  line-height: 50px;
+  font-size: 20px;
+  background-color: lightGreen;
+  text-align: center;
   cursor: pointer;
 `;
 const ContentImg = styled.div`
-  width: 1050px;
+  margin: 0 auto;
+  width: 1000px;
   height: 400px;
-  border: 5px solid green;
-`;
-const Writer = styled.div`
-  display: inline-block;
-  width: 500px;
-  height: 50px;
-  margin: 10px;
-  border: 5px solid green;
-  font-size: 30px;
-`;
-const KindScore = styled.div`
-  display: inline-block;
-  width: 450px;
-  height: 50px;
-  margin: 10px;
-  border: 5px solid green;
-  font-size: 30px;
-  text-align: right;
-`;
-const ContentBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 1050px;
-  font-size: 30px;
-  border: 5px solid green;
-`;
-const Title = styled.div`
-  width: 1050px;
-  height: 50px;
-  border: 5px solid green;
-`;
-const Salary = styled.div`
-  width: 200px;
-  height: 50px;
-  border: 5px solid green;
-`;
-const Time = styled.div`
-  width: 200px;
-  height: 50px;
-  border: 5px solid green;
-`;
-const Content = styled.div`
-  width: 1050px;
-  height: 400px;
-  overflow: auto;
-  border: 5px solid green;
-`;
-const MapBox = styled.div`
-  width: 1050px;
-  height: 400px;
-  border: 5px solid green;
-`;
-const CommentBox = styled.div`
-  width: 1050px;
-  height: 400px;
-  overflow: auto;
-  border: 5px solid green;
-`;
-const Comment = styled.div`
-  margin: 20px auto;
-  width: 900px;
-  min-height: 100px;
-  overflow: auto;
-  border: 5px solid green;
+  border: 5px solid blue;
 `;
 
 const BoardDetails = () => {
+  const navigate = useNavigate();
+  const accessToken = sessionStorage.getItem(ACCESS_TOKEN);
   const match = () => {
     alert("매칭테스트 성공");
   };
   const params = useParams();
   const boardId = params.boardId;
+  const [data, setDate] = useState();
+
+  useEffect(() => {
+    findBoardApi(accessToken, boardId, navigate).then((dataPromise) => {
+      if (dataPromise === null) {
+        alert("존재하지 않는 구인 글 입니다!!!!");
+        navigate("/");
+      }
+      setDate(dataPromise);
+    });
+  }, []);
+
+  const onDeleteButtonClicked = () => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      deleteBoardApi(boardId, accessToken, navigate);
+    }
+  };
+
   return (
     <>
       <MainHeader />
       <Outside>
         <ContentHeader>
-          <ConnectButton onClick={match}>연락하기</ConnectButton>
+          <Title>{data ? data.title : ""}</Title>
+          {data ? (
+            data.isUser === 2 ? (
+              <>
+                <EditButton
+                  onClick={() => {
+                    navigate("/board/write/modify/" + boardId, {
+                      state: data,
+                    });
+                  }}
+                >
+                  수정
+                </EditButton>
+                <DeleteButton onClick={onDeleteButtonClicked}>
+                  삭제
+                </DeleteButton>
+              </>
+            ) : data.isUser === 1 ? (
+              <ConnectButton onClick={match}>연락하기</ConnectButton>
+            ) : (
+              ""
+            )
+          ) : (
+            ""
+          )}
         </ContentHeader>
         <ContentImg>이미지</ContentImg>
-        <Writer>히히</Writer>
-        <KindScore>100도 이미지</KindScore>
-        <ContentBox>
-          <Title>강아지 산책하실분</Title>
-          <Salary>10000원</Salary>
-          <Time>시간</Time>
-          <Content>내용</Content>
-          <MapBox>지도</MapBox>
-          <CommentBox>
-            <Comment>
-              안녕안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요하세요안녕하세요안녕하세요
-            </Comment>
-            <Comment>안녕하세요</Comment>
-            <Comment>안녕하세요</Comment>
-            <Comment>안녕하세요</Comment>
-            <Comment>ㅈㅂㄷㅇㄴㅊㅌㅋ안녕하세요</Comment>
-            <Comment>안녕하세요</Comment>
-          </CommentBox>
-        </ContentBox>
+        <BoardBody data={data} />
+        <Comments />
       </Outside>
     </>
   );

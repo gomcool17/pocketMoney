@@ -43,8 +43,6 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
                         UsernamePasswordAuthenticationFilter.class);
         // jwt token 필터를 id/password 인증 필터 전에 넣는다.
-        http.formLogin(); // form을 통한 로그인 활성화
-       //         .loginProcessingUrl("/login");
 
     }
 

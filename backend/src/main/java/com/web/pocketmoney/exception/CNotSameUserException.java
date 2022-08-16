@@ -10,6 +10,6 @@ public class CNotSameUserException extends RuntimeException{
     }
 
     public CNotSameUserException() {
-        super();
+        super("해당 유저의 권한이 아님(작성자랑 유저가 같지 않음)");
     }
 }
