@@ -9,7 +9,7 @@ import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.entity.user.UserRepository;
 import com.web.pocketmoney.exception.CEmailSignupFailedException;
 import com.web.pocketmoney.exception.CNickNameSignupFailedException;
-import com.web.pocketmoney.exception.CSigninFailedException;
+import com.web.pocketmoney.exception.CPasswordSigninFailedException;
 import com.web.pocketmoney.exception.CUserNotFoundException;
 import com.web.pocketmoney.model.SingleResult;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collections;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -101,12 +100,12 @@ public class UserServiceImpl implements UserService{
         log.info("id : {}" , email);
         log.info("password : {}" , password);
 
-        User user = userRepository.findByEmail(email).orElseThrow(CSigninFailedException::new);
+        User user = userRepository.findByEmail(email).orElseThrow(CEmailSignupFailedExceptionSigninFailedException::new);
         log.info(user.toString());
         if (!encoder.matches(password, user.getPassword())) {
             log.info("비밀번호 다름");
             // matches : 평문, 암호문 패스워드 비교 후 boolean 결과 return
-            throw new CSigninFailedException();
+            throw new CPasswordSigninFailedException();
         }
     /*    if(user.get() == false){
             throw new CEmailAuthTokenNotFoundException();

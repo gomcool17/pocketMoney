@@ -57,7 +57,10 @@ public class CommentService {
     @Transactional
     public CommentUpdateDto commentPut(Long boardId, Long commentId, CommentUpdateDto commentPutDto, User user) {
         String text = commentPutDto.getText();
+        log.info("댓글 업데이트");
         Comment comment = commentRepository.findById(commentId).orElseThrow(CCommentIdFindFailedException::new);
+        Board board = boardRepository.findById(boardId).orElseThrow(CBoardIdFailedException::new);
+        log.info("comment ok");
         log.info(comment.toString());
         comment.setText(text);
         log.info(comment);

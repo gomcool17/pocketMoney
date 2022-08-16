@@ -6,6 +6,7 @@ import com.web.pocketmoney.entity.board.BoardRepository;
 import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.exception.CBoardIdFailedException;
 import com.web.pocketmoney.exception.CNoBoardAndUserException;
+import com.web.pocketmoney.exception.handler.ErrorCode;
 import com.web.pocketmoney.vo.CriteriaVo;
 import com.web.pocketmoney.vo.PageVo;
 import lombok.RequiredArgsConstructor;

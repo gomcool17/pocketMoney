@@ -10,6 +10,6 @@ public class CEmailSignupFailedException extends RuntimeException{
     }
 
     public CEmailSignupFailedException() {
-        super();
+        super("해당 계정이 이미 존재합니다.");
     }
 }

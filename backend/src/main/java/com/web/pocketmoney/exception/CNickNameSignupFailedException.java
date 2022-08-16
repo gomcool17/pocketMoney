@@ -10,6 +10,6 @@ public class CNickNameSignupFailedException extends RuntimeException{
     }
 
     public CNickNameSignupFailedException() {
-        super();
+        super("이미 존재하는 닉네임 입니다.");
     }
 }
