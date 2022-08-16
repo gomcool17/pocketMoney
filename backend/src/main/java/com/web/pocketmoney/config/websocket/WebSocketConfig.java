@@ -1,4 +1,4 @@
-package com.web.pocketmoney.config;
+package com.web.pocketmoney.config.websocket;
 
 //import com.web.pocketmoney.handler.ChatHandler;
 import lombok.RequiredArgsConstructor;
