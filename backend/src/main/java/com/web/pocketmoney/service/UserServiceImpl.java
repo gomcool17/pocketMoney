@@ -7,10 +7,7 @@ import com.web.pocketmoney.dto.user.TokenUserDTO;
 import com.web.pocketmoney.dto.user.UserDTO;
 import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.entity.user.UserRepository;
-import com.web.pocketmoney.exception.CEmailSignupFailedException;
-import com.web.pocketmoney.exception.CNickNameSignupFailedException;
-import com.web.pocketmoney.exception.CPasswordSigninFailedException;
-import com.web.pocketmoney.exception.CUserNotFoundException;
+import com.web.pocketmoney.exception.*;
 import com.web.pocketmoney.model.SingleResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -100,7 +97,7 @@ public class UserServiceImpl implements UserService{
         log.info("id : {}" , email);
         log.info("password : {}" , password);
 
-        User user = userRepository.findByEmail(email).orElseThrow(CEmailSignupFailedExceptionSigninFailedException::new);
+        User user = userRepository.findByEmail(email).orElseThrow(CEmailSigninFailedException::new);
         log.info(user.toString());
         if (!encoder.matches(password, user.getPassword())) {
             log.info("비밀번호 다름");
