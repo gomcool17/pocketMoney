@@ -142,7 +142,7 @@ public class BoardService {
        List<BoardListDto> bd = new ArrayList<>();
        for(int i=page.getCri().getStart(); i<=page.getCri().getEnd(); i++) {
            bd.add(new BoardListDto(boards.get(i).getTitle(),
-                   boards.get(i).getView(), boards.get(i).getCreateTime(), boards.get(i).getUser().getCity(),
+                   boards.get(i).getView(), boards.get(i).getCreateTime(), boards.get(i).getArea(),
                    boards.get(i).getPay(), boards.get(i).getId(), boards.get(i).getWantedTime()));
        }
        return new BoardResponseListDto(bd,page.getStartPage(), page.getEndPage(), page.isPrev(), page.isNext());
@@ -167,7 +167,7 @@ public class BoardService {
         List<BoardListDto> bd = new ArrayList<>();
         for(int i=page.getCri().getStart(); i<=page.getCri().getEnd(); i++) {
             bd.add(new BoardListDto(boards.get(i).getTitle(),
-                    boards.get(i).getView(), boards.get(i).getCreateTime(), boards.get(i).getUser().getCity(),
+                    boards.get(i).getView(), boards.get(i).getCreateTime(), boards.get(i).getArea(),
                     boards.get(i).getPay(), boards.get(i).getId(), boards.get(i).getWantedTime()));
         }
         BoardResponseListDto boardResponseListDto = new BoardResponseListDto(bd, start, end, page.isPrev(), page.isNext());
