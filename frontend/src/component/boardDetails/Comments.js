@@ -18,7 +18,7 @@ const Comment = styled.div`
   border: 5px solid blue;
 `;
 const Writer = styled.div`
-  font-size: 20px;
+  font-size: 15px;
 `;
 const Content = styled.div`
   font-size: 30px;
@@ -30,21 +30,26 @@ const CreatedDate = styled.div`
   color: gray;
 `;
 
-function Comments() {
+function Comments(props) {
   return (
     <CommentBox>
-      <Comment>
-        <Writer>작성자</Writer>
-        <Content>
-          안녕하세요안녕안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요하세요안녕하세요안녕하세요
-        </Content>
-        <CreatedDate>시간</CreatedDate>
-      </Comment>
-      <Comment>
-        <Writer>작성자</Writer>
-        <Content>안녕하세요</Content>
-        <CreatedDate>시간</CreatedDate>
-      </Comment>
+      {props.comments
+        ? props.comments.comments.map((comment) => {
+            let date = new Date(comment.timestamp);
+
+            return (
+              <Comment>
+                <Writer>작성자: {comment.nickName}</Writer>
+                <Content>{comment.content}</Content>
+                <CreatedDate>
+                  {" "}
+                  {date.getYear() + 1900}년 {date.getMonth()}월 {date.getDay()}
+                  일 {date.getHours()}시 {date.getMinutes()}분
+                </CreatedDate>
+              </Comment>
+            );
+          })
+        : ""}
     </CommentBox>
   );
 }

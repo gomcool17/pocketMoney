@@ -7,6 +7,7 @@ import BoardBody from "./BoardBody";
 import findBoardApi from "../../api/board/FindBoardApi";
 import { ACCESS_TOKEN } from "./../../constant/LocalStorage";
 import deleteBoardApi from "../../api/board/DeleteBoardApi";
+import findCommentApi from "./../../api/comment/FindCommentApi";
 
 const Outside = styled.div`
   width: 1050px;
@@ -76,6 +77,9 @@ const BoardDetails = () => {
   const boardId = params.boardId;
   const [data, setDate] = useState();
 
+  const [commentPage, setCommentPage] = useState(1);
+  const [comments, setComments] = useState();
+
   useEffect(() => {
     findBoardApi(accessToken, boardId, navigate).then((dataPromise) => {
       if (dataPromise === null) {
@@ -86,12 +90,18 @@ const BoardDetails = () => {
     });
   }, []);
 
+  useEffect(() => {
+    findCommentApi(accessToken, boardId, commentPage).then((dataPromise) => {
+      setComments(dataPromise);
+    });
+  }, [commentPage]);
+
   const onDeleteButtonClicked = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       deleteBoardApi(boardId, accessToken, navigate);
     }
   };
-
+  console.log(comments);
   return (
     <>
       <MainHeader />
@@ -125,7 +135,7 @@ const BoardDetails = () => {
         </ContentHeader>
         <ContentImg>이미지</ContentImg>
         <BoardBody data={data} />
-        <Comments />
+        <Comments comments={comments} />
       </Outside>
     </>
   );
