@@ -102,8 +102,6 @@ const BoardDetails = () => {
     }
   };
 
-  console.log(commentPage);
-
   return (
     <>
       <MainHeader />

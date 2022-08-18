@@ -42,8 +42,7 @@ const FindWork = styled.div`
 
 function DefaultPage() {
   const navigate = useNavigate();
-  const params = useParams;
-  const num = params.num;
+  const [num, setNum] = useState(1);
   const [boards, setBoards] = useState("");
   useEffect(() => {
     findBorldListApi(num ? num : 1).then((dataPromise) => {
@@ -66,6 +65,8 @@ function DefaultPage() {
         </FindWork>
         <Boards boards={boards.boards} navigate={navigate} />
         <Numbers
+          num={num}
+          setNum={setNum}
           start={boards.start}
           end={boards.end}
           prev={boards.prev}

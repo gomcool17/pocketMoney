@@ -20,6 +20,7 @@ const PervButton = styled.div`
   margin: 5px;
   padding-top: 5px;
   border: 1px solid gray;
+  cursor: pointer;
 `;
 const NextButton = styled.div`
   display: inline-block;
@@ -28,6 +29,7 @@ const NextButton = styled.div`
   margin: 5px;
   padding-top: 5px;
   border: 1px solid gray;
+  cursor: pointer;
 `;
 const NumberButton = styled.div`
   display: inline-block;
@@ -36,6 +38,7 @@ const NumberButton = styled.div`
   margin: 5px;
   padding-top: 5px;
   border: 1px solid gray;
+  cursor: pointer;
 `;
 
 function Numbers(props) {
@@ -49,11 +52,49 @@ function Numbers(props) {
   return (
     <Outside>
       <Footer>
-        {props.prev ? <PervButton>〈 이전</PervButton> : ""}
+        {props.prev ? (
+          <PervButton
+            onClick={() => {
+              props.setNum(
+                props.num % 10 === 0
+                  ? props.num - 1
+                  : parseInt(props.num / 10) - 1 === 0
+                  ? 1
+                  : (parseInt(props.num / 10) - 1) * 10 + 1
+              );
+            }}
+          >
+            〈 이전
+          </PervButton>
+        ) : (
+          ""
+        )}
         {range(props.start, props.end + 1).map((index) => {
-          return <NumberButton>{index}</NumberButton>;
+          return (
+            <NumberButton
+              onClick={() => {
+                props.setNum(index);
+              }}
+            >
+              {index}
+            </NumberButton>
+          );
         })}
-        {props.next ? <NextButton>다음 〉</NextButton> : ""}
+        {props.next ? (
+          <NextButton
+            onClick={() => {
+              props.setNum(
+                props.num % 10 === 0
+                  ? props.num + 1
+                  : (parseInt(props.num / 10) + 1) * 10 + 1
+              );
+            }}
+          >
+            다음 〉
+          </NextButton>
+        ) : (
+          ""
+        )}
       </Footer>
     </Outside>
   );
