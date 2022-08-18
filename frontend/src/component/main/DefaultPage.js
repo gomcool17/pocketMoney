@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import MainHeader from "../MainHeader";
 import Boards from "./Boards";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import Numbers from "./Numbers";
+import { useState, useEffect } from "react";
+import findBorldListApi from "./../../api/board/FindBorldListApi";
 
 const Outside = styled.div`
   width: 1050px;
@@ -39,6 +42,15 @@ const FindWork = styled.div`
 
 function DefaultPage() {
   const navigate = useNavigate();
+  const params = useParams;
+  const num = params.num;
+  const [boards, setBoards] = useState("");
+  useEffect(() => {
+    findBorldListApi(num ? num : 1).then((dataPromise) => {
+      setBoards(dataPromise);
+    });
+  }, [num]);
+  console.log(boards);
   return (
     <>
       <MainHeader />
@@ -52,7 +64,13 @@ function DefaultPage() {
         >
           일자리 구인
         </FindWork>
-        <Boards />
+        <Boards boards={boards.boards} />
+        <Numbers
+          start={boards.start}
+          end={boards.end}
+          prev={boards.prev}
+          next={boards.next}
+        />
       </Outside>
     </>
   );
