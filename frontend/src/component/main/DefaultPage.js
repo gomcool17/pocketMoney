@@ -50,7 +50,7 @@ function DefaultPage() {
       setBoards(dataPromise);
     });
   }, [num]);
-  console.log(boards);
+
   return (
     <>
       <MainHeader />
@@ -64,7 +64,7 @@ function DefaultPage() {
         >
           일자리 구인
         </FindWork>
-        <Boards boards={boards.boards} />
+        <Boards boards={boards.boards} navigate={navigate} />
         <Numbers
           start={boards.start}
           end={boards.end}

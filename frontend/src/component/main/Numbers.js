@@ -38,22 +38,22 @@ const NumberButton = styled.div`
   border: 1px solid gray;
 `;
 
-function Numbers() {
+function Numbers(props) {
+  function range(start, end) {
+    let array = [];
+    for (let i = start; i < end; ++i) {
+      array.push(i);
+    }
+    return array;
+  }
   return (
     <Outside>
       <Footer>
-        <PervButton>〈 이전</PervButton>
-        <NumberButton>1</NumberButton>
-        <NumberButton>2</NumberButton>
-        <NumberButton>3</NumberButton>
-        <NumberButton>4</NumberButton>
-        <NumberButton>5</NumberButton>
-        <NumberButton>6</NumberButton>
-        <NumberButton>7</NumberButton>
-        <NumberButton>8</NumberButton>
-        <NumberButton>9</NumberButton>
-        <NumberButton>10</NumberButton>
-        <NextButton>다음 〉</NextButton>
+        {props.prev ? <PervButton>〈 이전</PervButton> : ""}
+        {range(props.start, props.end + 1).map((index) => {
+          return <NumberButton>1</NumberButton>;
+        })}
+        {props.next ? <NextButton>다음 〉</NextButton> : ""}
       </Footer>
     </Outside>
   );
