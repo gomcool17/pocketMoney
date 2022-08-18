@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import CommentsNumbers from "./CommentsNumbers";
 const CommentBox = styled.div`
   margin: 10px auto;
   width: 1000px;
@@ -50,6 +51,14 @@ function Comments(props) {
             );
           })
         : ""}
+      <CommentsNumbers
+        commentPage={props.commentPage}
+        setCommentPage={props.setCommentPage}
+        start={props.comments.start}
+        end={props.comments.end}
+        prev={props.comments.prev}
+        next={props.comments.next}
+      />
     </CommentBox>
   );
 }

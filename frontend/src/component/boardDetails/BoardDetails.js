@@ -101,7 +101,9 @@ const BoardDetails = () => {
       deleteBoardApi(boardId, accessToken, navigate);
     }
   };
-  console.log(comments);
+
+  console.log(commentPage);
+
   return (
     <>
       <MainHeader />
@@ -135,7 +137,11 @@ const BoardDetails = () => {
         </ContentHeader>
         <ContentImg>이미지</ContentImg>
         <BoardBody data={data} />
-        <Comments comments={comments} />
+        <Comments
+          comments={comments ? comments : ""}
+          commentPage={commentPage}
+          setCommentPage={setCommentPage}
+        />
       </Outside>
     </>
   );

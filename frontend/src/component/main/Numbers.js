@@ -51,7 +51,7 @@ function Numbers(props) {
       <Footer>
         {props.prev ? <PervButton>〈 이전</PervButton> : ""}
         {range(props.start, props.end + 1).map((index) => {
-          return <NumberButton>1</NumberButton>;
+          return <NumberButton>{index}</NumberButton>;
         })}
         {props.next ? <NextButton>다음 〉</NextButton> : ""}
       </Footer>
