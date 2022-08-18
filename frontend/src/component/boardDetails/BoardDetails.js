@@ -101,7 +101,7 @@ const BoardDetails = () => {
       deleteBoardApi(boardId, accessToken, navigate);
     }
   };
-
+  console.log(accessToken);
   return (
     <>
       <MainHeader />
@@ -109,7 +109,7 @@ const BoardDetails = () => {
         <ContentHeader>
           <Title>{data ? data.title : ""}</Title>
           {data ? (
-            data.isUser === 2 ? (
+            data.isUser === "USER" ? (
               <>
                 <EditButton
                   onClick={() => {
@@ -124,7 +124,7 @@ const BoardDetails = () => {
                   삭제
                 </DeleteButton>
               </>
-            ) : data.isUser === 1 ? (
+            ) : data.isUser === "NOTUSER" ? (
               <ConnectButton onClick={match}>연락하기</ConnectButton>
             ) : (
               ""

@@ -7,7 +7,7 @@ const BoardList = styled.div`
 const BoardBox = styled.div`
   display: inline-block;
   width: 300px;
-  height: 365px;
+  height: 410px;
   border: 5px solid black;
   margin: 20px;
 `;
@@ -53,12 +53,13 @@ function Boards(props) {
               return (
                 <BoardBox
                   onClick={() => {
-                    props.navigate("/");
+                    props.navigate("/board/" + board.boardId);
                   }}
                 >
                   <ImgBox>이미지</ImgBox>
-                  <BoardTitle>제목: {board.title}</BoardTitle>
-                  <Salary>작성자: {board.nickName}</Salary>
+                  <BoardTitle>{board.title}</BoardTitle>
+                  <Salary>{board.pay} 원</Salary>
+                  <Location>{board.city}</Location>
                   <Location>
                     {date.getYear() + 1900}년 {date.getMonth()}월{" "}
                     {date.getDay()}일 {date.getHours()}시 {date.getMinutes()}분

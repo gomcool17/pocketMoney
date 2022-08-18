@@ -18,8 +18,24 @@ const Comment = styled.div`
   overflow: auto;
   border: 5px solid blue;
 `;
+const Header = styled.div``;
 const Writer = styled.div`
+  display: inline-block;
   font-size: 15px;
+`;
+const EditButton = styled.div`
+  margin-left: 720px;
+  display: inline-block;
+  font-size: 15px;
+  color: gray;
+  cursor: pointer;
+`;
+const DeleteButton = styled.div`
+  margin-left: 10px;
+  display: inline-block;
+  font-size: 15px;
+  color: gray;
+  cursor: pointer;
 `;
 const Content = styled.div`
   font-size: 30px;
@@ -32,6 +48,7 @@ const CreatedDate = styled.div`
 `;
 
 function Comments(props) {
+  console.log(props.comments);
   return (
     <CommentBox>
       {props.comments
@@ -40,7 +57,17 @@ function Comments(props) {
 
             return (
               <Comment>
-                <Writer>작성자: {comment.nickName}</Writer>
+                <Header>
+                  <Writer>작성자: {comment.nickName}</Writer>
+                  {comment.state === "USER" ? (
+                    <React.Fragment>
+                      <EditButton>수정</EditButton>
+                      <DeleteButton>삭제</DeleteButton>
+                    </React.Fragment>
+                  ) : (
+                    ""
+                  )}
+                </Header>
                 <Content>{comment.content}</Content>
                 <CreatedDate>
                   {" "}
@@ -50,7 +77,7 @@ function Comments(props) {
               </Comment>
             );
           })
-        : ""}
+        : "댓글이 없습니다!"}
       <CommentsNumbers
         commentPage={props.commentPage}
         setCommentPage={props.setCommentPage}
