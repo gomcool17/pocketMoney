@@ -48,7 +48,6 @@ const CreatedDate = styled.div`
 `;
 
 function Comments(props) {
-  console.log(props.comments);
   return (
     <CommentBox>
       {props.comments

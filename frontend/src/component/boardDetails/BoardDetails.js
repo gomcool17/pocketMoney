@@ -8,6 +8,7 @@ import findBoardApi from "../../api/board/FindBoardApi";
 import { ACCESS_TOKEN } from "./../../constant/LocalStorage";
 import deleteBoardApi from "../../api/board/DeleteBoardApi";
 import findCommentApi from "./../../api/comment/FindCommentApi";
+import CommentWrite from "./CommentWrite";
 
 const Outside = styled.div`
   width: 1050px;
@@ -69,7 +70,7 @@ const ContentImg = styled.div`
 
 const BoardDetails = () => {
   const navigate = useNavigate();
-  const accessToken = sessionStorage.getItem(ACCESS_TOKEN);
+  const accesstoken = sessionStorage.getItem(ACCESS_TOKEN);
   const match = () => {
     alert("매칭테스트 성공");
   };
@@ -81,7 +82,7 @@ const BoardDetails = () => {
   const [comments, setComments] = useState();
 
   useEffect(() => {
-    findBoardApi(accessToken, boardId, navigate).then((dataPromise) => {
+    findBoardApi(accesstoken, boardId, navigate).then((dataPromise) => {
       if (dataPromise === null) {
         alert("존재하지 않는 구인 글 입니다!!!!");
         navigate("/");
@@ -91,17 +92,17 @@ const BoardDetails = () => {
   }, []);
 
   useEffect(() => {
-    findCommentApi(accessToken, boardId, commentPage).then((dataPromise) => {
+    findCommentApi(accesstoken, boardId, commentPage).then((dataPromise) => {
       setComments(dataPromise);
     });
   }, [commentPage]);
 
   const onDeleteButtonClicked = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
-      deleteBoardApi(boardId, accessToken, navigate);
+      deleteBoardApi(boardId, accesstoken, navigate);
     }
   };
-  console.log(accessToken);
+
   return (
     <>
       <MainHeader />
@@ -135,6 +136,15 @@ const BoardDetails = () => {
         </ContentHeader>
         <ContentImg>이미지</ContentImg>
         <BoardBody data={data} />
+        {data ? (
+          data.isUser === "NOLOGIN" ? (
+            ""
+          ) : (
+            <CommentWrite boardId={boardId} setComments={setComments} />
+          )
+        ) : (
+          ""
+        )}
         <Comments
           comments={comments ? comments : ""}
           commentPage={commentPage}
