@@ -46,8 +46,8 @@ public class CommentController {
     }
 
     @GetMapping("/{boardId}/{num}")
-    public ResponseEntity<CommentResponseListDto> commentList(@PathVariable("boardId") Long id, @PathVariable("num") int num)
+    public ResponseEntity<CommentResponseListDto> commentList(@AuthenticationPrincipal User user, @PathVariable("boardId") Long id, @PathVariable("num") int num)
     {
-        return ResponseEntity.ok(commentService.commentList(id, num));
+        return ResponseEntity.ok(commentService.commentList(user, id, num));
     }
 }

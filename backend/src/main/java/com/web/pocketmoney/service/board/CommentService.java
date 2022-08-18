@@ -1,5 +1,6 @@
 package com.web.pocketmoney.service.board;
 
+import com.web.pocketmoney.dto.UserState;
 import com.web.pocketmoney.dto.commet.*;
 import com.web.pocketmoney.entity.board.Board;
 import com.web.pocketmoney.entity.board.BoardRepository;
@@ -89,17 +90,28 @@ public class CommentService {
     }
 
     @Transactional
-    public CommentResponseListDto commentList(Long id, int num)
+    public CommentResponseListDto commentList(User user, Long id, int num)
     {
         Board boards = boardRepository.findById(id).orElseThrow(CBoardIdFailedException::new);
         List<Comment> comments = commentRepository.findAll(Sort.by(Sort.Direction.DESC, "createTime"));
+
         int total = comments.size();
         PageVo page = new PageVo(new CriteriaVo(num, 10, total), total);
 
         List<CommentListDto> list = new ArrayList<>();
         for(int i=page.getCri().getStart(); i<=page.getCri().getEnd();i++) {
             log.info(comments.get(i).toString());
-            list.add(new CommentListDto(comments.get(i).getId(), comments.get(i).getText(), comments.get(i).getUserId().getNickName(),comments.get(i).getCreateTime()));
+            UserState state;
+            if(user == null) {
+                state = UserState.NOLOGIN;
+            }
+            else if(user.getId() == comments.get(i).getUserId().getId()) {
+                state = UserState.USER;
+            }
+            else {
+                state = UserState.NOTUSER;
+            }
+            list.add(new CommentListDto(comments.get(i).getId(), comments.get(i).getText(), comments.get(i).getUserId().getNickName(),comments.get(i).getCreateTime(), state));
         }
 
         for(CommentListDto commentListDto : list) {
