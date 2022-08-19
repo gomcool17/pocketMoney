@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import CommentsNumbers from "./CommentsNumbers";
 import CommentWrite from "./CommentWrite";
+import deleteCommentApi from "./../../api/comment/DeleteCommentApi";
+import { ACCESS_TOKEN } from "./../../constant/LocalStorage";
+import findCommentApi from "./../../api/comment/FindCommentApi";
 const CommentBox = styled.div`
   margin: 10px auto;
   width: 1000px;
@@ -49,9 +52,21 @@ const CreatedDate = styled.div`
 `;
 
 function Comments(props) {
+  const accesstoken = sessionStorage.getItem(ACCESS_TOKEN);
   function editComment(idx) {
     document.getElementById(idx).style.display = "none";
     document.getElementById("edit" + idx).style.display = "block";
+  }
+  function deleteComment(id) {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      deleteCommentApi(
+        props.boardId,
+        id,
+        accesstoken,
+        props.comments,
+        props.setComments
+      );
+    }
   }
 
   return (
@@ -69,7 +84,9 @@ function Comments(props) {
                       <EditButton onClick={() => editComment(idx)}>
                         수정
                       </EditButton>
-                      <DeleteButton>삭제</DeleteButton>
+                      <DeleteButton onClick={() => deleteComment(comment.id)}>
+                        삭제
+                      </DeleteButton>
                     </React.Fragment>
                   ) : (
                     ""

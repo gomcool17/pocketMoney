@@ -8,7 +8,7 @@ import { useNavigate } from "react-router";
 
 const Outside = styled.div`
   margin: 10px auto;
-  width: 1000px;
+  width: 850px;
   padding: 10px;
   display: flex;
   flex-direction: row;
@@ -22,7 +22,7 @@ const StyledTextarea = styled.textarea`
   padding: 3px 10px 10px 10px;
   height: 40px;
   max-height: 120px;
-  width: 80%;
+  width: 100%;
   resize: none;
 `;
 
@@ -98,7 +98,7 @@ const CommentWrite = ({
           }
         }}
       >
-        등록
+        {edit ? "수정" : "등록"}
       </CommentWritingButton>
     </Outside>
   );
