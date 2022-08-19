@@ -26,7 +26,7 @@ public interface MessageService {
 
     default Message dtoToEntity(MessageSaveDto messageSaveDto){
         Message message = Message.builder()
-                .chatRoom(ChatRoom.builder().id(messageSaveDto.getRoomid()).build())
+                .chatRoom(ChatRoom.builder().id(messageSaveDto.getRoomId()).build())
                 .writerNickName(messageSaveDto.getWriter())
                 .message(messageSaveDto.getMessage())
                 .build();

@@ -1,5 +1,6 @@
 package com.web.pocketmoney.dto.board;
 
+import com.web.pocketmoney.dto.UserState;
 import com.web.pocketmoney.entity.board.Board;
 import lombok.Builder;
 import lombok.Data;
@@ -18,5 +19,6 @@ public class BoardDto {
     private int pay;
     private int view;
     private String nickName;
-    private int isUser; //
+    private UserState isUser;
+    //private int isUser; //
 }

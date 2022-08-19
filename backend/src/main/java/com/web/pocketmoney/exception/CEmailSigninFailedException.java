@@ -10,6 +10,6 @@ public class CEmailSigninFailedException extends RuntimeException {
     }
 
     public CEmailSigninFailedException() {
-        super();
+        super("해당 계정이 존재하지 않음");
     }
 }

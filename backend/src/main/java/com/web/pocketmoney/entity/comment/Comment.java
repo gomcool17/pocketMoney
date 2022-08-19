@@ -26,6 +26,7 @@ public class Comment extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private User userId;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private Board boardId;

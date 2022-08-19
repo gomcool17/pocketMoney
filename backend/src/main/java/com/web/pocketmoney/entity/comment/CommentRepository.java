@@ -14,5 +14,8 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     @Query("update Comment c set c.text = :text where c.id = :id")
     String updateText(@Param("text") String text, @Param("id") Long id);
 
+    @Modifying
+    @Query("select c from Comment c where c.boardId.id = :id order by c.createTime desc")
+    List<Comment> findAllByBoardId(@Param("id") Long id);
    // List<Comment> findAll(Sort.Direction desc, Long id);
 }

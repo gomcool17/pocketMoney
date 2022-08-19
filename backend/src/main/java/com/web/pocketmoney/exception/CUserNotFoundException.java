@@ -10,6 +10,6 @@ public class CUserNotFoundException extends RuntimeException{
     }
 
     public CUserNotFoundException() {
-        super();
+        super("해당 유저를 찾을 수 없음");
     }
 }

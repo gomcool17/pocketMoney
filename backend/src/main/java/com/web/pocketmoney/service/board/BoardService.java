@@ -1,11 +1,14 @@
 package com.web.pocketmoney.service.board;
 
+import com.web.pocketmoney.dto.UserState;
 import com.web.pocketmoney.dto.board.*;
 import com.web.pocketmoney.entity.board.Board;
 import com.web.pocketmoney.entity.board.BoardRepository;
 import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.exception.CBoardIdFailedException;
 import com.web.pocketmoney.exception.CNoBoardAndUserException;
+import com.web.pocketmoney.exception.CNotSameUserException;
+import com.web.pocketmoney.exception.handler.ErrorCode;
 import com.web.pocketmoney.vo.CriteriaVo;
 import com.web.pocketmoney.vo.PageVo;
 import lombok.RequiredArgsConstructor;
@@ -59,7 +62,7 @@ public class BoardService {
     {
         Board board = boardRepository.findById(id).orElseThrow(CBoardIdFailedException::new);
         if(user.getId() != board.getUser().getId()) {
-            throw new CNoBoardAndUserException();
+            throw new CNotSameUserException();
         }
         int[] arr = dto.getDate();
         LocalDateTime dateTime = LocalDateTime.of(arr[0], arr[1], arr[2], arr[3], arr[4]);
@@ -88,7 +91,7 @@ public class BoardService {
     {
         Board board = boardRepository.findById(id).orElseThrow(CBoardIdFailedException::new);
         if(user.getId() != board.getUser().getId()) {
-            throw new CNoBoardAndUserException();
+            throw new CNotSameUserException();
         }
         boardRepository.delete(board);
         return id;
@@ -100,14 +103,15 @@ public class BoardService {
         Board board = boardRepository.findById(id).orElseThrow(CBoardIdFailedException::new);
         boardRepository.updateView(id);
         int isUser;
+        UserState state;
         if(user == null) {
-            isUser=0;
+            state = UserState.NOLOGIN;
         }
         else if(user.getId() != board.getUser().getId()) {
-            isUser = 1;
+            state = UserState.NOTUSER;
         }
         else {
-            isUser=2;
+            state = UserState.USER;
         }
         return BoardDto.builder()
                 .dayOfWeek(board.getDayOfWeek())
@@ -119,7 +123,7 @@ public class BoardService {
                 .pay(board.getPay())
                 .view(board.getView())
                 .area(board.getArea())
-                .isUser(isUser)
+                .isUser(state)
         .build();
     }
 
@@ -137,7 +141,9 @@ public class BoardService {
 
        List<BoardListDto> bd = new ArrayList<>();
        for(int i=page.getCri().getStart(); i<=page.getCri().getEnd(); i++) {
-           bd.add(new BoardListDto(boards.get(i).getTitle(), boards.get(i).getView(), boards.get(i).getCreateTime(), boards.get(i).getUser().getNickName()));
+           bd.add(new BoardListDto(boards.get(i).getTitle(),
+                   boards.get(i).getView(), boards.get(i).getCreateTime(), boards.get(i).getArea(),
+                   boards.get(i).getPay(), boards.get(i).getId(), boards.get(i).getWantedTime()));
        }
        return new BoardResponseListDto(bd,page.getStartPage(), page.getEndPage(), page.isPrev(), page.isNext());
     }
@@ -160,7 +166,9 @@ public class BoardService {
 
         List<BoardListDto> bd = new ArrayList<>();
         for(int i=page.getCri().getStart(); i<=page.getCri().getEnd(); i++) {
-            bd.add(new BoardListDto(boards.get(i).getTitle(), boards.get(i).getView(), boards.get(i).getCreateTime(), boards.get(i).getUser().getNickName()));
+            bd.add(new BoardListDto(boards.get(i).getTitle(),
+                    boards.get(i).getView(), boards.get(i).getCreateTime(), boards.get(i).getArea(),
+                    boards.get(i).getPay(), boards.get(i).getId(), boards.get(i).getWantedTime()));
         }
         BoardResponseListDto boardResponseListDto = new BoardResponseListDto(bd, start, end, page.isPrev(), page.isNext());
         return boardResponseListDto;

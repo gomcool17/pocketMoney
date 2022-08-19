@@ -1,6 +1,6 @@
 package com.web.pocketmoney.exception.handler;
 
-import com.web.pocketmoney.exception.ChatRoomNotFoundException;
+import com.web.pocketmoney.exception.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,5 +17,26 @@ public class GlobalExceptionHandler {
         ErrorResponse response = new ErrorResponse(ex.getErrorCode());
         response.setMessage(ex.getMessage());
         return new ResponseEntity<>(response, HttpStatus.valueOf(ex.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler({CBoardIdFailedException.class, CCommentIdFindFailedException.class,
+            CEmailSigninFailedException.class, CEmailSignupFailedException.class,
+            CNickNameSignupFailedException.class, CPasswordSigninFailedException.class})
+    public ResponseEntity<ErrorResponse> handleNotFoundException(
+            Exception e) {
+        ErrorResponse response = new ErrorResponse(ErrorCode.NOT_FOUND, e.getMessage());
+        log.info(response.toString());
+        return ResponseEntity.status(HttpStatus.valueOf(response.getStatus()))
+                .body(response);
+    }
+
+    @ExceptionHandler({CNoBoardAndUserException.class,CNotSameUserException.class,
+            CUserNotFoundException.class})
+    public ResponseEntity<ErrorResponse> handleNotSameException(
+            Exception e) {
+        ErrorResponse response = new ErrorResponse(ErrorCode.FORBIDDEN, e.getMessage());
+        return ResponseEntity.status(HttpStatus.valueOf(response.getStatus()))
+                .body(response);
+
     }
 }
