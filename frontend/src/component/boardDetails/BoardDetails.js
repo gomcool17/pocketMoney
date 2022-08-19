@@ -140,15 +140,23 @@ const BoardDetails = () => {
           data.isUser === "NOLOGIN" ? (
             ""
           ) : (
-            <CommentWrite boardId={boardId} setComments={setComments} />
+            <CommentWrite
+              edit={false}
+              editContent={null}
+              boardId={boardId}
+              setComments={setComments}
+              commentId={null}
+            />
           )
         ) : (
           ""
         )}
         <Comments
+          boardId={boardId}
           comments={comments ? comments : ""}
           commentPage={commentPage}
           setCommentPage={setCommentPage}
+          setComments={setComments}
         />
       </Outside>
     </>

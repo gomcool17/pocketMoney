@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import CommentsNumbers from "./CommentsNumbers";
+import CommentWrite from "./CommentWrite";
 const CommentBox = styled.div`
   margin: 10px auto;
   width: 1000px;
@@ -48,10 +49,15 @@ const CreatedDate = styled.div`
 `;
 
 function Comments(props) {
+  function editComment(idx) {
+    document.getElementById(idx).style.display = "none";
+    document.getElementById("edit" + idx).style.display = "block";
+  }
+
   return (
     <CommentBox>
       {props.comments
-        ? props.comments.comments.map((comment) => {
+        ? props.comments.comments.map((comment, idx) => {
             let date = new Date(comment.timestamp);
 
             return (
@@ -60,14 +66,39 @@ function Comments(props) {
                   <Writer>작성자: {comment.nickName}</Writer>
                   {comment.state === "USER" ? (
                     <React.Fragment>
-                      <EditButton>수정</EditButton>
+                      <EditButton onClick={() => editComment(idx)}>
+                        수정
+                      </EditButton>
                       <DeleteButton>삭제</DeleteButton>
                     </React.Fragment>
                   ) : (
                     ""
                   )}
                 </Header>
-                <Content>{comment.content}</Content>
+                <Content id={idx}>
+                  {comment.content.split("\n").map((line) => {
+                    return (
+                      <>
+                        {line}
+                        <br />
+                      </>
+                    );
+                  })}
+                </Content>
+                <div
+                  id={"edit" + idx}
+                  style={{
+                    display: "none",
+                  }}
+                >
+                  <CommentWrite
+                    edit={true}
+                    editContent={comment.content}
+                    boardId={props.boardId}
+                    setComments={props.setComments}
+                    commentId={comment.id}
+                  />
+                </div>
                 <CreatedDate>
                   {" "}
                   {date.getYear() + 1900}년 {date.getMonth()}월 {date.getDay()}
