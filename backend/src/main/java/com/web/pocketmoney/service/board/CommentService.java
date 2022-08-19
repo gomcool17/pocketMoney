@@ -93,8 +93,10 @@ public class CommentService {
     public CommentResponseListDto commentList(User user, Long id, int num)
     {
         Board boards = boardRepository.findById(id).orElseThrow(CBoardIdFailedException::new);
-        List<Comment> comments = commentRepository.findAll(Sort.by(Sort.Direction.DESC, "createTime"));
-
+        List<Comment> comments = commentRepository.findAllByBoardId(id);
+        for(Comment c : comments) {
+            log.info(c.toString());
+        }
         int total = comments.size();
         PageVo page = new PageVo(new CriteriaVo(num, 10, total), total);
 
