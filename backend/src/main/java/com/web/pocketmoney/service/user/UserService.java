@@ -1,4 +1,4 @@
-package com.web.pocketmoney.service;
+package com.web.pocketmoney.service.user;
 
 import com.web.pocketmoney.dto.user.LoginDTO;
 import com.web.pocketmoney.dto.user.SignupUserDTO;

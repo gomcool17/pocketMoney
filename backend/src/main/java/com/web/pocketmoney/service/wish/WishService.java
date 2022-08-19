@@ -14,7 +14,7 @@ public interface WishService {
 
     Long register(InsertWishDTO insertwishDTO);
 
-    void remove(Long id);
+    void remove(Long id, Long userId);
 
     WishPageResultDTO<WishDTO, Object[]> findAll(WishPageRequestDTO wishPageRequestDTO, Long id);
 

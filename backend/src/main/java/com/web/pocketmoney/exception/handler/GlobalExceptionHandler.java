@@ -19,6 +19,22 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.valueOf(ex.getErrorCode().getStatus()));
     }
 
+    @ExceptionHandler(CBoardNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleCBoardNotFoundException(CBoardNotFoundException ex){
+        log.error("handleUserNotFoundException", ex);
+        ErrorResponse response = new ErrorResponse(ex.getErrorCode());
+        response.setMessage(ex.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.valueOf(ex.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(CWishUserNotEqualCurrentException.class)
+    public ResponseEntity<ErrorResponse> handleCWishUserNotEqualCurrentException(CWishUserNotEqualCurrentException ex){
+        log.error("handleUserNotFoundException", ex);
+        ErrorResponse response = new ErrorResponse(ex.getErrorCode());
+        response.setMessage(ex.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.valueOf(ex.getErrorCode().getStatus()));
+    }
+
     @ExceptionHandler({CBoardIdFailedException.class, CCommentIdFindFailedException.class,
             CEmailSigninFailedException.class, CEmailSignupFailedException.class,
             CNickNameSignupFailedException.class, CPasswordSigninFailedException.class})

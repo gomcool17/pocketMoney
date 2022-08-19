@@ -4,26 +4,17 @@ package com.web.pocketmoney.controller.chatroom;
 //import com.web.pocketmoney.service.chat.ChatRoomService;
 import com.web.pocketmoney.dto.chatRoom.ChatRoomDetailDto;
 import com.web.pocketmoney.dto.chatRoom.ChatRoomSaveDto;
-import com.web.pocketmoney.entity.room.ChatRoom;
 import com.web.pocketmoney.entity.user.User;
-import com.web.pocketmoney.exception.ChatRoomNotFoundException;
-import com.web.pocketmoney.exception.handler.ErrorCode;
-import com.web.pocketmoney.service.UserService;
+import com.web.pocketmoney.service.user.UserService;
 import com.web.pocketmoney.service.room.ChatRoomService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
-
-import static com.web.pocketmoney.model.SessionConst.LOGIN_ID;
-import static com.web.pocketmoney.model.SessionConst.LOGIN_NICKNAME;
-import static org.springframework.messaging.simp.stomp.StompHeaders.LOGIN;
 
 @RestController
 //@Controller
@@ -51,7 +42,7 @@ public class ChatRoomController {
 
 
     //채팅방 삭제
-    @DeleteMapping("/{chatRoomId}")
+    @DeleteMapping("/{chatRoomId}") //@RequestMapping("/room")
     public ResponseEntity delete(@PathVariable("chatRoomId") Long id){
         log.info("ChatRoom : "+ id);
         chatRoomService.deleteById(id);
