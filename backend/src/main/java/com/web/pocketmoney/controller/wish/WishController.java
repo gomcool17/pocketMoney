@@ -44,7 +44,8 @@ public class WishController {
 
 
     @PostMapping("") //RequestMapping("/wish")
-    public ResponseEntity<Void> register(@RequestBody InsertWishDTO insertWishDTO){
+    public ResponseEntity<Void> register(@RequestBody InsertWishDTO insertWishDTO, @AuthenticationPrincipal User user){
+        insertWishDTO.setUserId(user.getId());
         wishService.register(insertWishDTO);
 
 //        return ResponseEntity.ok()
@@ -52,9 +53,9 @@ public class WishController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("") //RequestMapping("/wish")
-    public ResponseEntity<DefaultRes> remove(@AuthenticationPrincipal User user ){
-        wishService.remove(user.getId());
+    @DeleteMapping("/{id}") //RequestMapping("/wish")
+    public ResponseEntity<DefaultRes> remove(@PathVariable("id")Long id, @AuthenticationPrincipal User user){
+        wishService.remove(id, user.getId());
 
 //        return ResponseEntity.ok()
 //                .body(DefaultRes.res(StatusCode.NO_CONTENT, "관심 구인글 해제 완료!"));

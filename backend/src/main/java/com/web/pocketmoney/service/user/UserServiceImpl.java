@@ -1,4 +1,4 @@
-package com.web.pocketmoney.service;
+package com.web.pocketmoney.service.user;
 
 import com.web.pocketmoney.config.security.JwtTokenProvider;
 import com.web.pocketmoney.dto.user.LoginDTO;
@@ -8,7 +8,9 @@ import com.web.pocketmoney.dto.user.UserDTO;
 import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.entity.user.UserRepository;
 import com.web.pocketmoney.exception.*;
+import com.web.pocketmoney.exception.handler.ErrorCode;
 import com.web.pocketmoney.model.SingleResult;
+import com.web.pocketmoney.service.ResponseService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -37,7 +39,7 @@ public class UserServiceImpl implements UserService{
         log.info("userService :: "+ id);
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new CUserNotFoundException(
-                        "존재하지 않는 회원입니다."
+                        "존재하지 않는 회원입니다.", ErrorCode.NOT_FOUND
                 ));
         log.info("user :: "+user);
         return entityToDto(user);
@@ -51,8 +53,9 @@ public class UserServiceImpl implements UserService{
         // select를 해서 User오브젝트를 db로 부터 가져오는 이유는 영속화를 하기 위해서
         // 영속화된 오브젝트를 변경하면 DB에 Update문을 날려주기 때문
         log.info(userDTO.toString());
+
         User persistance = userRepository.findById(user.getId()).orElseThrow(()->{
-            return new CUserNotFoundException("회원 찾기 실패");
+            return new CUserNotFoundException("수정할 수 없습니다.", ErrorCode.NOT_FOUND);
         });
         log.info(persistance.toString());
         //oauth에 값이 없으면 수정 가능
@@ -81,7 +84,7 @@ public class UserServiceImpl implements UserService{
     public void delete(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new CUserNotFoundException(
-                        "존재하지 않는 회원입니다."
+                        "존재하지 않는 회원입니다.", ErrorCode.NOT_FOUND
                 ));
         log.info("not user ?" + user);
         userRepository.deleteById(user.getId());

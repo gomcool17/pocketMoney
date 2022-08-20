@@ -6,7 +6,7 @@ import com.web.pocketmoney.dto.user.TokenUserDTO;
 import com.web.pocketmoney.entity.user.UserRepository;
 import com.web.pocketmoney.model.SingleResult;
 import com.web.pocketmoney.service.ResponseService;
-import com.web.pocketmoney.service.UserService;
+import com.web.pocketmoney.service.user.UserService;
 import com.web.pocketmoney.dto.user.LoginDTO;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

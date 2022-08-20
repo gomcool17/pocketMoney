@@ -14,6 +14,8 @@ import java.time.LocalDateTime;
 @Builder
 public class MessageDetailDto {
 
+    //현재 로그인한 사용자 ID, 작성자 ID까지 WriterId
+
     //PK 메시지아이디
     private Long messageId;
     //참조하는 채팅방의 PK
@@ -22,7 +24,12 @@ public class MessageDetailDto {
     private LocalDateTime sendDate;
 
     private String roomName;
+    //작성자는 닉네임으로
     private String writer;
+    //작성자 아이디
+    private Long writerId;
+    //로그인한 사용자 아이디
+    private Long myId;
     private String message;
 
 //    public static MessageDetailDto toChatMessageDetailDto(Message message){

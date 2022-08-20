@@ -6,23 +6,15 @@ import com.web.pocketmoney.entity.message.Message;
 import com.web.pocketmoney.entity.room.ChatRoom;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public interface MessageService {
 
-    List<MessageDetailDto> findAllChatByRoomId(Long id);
+    List<MessageDetailDto> findAllChatByRoomId(Long id, Long userId);
 
-    void save(MessageSaveDto messageSaveDto);
+    Long save(MessageSaveDto messageSaveDto);
 
-    default MessageDetailDto entityToDto(Message message){
-        MessageDetailDto messageDetailDto = MessageDetailDto.builder()
-                .messageId(message.getId())
-                .chatRoomId(message.getChatRoom().getId())
-                .roomName(message.getChatRoom().getRoomName())
-                .writer(message.getWriterNickName())
-                .message(message.getMessage())
-                .build();
-        return messageDetailDto;
-    }
+    MessageDetailDto findOne(Long messageId, Long userId);
 
     default Message dtoToEntity(MessageSaveDto messageSaveDto){
         Message message = Message.builder()
