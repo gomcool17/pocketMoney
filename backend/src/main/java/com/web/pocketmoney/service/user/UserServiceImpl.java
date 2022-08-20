@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService{
         log.info(userDTO.toString());
 
         User persistance = userRepository.findById(user.getId()).orElseThrow(()->{
-            return new CUserNotFoundException("수정할 수 없습니다.", ErrorCode.FORBIDDEN);
+            return new CUserNotFoundException("수정할 수 없습니다.", ErrorCode.NOT_FOUND);
         });
         log.info(persistance.toString());
         //oauth에 값이 없으면 수정 가능

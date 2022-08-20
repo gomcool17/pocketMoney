@@ -50,11 +50,15 @@ public class WishServiceImpl implements WishService{
     @Override
     public void remove(Long id, Long userId) {
 
+
+
         Wish wish = wishRepository.findById(id)
                 .orElseThrow(() -> new CWishNotFoundException(
                         "관심글이 존재하지 않습니다..", ErrorCode.FORBIDDEN
                 ));
-        if(!wish.getUserId().equals(userId)){
+
+        log.info("wish : "+wish.getUserId().getId(), userId);
+        if(!(wish.getUserId().getId().equals(userId))){
             throw new CWishUserNotEqualCurrentException("해당 관심글을 지울 수 있는 권한이 없습니다.", ErrorCode.FORBIDDEN);
         }
         wishRepository.deleteById(wish.getId());

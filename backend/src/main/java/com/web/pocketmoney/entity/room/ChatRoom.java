@@ -4,8 +4,10 @@ import com.web.pocketmoney.entity.message.Message;
 import com.web.pocketmoney.entity.user.User;
 import lombok.*;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +62,10 @@ public class ChatRoom {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User employeeId;
+
+    @CreatedDate
+    @Column(name = "regdate", updatable = false)
+    private LocalDateTime regDate;
 
     //객체의 두 관계중 하나를 연관관계의 주인으로 지정한다.
     //연관관계의 주인만이 외래 키를 관리(등록, 수정)한다. DB에 접근한다.

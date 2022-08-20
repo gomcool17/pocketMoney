@@ -3,6 +3,8 @@ package com.web.pocketmoney.controller.chatroom;
 //import com.web.pocketmoney.dto.chatRoom.ChatRoomDto;
 //import com.web.pocketmoney.service.chat.ChatRoomService;
 import com.web.pocketmoney.dto.chatRoom.ChatRoomDetailDto;
+import com.web.pocketmoney.dto.chatRoom.ChatRoomListDto;
+import com.web.pocketmoney.dto.chatRoom.ChatRoomRequestDto;
 import com.web.pocketmoney.dto.chatRoom.ChatRoomSaveDto;
 import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.service.user.UserService;
@@ -28,8 +30,8 @@ public class ChatRoomController {
 
     //모든 채팅방 불러오기
     @GetMapping("/list") //RequestMapping("/room")
-    public ResponseEntity<List<ChatRoomDetailDto>> myChatRoom(@AuthenticationPrincipal User user){
-        List<ChatRoomDetailDto> roomDetailDtoList = chatRoomService.findAllRooms(user.getId());
+    public ResponseEntity<List<ChatRoomListDto>> myChatRoom(@AuthenticationPrincipal User user){
+        List<ChatRoomListDto> roomDetailDtoList = chatRoomService.findAllRooms(user.getId());
         return ResponseEntity.ok(roomDetailDtoList);
     }
 
@@ -51,23 +53,24 @@ public class ChatRoomController {
 
     //채팅방 개설
     @PostMapping("") //RequestMapping("room")
-    public ResponseEntity create(@RequestBody ChatRoomSaveDto chatRoomSaveDto,@AuthenticationPrincipal User user){
+    public ResponseEntity create(@RequestBody ChatRoomRequestDto chatRoomRequestDto, @AuthenticationPrincipal User user){
+
 //        Long userId = (Long) session.getAttribute(LOGIN_ID);
         //채팅을 거는 것은 구직자이므로 현재 로그인한 유저
-        chatRoomSaveDto.setEmployeeId(user.getId());
-        log.info(chatRoomSaveDto);
+        Long userId = user.getId();
+        log.info(chatRoomRequestDto);
 //        String userNickName = (String) session.getAttribute(LOGIN_NICKNAME);
         String userNickName = user.getNickName();
 
-        log.info("# Create Chat Room, name : "+ chatRoomSaveDto.getName());
-        chatRoomService.createRoom(chatRoomSaveDto);
+        log.info("# Create Chat Room, name : "+ chatRoomRequestDto.getName());
+        chatRoomService.createRoom(chatRoomRequestDto, userId);
 
         return ResponseEntity.noContent().build();
     }
 
     //채팅방 조회
     @GetMapping("/{roomId}") // RequestMapping("room")
-    public ResponseEntity<ChatRoomDetailDto> getRoom(@PathVariable Long roomId, HttpSession session, @AuthenticationPrincipal User user){
+    public ResponseEntity<ChatRoomDetailDto> getRoom(@PathVariable Long roomId, @AuthenticationPrincipal User user){
 //        Long userId = (Long) session.getAttribute(LOGIN_ID);
 //        String userNickName = userService.getUser(userId).getNickName();
 

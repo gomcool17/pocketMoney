@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -17,8 +18,11 @@ public class ChatRoomDetailDto {
 
     private Long id;
     private String name;
-    private Long employerId;
-    private Long employeeId;
+    
+    //생성날짜랑, 상대방유저
+    private LocalDateTime regDate;
+    private Long userId;
+    private String nickName;
 
     private List<MessageDetailDto> messageDetailDtoList;
 

@@ -35,6 +35,23 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.valueOf(ex.getErrorCode().getStatus()));
     }
 
+    @ExceptionHandler(CMessageNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleCMessageNotFoundException(CMessageNotFoundException ex){
+        log.error("CMessageNotFoundException", ex);
+        ErrorResponse response = new ErrorResponse(ex.getErrorCode());
+        response.setMessage(ex.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.valueOf(ex.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(CUserNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleCUserNotFoundException(CUserNotFoundException ex){
+        log.error("CUserNotFoundException", ex);
+        ErrorResponse response = new ErrorResponse(ex.getErrorCode());
+        response.setMessage(ex.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.valueOf(ex.getErrorCode().getStatus()));
+    }
+
+
     @ExceptionHandler({CBoardIdFailedException.class, CCommentIdFindFailedException.class,
             CEmailSigninFailedException.class, CEmailSignupFailedException.class,
             CNickNameSignupFailedException.class, CPasswordSigninFailedException.class})
@@ -47,7 +64,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler({CNoBoardAndUserException.class,CNotSameUserException.class,
-            CUserNotFoundException.class})
+           })
     public ResponseEntity<ErrorResponse> handleNotSameException(
             Exception e) {
         ErrorResponse response = new ErrorResponse(ErrorCode.FORBIDDEN, e.getMessage());
