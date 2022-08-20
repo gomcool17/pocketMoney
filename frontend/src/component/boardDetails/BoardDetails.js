@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import styled from "styled-components";
-import MainHeader from "../MainHeader";
 import Comments from "./Comments";
 import BoardBody from "./BoardBody";
 import findBoardApi from "../../api/board/FindBoardApi";
@@ -105,7 +104,6 @@ const BoardDetails = () => {
 
   return (
     <>
-      <MainHeader />
       <Outside>
         <ContentHeader>
           <Title>{data ? data.title : ""}</Title>

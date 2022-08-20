@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import MainHeader from "../MainHeader";
 import CancelButton from "../CancelButton";
 import TitleBlock from "./TitleBlock";
 import ContentBox from "./ContentBox";
@@ -80,7 +79,6 @@ function BoardWrite() {
 
   return (
     <>
-      <MainHeader />
       <Outside>
         <CancelButton navigate={navigate} />
         <TitleBlock title={title} setTitle={setTitle} />

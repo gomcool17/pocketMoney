@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
-import { ACCESS_TOKEN } from "../constant/LocalStorage";
+import { ACCESS_TOKEN } from "./../../constant/LocalStorage";
+import searchBoardApi from "./../../api/board/SearchBoardApi";
 
 const Header = styled.div`
   min-width: 1050px;
@@ -83,16 +84,18 @@ const Logout = styled.div`
   border: 5px solid blue;
 `;
 
-function MainHeader() {
+function MainHeader(props) {
   const navigate = useNavigate();
   const token = sessionStorage.getItem(ACCESS_TOKEN);
-  const [sword, setSword] = useState("");
+
   const search = () => {
-    if (!sword.length) {
+    if (!props.sword.length) {
       alert("검색어를 입력해주세요");
     } else {
-      alert(sword);
-      setSword("");
+      searchBoardApi(props.sword, props.num).then((dataPromise) => {
+        props.setBoards(dataPromise);
+      });
+      props.setSearch(true);
     }
   };
   const enterKey = () => {
@@ -114,8 +117,8 @@ function MainHeader() {
           <Search>
             <Searchinput
               type="text"
-              value={sword}
-              onChange={(e) => setSword(e.target.value.trim())}
+              value={props.sword}
+              onChange={(e) => props.setSword(e.target.value.trim())}
               onKeyUp={enterKey}
             />
             <Serachsubmit>
