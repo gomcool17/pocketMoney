@@ -1,7 +1,11 @@
 import styled from "styled-components";
-import MainHeader from "../MainHeader";
 import Boards from "./Boards";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import Numbers from "./Numbers";
+import { useState, useEffect } from "react";
+import findBorldListApi from "./../../api/board/FindBorldListApi";
+import MainHeader from "./MainHeader";
+import searchBoardApi from "./../../api/board/SearchBoardApi";
 
 const Outside = styled.div`
   width: 1050px;
@@ -39,9 +43,31 @@ const FindWork = styled.div`
 
 function DefaultPage() {
   const navigate = useNavigate();
+  const [sword, setSword] = useState("");
+  const [search, setSearch] = useState(false);
+  const [num, setNum] = useState(1);
+  const [boards, setBoards] = useState("");
+  useEffect(() => {
+    if (search) {
+      searchBoardApi(sword, num).then((dataPromise) => {
+        setBoards(dataPromise);
+      });
+    } else {
+      findBorldListApi(num ? num : 1).then((dataPromise) => {
+        setBoards(dataPromise);
+      });
+    }
+  }, [num]);
+
   return (
     <>
-      <MainHeader />
+      <MainHeader
+        setBoards={setBoards}
+        setSearch={setSearch}
+        sword={sword}
+        setSword={setSword}
+        num={num}
+      />
       <Outside>
         <TitleLogo>PocketMoney</TitleLogo>
         <LocalWork>근처 일자리</LocalWork>
@@ -52,7 +78,15 @@ function DefaultPage() {
         >
           일자리 구인
         </FindWork>
-        <Boards />
+        <Boards boards={boards.boards} navigate={navigate} />
+        <Numbers
+          num={num}
+          setNum={setNum}
+          start={boards.start}
+          end={boards.end}
+          prev={boards.prev}
+          next={boards.next}
+        />
       </Outside>
     </>
   );

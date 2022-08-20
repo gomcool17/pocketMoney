@@ -11,7 +11,7 @@ function findBoardApi(accesstoken, boardId, navigate) {
     .get(BACKEND_ADDRESS + "/boards/" + boardId, config)
     .then((response) => response.data)
     .catch((error) => {
-      if (error.response.status === 500) {
+      if (error.response.status === 404) {
         return null;
       }
     });
