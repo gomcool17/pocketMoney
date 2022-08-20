@@ -88,7 +88,18 @@ function BoardBody(props) {
           );
         })}
       </SubInf>
-      <Content>{props.data ? props.data.content : ""}</Content>
+      <Content>
+        {props.data
+          ? props.data.content.split("\n").map((line) => {
+              return (
+                <>
+                  {line}
+                  <br />
+                </>
+              );
+            })
+          : ""}
+      </Content>
     </ContentBox>
   );
 }
