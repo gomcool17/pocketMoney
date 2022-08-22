@@ -1,6 +1,8 @@
 package com.web.pocketmoney.entity.board;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.web.pocketmoney.entity.comment.Comment;
 import com.web.pocketmoney.entity.user.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -42,6 +44,9 @@ public class Board {
     //@CollectionTable(name = "dayOfWeek")
     @Convert(converter = IntegerArrayConverter.class)
     private List<Integer> dayOfWeek;
+
+    @OneToMany(mappedBy = "boardId", cascade = CascadeType.REMOVE)
+    private List<Comment> comments = new ArrayList<>();
 
     @Column(nullable = false) // 희망 시급
     private int pay;

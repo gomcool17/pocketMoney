@@ -30,6 +30,7 @@ public class Comment extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private Board boardId;
+
     private String text;
 
     @CreationTimestamp
