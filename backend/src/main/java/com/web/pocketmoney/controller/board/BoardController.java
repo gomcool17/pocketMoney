@@ -63,4 +63,10 @@ public class BoardController {
     {
         return ResponseEntity.ok(boardService.boardSearchList(str, num));
     }
+
+    @GetMapping("/listCity/{search}/{num}")
+    public ResponseEntity<BoardResponseListDto> boardSearchByArea(@PathVariable("search") String str, @PathVariable("num") int num)
+    {
+        return ResponseEntity.ok(boardService.boardSearchListByCity(str, num));
+    }
 }

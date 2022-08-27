@@ -18,7 +18,9 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     @Query("select b from Board b where b.title like %:search% order by b.createTime desc")
     List<Board> searchBoards(@Param("search") String search);
 
-
+    @Modifying
+    @Query("select b from Board b where b.area like %:search% order by b.createTime desc")
+    List<Board> searchBoardByArea(@Param("search") String search);
     /*@Query("SELECT u.username FROM User u WHERE u.username LIKE CONCAT('%',:username,'%')")
     List<String> findUsersWithPartOfName(@Param("username") String username);*/
 

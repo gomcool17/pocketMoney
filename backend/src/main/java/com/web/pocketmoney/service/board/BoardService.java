@@ -173,4 +173,30 @@ public class BoardService {
         BoardResponseListDto boardResponseListDto = new BoardResponseListDto(bd, start, end, page.isPrev(), page.isNext());
         return boardResponseListDto;
     }
+
+    @Transactional
+    public BoardResponseListDto boardSearchListByCity(String str, int num)
+    {
+        log.info("search list");
+        List<Board> boards = (List<Board>) boardRepository.searchBoardByArea(str);
+        if(boards == null) {
+            return new BoardResponseListDto(null, 1,1, false, false);
+        }
+
+        int total = boards.size();
+        log.info("total : " + total);
+        PageVo page = new PageVo(new CriteriaVo(num,10, total), total);
+
+        int start = page.getStartPage();
+        int end = page.getEndPage();
+
+        List<BoardListDto> bd = new ArrayList<>();
+        for(int i=page.getCri().getStart(); i<=page.getCri().getEnd(); i++) {
+            bd.add(new BoardListDto(boards.get(i).getTitle(),
+                    boards.get(i).getView(), boards.get(i).getCreateTime(), boards.get(i).getArea(),
+                    boards.get(i).getPay(), boards.get(i).getId(), boards.get(i).getWantedTime()));
+        }
+        BoardResponseListDto boardResponseListDto = new BoardResponseListDto(bd, start, end, page.isPrev(), page.isNext());
+        return boardResponseListDto;
+    }
 }
