@@ -23,14 +23,14 @@ public class S3Controller {
     private final S3Delete s3Delete;
 
 
-    @PostMapping("/image")
-    public ResponseEntity<S3UploadResponseDto> updateUserImage(@AuthenticationPrincipal User user, @RequestParam("images") MultipartFile multipartFile) throws IOException {
+    @PostMapping("/image/{boardId}")
+    public ResponseEntity<S3UploadResponseDto> updateUserImage(@AuthenticationPrincipal User user, @RequestParam("images") MultipartFile multipartFile, @PathVariable Long boardId) throws IOException {
         log.info("s3 Contorller : " + multipartFile);
-        return ResponseEntity.ok(s3Uploader.uploadFiles(multipartFile, "static"));
+        return ResponseEntity.ok(s3Uploader.uploadFiles(multipartFile, "static", user, boardId));
     }
 
-    @DeleteMapping("/image")
-    public void deleteUserImage(@RequestParam("images") String fileKey) {
+    @DeleteMapping("/image/{boardId}")
+    public void deleteUserImage(@AuthenticationPrincipal User user, @RequestParam("images") String fileKey, @PathVariable Long boardId) {
         log.info("deleteUserImage : " + fileKey);
         s3Delete.delete(fileKey);
     }

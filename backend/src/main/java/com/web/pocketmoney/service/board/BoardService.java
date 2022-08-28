@@ -9,6 +9,7 @@ import com.web.pocketmoney.exception.CBoardIdFailedException;
 import com.web.pocketmoney.exception.CNoBoardAndUserException;
 import com.web.pocketmoney.exception.CNotSameUserException;
 import com.web.pocketmoney.exception.handler.ErrorCode;
+import com.web.pocketmoney.service.aws.S3Delete;
 import com.web.pocketmoney.vo.CriteriaVo;
 import com.web.pocketmoney.vo.PageVo;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ import java.util.List;
 @Log4j2
 public class BoardService {
     private final BoardRepository boardRepository;
+    private final S3Delete s3Delete;
 
     @Transactional
     public BoardResponseDto save(User user, BoardRequestDto dto)
@@ -93,7 +95,9 @@ public class BoardService {
         if(user.getId() != board.getUser().getId()) {
             throw new CNotSameUserException();
         }
+        s3Delete.boardImageDelete(user, id);
         boardRepository.delete(board);
+
         return id;
     }
 

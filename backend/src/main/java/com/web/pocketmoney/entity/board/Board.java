@@ -3,6 +3,7 @@ package com.web.pocketmoney.entity.board;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.web.pocketmoney.entity.comment.Comment;
+import com.web.pocketmoney.entity.image.Image;
 import com.web.pocketmoney.entity.user.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -21,7 +22,6 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Board {
 
     @Id
@@ -47,6 +47,9 @@ public class Board {
 
     @OneToMany(mappedBy = "boardId", cascade = CascadeType.REMOVE)
     private List<Comment> comments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+    private List<Image> images = new ArrayList<>();
 
     @Column(nullable = false) // 희망 시급
     private int pay;
