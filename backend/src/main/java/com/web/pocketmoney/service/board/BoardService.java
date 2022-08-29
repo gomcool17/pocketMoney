@@ -108,6 +108,8 @@ public class BoardService {
                 .content(dto.getContent())
                 .dayOfWeek(dto.getDayOfWeek())
                 .pay(dto.getPay())
+                .fileKey(board.getFileKey())
+                .filePath(board.getFilePath())
                 .build();
     }
 
@@ -151,6 +153,7 @@ public class BoardService {
                 .view(board.getView())
                 .area(board.getArea())
                 .isUser(state)
+                .filePath(board.getFilePath())
         .build();
     }
 
