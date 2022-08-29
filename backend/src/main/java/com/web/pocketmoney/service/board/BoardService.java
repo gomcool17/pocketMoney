@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.mail.Multipart;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -76,8 +77,7 @@ public class BoardService {
     }
 
     @Transactional
-    public BoardResponseDto update(User user, BoardRequestDto dto, Long id)
-    {
+    public BoardResponseDto update(User user, BoardRequestDto dto, Long id, MultipartFile file) throws IOException {
         Board board = boardRepository.findById(id).orElseThrow(CBoardIdFailedException::new);
         if(user.getId() != board.getUser().getId()) {
             throw new CNotSameUserException();
@@ -91,6 +91,13 @@ public class BoardService {
         board.setTitle(dto.getTitle());
         board.setWantedTime(dateTime);
         String nickName = user.getNickName();
+
+        if(file != null) {
+            s3Delete.boardImageDelete(user, board.getFileKey());
+            S3UploadResponseDto s3 = s3Uploader.uploadFiles(file, "board", user);
+            board.setFileKey(s3.getKey());
+            board.setFilePath(s3.getPath());
+        }
         boardRepository.save(board);
 
         return BoardResponseDto.builder()

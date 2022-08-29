@@ -36,10 +36,10 @@ public class BoardController {
 
     @PutMapping("/{id}")
     public ResponseEntity<BoardResponseDto> updateBoard(@PathVariable("id") Long id,
-                                                        @RequestBody BoardRequestDto boardRequestDto,
-                                                        @AuthenticationPrincipal User user)
-    {
-        return ResponseEntity.ok(boardService.update(user, boardRequestDto, id));
+                                                        @RequestPart(value = "board") BoardRequestDto boardRequestDto,
+                                                        @RequestPart(value = "file", required = false) MultipartFile file,
+                                                        @AuthenticationPrincipal User user) throws IOException {
+        return ResponseEntity.ok(boardService.update(user, boardRequestDto, id, file));
     }
 
     @DeleteMapping("/{id}")
