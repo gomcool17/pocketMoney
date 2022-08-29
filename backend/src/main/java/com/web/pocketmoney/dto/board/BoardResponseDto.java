@@ -17,4 +17,6 @@ public class BoardResponseDto {
     private int pay;
     private int view;
     private String nickName;
+    private String fileKey;
+    private String filePath;
 }

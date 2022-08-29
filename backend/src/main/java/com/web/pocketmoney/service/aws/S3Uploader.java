@@ -7,8 +7,6 @@ import com.web.pocketmoney.dto.aws.S3DeleteResponseDto;
 import com.web.pocketmoney.dto.aws.S3UploadResponseDto;
 import com.web.pocketmoney.entity.board.Board;
 import com.web.pocketmoney.entity.board.BoardRepository;
-import com.web.pocketmoney.entity.image.Image;
-import com.web.pocketmoney.entity.image.ImageRepository;
 import com.web.pocketmoney.entity.user.User;
 import com.web.pocketmoney.exception.CBoardIdFailedException;
 import lombok.RequiredArgsConstructor;
@@ -29,12 +27,11 @@ import java.util.UUID;
 @Log4j2
 public class S3Uploader {
     private final AmazonS3Client amazonS3Client;
-    private final ImageRepository imageRepository;
     private final BoardRepository boardRepository;
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
-    public S3UploadResponseDto uploadFiles(MultipartFile multipartFile, String dirName, User user, Long id) throws IOException {
+    public S3UploadResponseDto uploadFiles(MultipartFile multipartFile, String dirName, User user) throws IOException {
         log.info("multipart : " + multipartFile);
        // Board board = boardRepository.findById(id).orElseThrow(CBoardIdFailedException::new);
         /*File uploadFile = new File(multipartFile.getOriginalFilename());
@@ -42,22 +39,14 @@ public class S3Uploader {
         File uploadFile = convert(multipartFile)  // 파일 변환할 수 없으면 에러
                 .orElseThrow(() -> new IllegalArgumentException("error: MultipartFile -> File convert fail"));
         log.info(uploadFile + " : " + multipartFile);
-        return upload(uploadFile, dirName, user, id);
+        return upload(uploadFile, dirName, user);
     }
 
-    public S3UploadResponseDto upload(File uploadFile, String filePath, User user, Long id) {
+    public S3UploadResponseDto upload(File uploadFile, String filePath, User user) {
         String fileName = filePath + "/" + UUID.randomUUID() + uploadFile.getName();   // S3에 저장된 파일 이름
         log.info("fileName : " + fileName);
         String uploadImageUrl = putS3(uploadFile, fileName); // s3로 업로드
         log.info("uploadImage : " + uploadImageUrl);
-        imageRepository.save(
-                Image.builder()
-                        .key(fileName)
-                        .path(uploadImageUrl)
-                        .user(user)
-                        .boardId(id)
-                        .build()
-        );
         removeNewFile(uploadFile);
         return S3UploadResponseDto.builder()
                 .key(fileName)

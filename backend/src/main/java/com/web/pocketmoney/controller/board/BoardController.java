@@ -12,6 +12,9 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("boards")
@@ -21,13 +24,14 @@ public class BoardController {
     private final BoardService boardService;
 
     @PostMapping("")
-    public ResponseEntity<BoardResponseDto> saveBoard(@RequestBody BoardRequestDto boardRequestDto,
-                                                      @AuthenticationPrincipal User user)
-    {
+    public ResponseEntity<BoardResponseDto> saveBoard(@RequestPart(value = "board") BoardRequestDto boardRequestDto,
+                                                      @AuthenticationPrincipal User user, @RequestPart(value="file", required = false) MultipartFile file) throws IOException {
         log.info("Board save Controller : " + user.toString());
-        log.info(boardRequestDto.toString());
 
-        return ResponseEntity.ok(boardService.save(user, boardRequestDto));
+        log.info(boardRequestDto.toString());
+        log.info("file : " + file);
+
+        return ResponseEntity.ok(boardService.save(user, boardRequestDto, file));
     }
 
     @PutMapping("/{id}")
