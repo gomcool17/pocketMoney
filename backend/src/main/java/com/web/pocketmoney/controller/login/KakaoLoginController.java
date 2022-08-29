@@ -41,12 +41,21 @@ public class KakaoLoginController {
         String email = userInfo.get("email").toString();
         String name = userInfo.get("name").toString();
         String gender = userInfo.get("gender").toString();
+        if(userInfo.get("gender").toString().equals("male")) {
+            log.info("남자");
+            gender = "남";
+        }
+        else {
+            log.info("여자");
+            gender = "여";
+        }
         log.info("최종 : " + name + " "+ email + " " + gender);
 
         // 새로운 회원이 로그인 할시 어떻게 회원가입을 시켜야할까?
         // ...
         User user = userRepository.findByEmail(email).orElse(null);
         Boolean check = false;
+
         if(user == null) {
             log.info("신규 유저임");
             userRepository.save(User.builder()
