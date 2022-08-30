@@ -1,30 +1,18 @@
 # PocketMoney
 심부름, 알바 등 다양한 구인글을 올려서 용돈벌이를 할 수 있는 사이트
-
-
-## 팀원
-- 김하연: https://github.com/gomcool17
-- 심대성: https://github.com/ShimDaeSung1
-- 김해담솔: https://github.com/khdscor
+3인에서 구현
+PocketMoney git 주소 : https://github.com/PoKMoney/PocketMoney
 
 ## 내가 한 부분에 대한 내용
 # 회원가입
 1. 실행 된 모습 
 <img width="500" alt="image" src="https://user-images.githubusercontent.com/30142575/187355059-d5bb3712-1710-490e-9d1f-d4ec35d77bf2.png">
-2. 이메일 중복 에러
-<img width="531" alt="image" src="https://user-images.githubusercontent.com/30142575/187355156-47d9bd9c-8d3b-4c01-9b2b-fa7e49e609fb.png">
-3. 닉네임 중복 에러
-<img width="521" alt="image" src="https://user-images.githubusercontent.com/30142575/187355204-a33c01b1-e7a7-4393-8949-971ed93b715b.png">
 
 # 로그인
 1. 로그인 한 모습
 <img width="500" alt="image" src="https://user-images.githubusercontent.com/30142575/187355273-919264be-72d6-4816-be71-2fa14b406f47.png">
 - accessToken을 반환해줌
-2. 이메일 에러
-<img width="462" alt="image" src="https://user-images.githubusercontent.com/30142575/187355405-67ce7ec4-5df6-491f-8068-5a1fb7265fc5.png">
-4. 비밀번호 에러
-<img width="450" alt="image" src="https://user-images.githubusercontent.com/30142575/187355446-441adf88-befa-492d-bfb4-4ca4bd93266c.png">
-5. kakao login
+2. kakao login
 <img width="500" alt="image" src="https://user-images.githubusercontent.com/30142575/187355820-1ba49415-cf2a-4536-bd08-f17c9faf3909.png">
 - 발급받은 token으로 login
 - kakao login이 된 모습(id = 2), 추가 정보는 새로 받을 것
@@ -66,15 +54,40 @@
 - 강아지 검색
 <img width="500" alt="image" src="https://user-images.githubusercontent.com/30142575/187361062-aa29d087-27e0-4980-bee0-a7bdb483d0fc.png">
 - 고양이 검색
-<img width="550" alt="image" src="https://user-images.githubusercontent.com/30142575/187361156-8566a1fb-ba19-43f9-af84-c2c4611f0260.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/30142575/187361156-8566a1fb-ba19-43f9-af84-c2c4611f0260.png">
 - 고양 검섹 -> 고양이 포함된 제목 전부 검색
-<img width="550" alt="image" src="https://user-images.githubusercontent.com/30142575/187361234-1c6222ee-35b3-4f3a-a432-05d48e241633.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/30142575/187361234-1c6222ee-35b3-4f3a-a432-05d48e241633.png">
 
 5. 도시에 대한 검색 (근처 일자리)
+- 검색할 도시들
+<img width="59" alt="image" src="https://user-images.githubusercontent.com/30142575/187361581-e091ed08-c057-45ca-bc41-942b6de7a104.png">
+- 서울 
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/30142575/187361842-4c19a646-98b3-4987-bdfa-3a3d8162f694.png">
+- 인천
+<img width="505" alt="image" src="https://user-images.githubusercontent.com/30142575/187361940-b04977cc-ac3e-47a5-91dc-a5299891448d.png">
+- 천
+<img width="585" alt="image" src="https://user-images.githubusercontent.com/30142575/187362122-d49285d3-f193-43ed-af46-f083c046d4bc.png">
 
 
 6. 댓글기능은 게시글이랑 동일하게 구현
+7. 예외처리들
+- 회원가입시
+  - 이메일 중복 에러
+<img width="531" alt="image" src="https://user-images.githubusercontent.com/30142575/187355156-47d9bd9c-8d3b-4c01-9b2b-fa7e49e609fb.png">
+  - 닉네임 중복 에러
+<img width="521" alt="image" src="https://user-images.githubusercontent.com/30142575/187355204-a33c01b1-e7a7-4393-8949-971ed93b715b.png">
 
+- 로그인시
+  - 이메일 에러
+<img width="462" alt="image" src="https://user-images.githubusercontent.com/30142575/187355405-67ce7ec4-5df6-491f-8068-5a1fb7265fc5.png">
+  - 비밀번호 에러
+<img width="450" alt="image" src="https://user-images.githubusercontent.com/30142575/187355446-441adf88-befa-492d-bfb4-4ca4bd93266c.png">
+
+- 게시글 관련 (댓글도 동일)
+  - 작성자가 아닌데 삭제, 수정등 접근
+<img width="441" alt="image" src="https://user-images.githubusercontent.com/30142575/187362541-058ca759-76e5-41e2-b624-243b3db99940.png">
+  - 존재하지 않는 게시글에 대한 접근
+<img width="375" alt="image" src="https://user-images.githubusercontent.com/30142575/187362627-62bc82ec-9629-4cff-9a8f-b0b541c6600c.png">
 
 
 
@@ -88,6 +101,3 @@
 - Backend : Java
 - Frontend : HTML/CSS/JS
 - Database : SQL
-
-
-----업데이트중-----
