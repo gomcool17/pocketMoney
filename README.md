@@ -62,7 +62,13 @@
 
 4. 제목에 대한 검색
 - 검색할 제목들
-<img width="138" alt="image" src="https://user-images.githubusercontent.com/30142575/187359109-f1e233f2-34f4-4e74-a92e-7b70a93f70e8.png">
+<img width="204" alt="image" src="https://user-images.githubusercontent.com/30142575/187360961-08d998fa-19b9-4845-8aeb-b9bb32228bee.png">
+- 강아지 검색
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/30142575/187361062-aa29d087-27e0-4980-bee0-a7bdb483d0fc.png">
+- 고양이 검색
+<img width="550" alt="image" src="https://user-images.githubusercontent.com/30142575/187361156-8566a1fb-ba19-43f9-af84-c2c4611f0260.png">
+- 고양 검섹 -> 고양이 포함된 제목 전부 검색
+<img width="550" alt="image" src="https://user-images.githubusercontent.com/30142575/187361234-1c6222ee-35b3-4f3a-a432-05d48e241633.png">
 
 5. 도시에 대한 검색 (근처 일자리)
 
