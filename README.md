@@ -8,9 +8,66 @@
 - 김해담솔: https://github.com/khdscor
 
 ## 내가 한 부분에 대한 내용
-- 회원가입
+# 회원가입
 1. 실행 된 모습 
-<img width="500" alt="image" src="https://user-images.githubusercontent.com/30142575/187354605-d3d16146-694b-4679-aac0-04f906dbe5bf.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/30142575/187355059-d5bb3712-1710-490e-9d1f-d4ec35d77bf2.png">
+2. 이메일 중복 에러
+<img width="531" alt="image" src="https://user-images.githubusercontent.com/30142575/187355156-47d9bd9c-8d3b-4c01-9b2b-fa7e49e609fb.png">
+3. 닉네임 중복 에러
+<img width="521" alt="image" src="https://user-images.githubusercontent.com/30142575/187355204-a33c01b1-e7a7-4393-8949-971ed93b715b.png">
+
+# 로그인
+1. 로그인 한 모습
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/30142575/187355273-919264be-72d6-4816-be71-2fa14b406f47.png">
+- accessToken을 반환해줌
+2. 이메일 에러
+<img width="462" alt="image" src="https://user-images.githubusercontent.com/30142575/187355405-67ce7ec4-5df6-491f-8068-5a1fb7265fc5.png">
+4. 비밀번호 에러
+<img width="450" alt="image" src="https://user-images.githubusercontent.com/30142575/187355446-441adf88-befa-492d-bfb4-4ca4bd93266c.png">
+5. kakao login
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/30142575/187355820-1ba49415-cf2a-4536-bd08-f17c9faf3909.png">
+- 발급받은 token으로 login
+- kakao login이 된 모습(id = 2), 추가 정보는 새로 받을 것
+<img width="1153" alt="image" src="https://user-images.githubusercontent.com/30142575/187356253-38704b99-2f26-43f2-b130-8b65e177ced7.png">
+
+# 게시글 및 댓글
+- 이렇게 header에 token을 넣어준다
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/30142575/187356523-c157ade0-655b-402c-987b-cedaa15daf9e.png">
+
+1. 게시글 작성, 수정, 삭제
+- 작성 : 사진이 있을시, 사진의 key와 path(url) 반환, 없을시 null 반환
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/30142575/187356706-ecf4329a-afb6-4d5b-b6bf-4ce4b259e50a.png">
+- 수정 : 수정시 다른 사진을 넣어도 잘 되는것 확인
+- 다른 내용도 수정 가능 : 사진 및 제목이 변경된 것을 볼 수 있다.
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/30142575/187357249-04d6a6ad-e4d7-4081-bdf9-5ccc02352691.png">
+- 삭제 : 전, 후
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/30142575/187357511-2a6ab959-e0ce-4d9c-8286-cc4f44ac899c.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/30142575/187357449-9de87a8e-6cc1-4f34-824a-50fed8fefa44.png">
+
+2. 게시글 조최
+- 비회원 게시글 조회
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/30142575/187358458-7480d486-5663-46dd-9942-73facb55cc6b.png">
+- 작성자 게시글 조회
+<img width="552" alt="image" src="https://user-images.githubusercontent.com/30142575/187358628-28ba0bac-ee06-4d4a-8033-78cbda80bf0d.png">
+- 비작성자 게시글 조회
+<img width="631" alt="image" src="https://user-images.githubusercontent.com/30142575/187358903-b6f6e5ec-2023-49ce-93d4-0b3f794f3825.png">
+
+3. 게시글 목록
+- 현재 저장된 data
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/30142575/187358043-77457243-4121-4b42-9780-f63321406dc2.png">
+
+- 최신순 부터 조회 : start -> 시작 페이지, end -> 마지막 페이지, prev,next -> 이전, 다음 페이지가 있는지
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/30142575/187358002-91aa1bbd-7003-43cd-bae2-97f579a0842a.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/30142575/187358088-e5437236-2203-4d94-a7fa-31d7901c04e5.png">
+
+4. 제목에 대한 검색
+- 검색할 제목들
+<img width="138" alt="image" src="https://user-images.githubusercontent.com/30142575/187359109-f1e233f2-34f4-4e74-a92e-7b70a93f70e8.png">
+
+5. 도시에 대한 검색 (근처 일자리)
+
+
+6. 댓글기능은 게시글이랑 동일하게 구현
 
 
 
